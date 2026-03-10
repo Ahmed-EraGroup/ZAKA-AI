@@ -1,0 +1,4 @@
+project_id = "lesgbwnttkiebyztjzaj"
+[model_settings]
+model = "gpt-5.1-chat-latest"
+think = "medium"  # تأكد أنها "medium" وليس "low" لتجنب خطأ الـ 400

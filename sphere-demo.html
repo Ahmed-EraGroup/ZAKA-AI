@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive 3D Glowing Sphere</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            font-family: 'Arial', sans-serif;
+        }
+
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #info {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            text-align: center;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        #info h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            background: linear-gradient(45deg, #00f2ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        #info p {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <h1>Interactive 3D Glowing Sphere</h1>
+        <p>Move your mouse to interact with the sphere</p>
+    </div>
+    <div id="canvas-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Camera position
+        camera.position.z = 5;
+
+        // Create sphere geometry
+        const geometry = new THREE.SphereGeometry(1.5, 64, 64);
+
+        // Create custom shader material for glowing effect
+        const material = new THREE.ShaderMaterial({
+            uniforms: {
+                time: { value: 0 },
+                mouseX: { value: 0 },
+                mouseY: { value: 0 },
+                color1: { value: new THREE.Color(0x00f2ff) },
+                color2: { value: new THREE.Color(0xff00ff) },
+                color3: { value: new THREE.Color(0x00ff88) }
+            },
+            vertexShader: `
+                varying vec3 vNormal;
+                varying vec3 vPosition;
+                uniform float time;
+                uniform float mouseX;
+                uniform float mouseY;
+
+                void main() {
+                    vNormal = normalize(normalMatrix * normal);
+                    vPosition = position;
+
+                    // Add wave distortion based on time and mouse position
+                    vec3 pos = position;
+                    float distortion = sin(position.x * 3.0 + time) *
+                                     cos(position.y * 3.0 + time) *
+                                     sin(position.z * 3.0 + time) * 0.1;
+
+                    // Mouse influence
+                    distortion += (mouseX * position.x + mouseY * position.y) * 0.05;
+
+                    pos += normal * distortion;
+
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+                }
+            `,
+            fragmentShader: `
+                varying vec3 vNormal;
+                varying vec3 vPosition;
+                uniform float time;
+                uniform float mouseX;
+                uniform float mouseY;
+                uniform vec3 color1;
+                uniform vec3 color2;
+                uniform vec3 color3;
+
+                void main() {
+                    // Fresnel effect for glow
+                    vec3 viewDirection = normalize(cameraPosition - vPosition);
+                    float fresnel = pow(1.0 - dot(viewDirection, vNormal), 3.0);
+
+                    // Animated color mixing
+                    float mixFactor1 = sin(time * 0.5 + vPosition.x * 2.0) * 0.5 + 0.5;
+                    float mixFactor2 = cos(time * 0.3 + vPosition.y * 2.0) * 0.5 + 0.5;
+
+                    // Mouse influence on colors
+                    mixFactor1 += mouseX * 0.3;
+                    mixFactor2 += mouseY * 0.3;
+
+                    vec3 color = mix(color1, color2, mixFactor1);
+                    color = mix(color, color3, mixFactor2);
+
+                    // Add glow
+                    color += fresnel * 0.8;
+
+                    // Pulsing effect
+                    float pulse = sin(time * 2.0) * 0.1 + 0.9;
+                    color *= pulse;
+
+                    gl_FragColor = vec4(color, 1.0);
+                }
+            `,
+            transparent: true
+        });
+
+        const sphere = new THREE.Mesh(geometry, material);
+        scene.add(sphere);
+
+        // Add outer glow sphere
+        const glowGeometry = new THREE.SphereGeometry(1.7, 32, 32);
+        const glowMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                time: { value: 0 },
+                color: { value: new THREE.Color(0x00f2ff) }
+            },
+            vertexShader: `
+                varying vec3 vNormal;
+                void main() {
+                    vNormal = normalize(normalMatrix * normal);
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                varying vec3 vNormal;
+                uniform float time;
+                uniform vec3 color;
+
+                void main() {
+                    float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
+                    float pulse = sin(time * 2.0) * 0.2 + 0.8;
+                    gl_FragColor = vec4(color, 1.0) * intensity * pulse;
+                }
+            `,
+            side: THREE.BackSide,
+            blending: THREE.AdditiveBlending,
+            transparent: true
+        });
+
+        const glowSphere = new THREE.Mesh(glowGeometry, glowMaterial);
+        scene.add(glowSphere);
+
+        // Add ambient light
+        const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+        scene.add(ambientLight);
+
+        // Add point lights for extra glow
+        const pointLight1 = new THREE.PointLight(0x00f2ff, 1, 100);
+        pointLight1.position.set(5, 5, 5);
+        scene.add(pointLight1);
+
+        const pointLight2 = new THREE.PointLight(0xff00ff, 1, 100);
+        pointLight2.position.set(-5, -5, 5);
+        scene.add(pointLight2);
+
+        // Mouse tracking
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetRotationX = 0;
+        let targetRotationY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            targetRotationY = mouseX * Math.PI;
+            targetRotationX = mouseY * Math.PI;
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Animation loop
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+
+            time += 0.01;
+
+            // Update shader uniforms
+            material.uniforms.time.value = time;
+            material.uniforms.mouseX.value = mouseX;
+            material.uniforms.mouseY.value = mouseY;
+            glowMaterial.uniforms.time.value = time;
+
+            // Smooth rotation based on mouse position
+            sphere.rotation.y += (targetRotationY - sphere.rotation.y) * 0.05;
+            sphere.rotation.x += (targetRotationX - sphere.rotation.x) * 0.05;
+
+            // Auto-rotation
+            sphere.rotation.y += 0.005;
+            sphere.rotation.x += 0.002;
+
+            // Sync glow sphere rotation
+            glowSphere.rotation.copy(sphere.rotation);
+
+            // Animate point lights
+            pointLight1.position.x = Math.sin(time) * 5;
+            pointLight1.position.y = Math.cos(time) * 5;
+            pointLight2.position.x = Math.cos(time * 0.7) * 5;
+            pointLight2.position.y = Math.sin(time * 0.7) * 5;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Video Generation Models Directory | Best AI Video Tools 2026</title>
+    <meta name="description" content="Comprehensive directory of the best AI video generation models including Sora, Runway, Pika, and more. Compare features, pricing, and capabilities.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1f3a 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1.5rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Filter Section */
+        .filters {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            min-width: 80px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+
+        .filter-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.75rem 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Models Grid */
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .model-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .model-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .model-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .model-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .model-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .model-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .model-company {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .model-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-new {
+            background: var(--success);
+            color: white;
+        }
+
+        .badge-popular {
+            background: var(--accent);
+            color: white;
+        }
+
+        .badge-beta {
+            background: var(--warning);
+            color: white;
+        }
+
+        .model-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .model-features {
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .feature-icon {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .model-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--bg-dark);
+            border-radius: 8px;
+        }
+
+        .spec {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spec-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 0.25rem;
+        }
+
+        .model-pricing {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .price-period {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .model-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .footer-content p {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .models-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .filter-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-label {
+                min-width: auto;
+            }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🎬 AI Video Models</div>
+                <div class="header-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="modelCount">15</span>
+                        <span>Models</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">2026</span>
+                        <span>Updated</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero">
+                <h1>Best AI Video Generation Models</h1>
+                <p>Discover and compare the most advanced AI video generation tools. From text-to-video to image-to-video, find the perfect model for your creative needs.</p>
+            </section>
+
+            <section class="filters">
+                <div class="filter-group">
+                    <span class="filter-label">Filter:</span>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All Models</button>
+                        <button class="filter-btn" data-filter="text-to-video">Text-to-Video</button>
+                        <button class="filter-btn" data-filter="image-to-video">Image-to-Video</button>
+                        <button class="filter-btn" data-filter="free">Free Tier</button>
+                        <button class="filter-btn" data-filter="commercial">Commercial Use</button>
+                    </div>
+                </div>
+                <div class="filter-group" style="margin-top: 1rem;">
+                    <span class="filter-label">Search:</span>
+                    <input type="text" class="search-box" id="searchBox" placeholder="Search models by name, company, or features...">
+                </div>
+            </section>
+
+            <section class="models-grid" id="modelsGrid">
+                <!-- Models will be inserted here by JavaScript -->
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 AI Video Models Directory. Information updated regularly.</p>
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#submit">Submit a Model</a>
+                    <a href="#api">API</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const models = [
+            {
+                name: "Sora",
+                company: "OpenAI",
+                badge: "new",
+                description: "OpenAI's groundbreaking text-to-video model capable of generating high-quality, realistic videos up to 60 seconds long with complex scenes and multiple characters.",
+                features: [
+                    "Up to 60 seconds video length",
+                    "1080p resolution support",
+                    "Complex scene understanding",
+                    "Temporal consistency",
+                    "Multiple camera angles"
+                ],
+                specs: {
+                    maxLength: "60 seconds",
+                    resolution: "1080p",
+                    pricing: "TBA",
+                    access: "Limited Beta"
+                },
+                pricing: "TBA",
+                pricePeriod: "",
+                website: "https://openai.com/sora",
+                docs: "https://openai.com/research/sora",
+                tags: ["text-to-video", "commercial"],
+                freeTier: false
+            },
+            {
+                name: "Runway Gen-3",
+                company: "Runway",
+                badge: "popular",
+                description: "Advanced video generation model with exceptional quality and control. Gen-3 Alpha offers improved fidelity, consistency, and motion control for professional creators.",
+                features: [
+                    "10 second clips",
+                    "4K resolution capable",
+                    "Motion brush controls",
+                    "Style consistency",
+                    "Director mode"
+                ],
+                specs: {
+                    maxLength: "10 seconds",
+                    resolution: "4K",
+                    pricing: "$12/month",
+                    access: "Public"
+                },
+                pricing: "$12",
+                pricePeriod: "/month",
+                website: "https://runwayml.com",
+                docs: "https://docs.runwayml.com",
+                tags: ["text-to-video", "image-to-video", "commercial", "free"],
+                freeTier: true
+            },
+            {
+                name: "Pika 2.0",
+                company: "Pika Labs",
+                badge: "popular",
+                description: "User-friendly AI video generator with powerful editing capabilities. Pika 2.0 introduces advanced controls for modifying, extending, and enhancing videos.",
+                features: [
+                    "3-8 second clips",
+                    "Video editing & extension",
+                    "Lip sync capabilities",
+                    "Scene expansion",
+                    "Style transfer"
+                ],
+                specs: {
+                    maxLength: "8 seconds",
+                    resolution: "1080p",
+                    pricing: "$10/month",
+                    access: "Public"
+                },
+                pricing: "$10",
+                pricePeriod: "/month",
+                website: "https://pika.art",
+                docs: "https://pika.art/docs",
+                tags: ["text-to-video", "image-to-video", "commercial", "free"],
+                freeTier: true
+            },
+            {
+                name: "Stable Video Diffusion",
+                company: "Stability AI",
+                badge: "new",
+                description: "Open-source video generation model based on Stable Diffusion. Offers flexibility and customization for developers and researchers.",
+                features: [
+                    "Open source",
+                    "Image-to-video focus",
+                    "Customizable",
+                    "14-25 frames",
+                    "Community driven"
+                ],
+                specs: {
+                    maxLength: "4 seconds",
+                    resolution: "1024x576",
+                    pricing: "Free",
+                    access: "Open Source"
+                },
+                pricing: "Free",
+                pricePeriod: "(Open Source)",
+                website: "https://stability.ai",
+                docs: "https://github.com/Stability-AI/generative-models",
+                tags: ["image-to-video", "free"],
+                freeTier: true
+            },
+            {
+                name: "Kling AI",
+                company: "Kuaishou",
+                badge: "new",
+                description: "Chinese AI video model with impressive capabilities, generating videos up to 2 minutes long with strong motion and physics understanding.",
+                features: [
+                    "Up to 2 minutes length",
+                    "1080p resolution",
+                    "Advanced physics simulation",
+                    "3D face reconstruction",
+                    "Concept combination"
+                ],
+                specs: {
+                    maxLength: "120 seconds",
+                    resolution: "1080p",
+                    pricing: "¥66/month",
+                    access: "Public (China)"
+                },
+                pricing: "¥66",
+                pricePeriod: "/month (~$9)",
+                website: "https://klingai.com",
+                docs: "https://klingai.com/docs",
+                tags: ["text-to-video", "image-to-video", "commercial", "free"],
+                freeTier: true
+            },
+            {
+                name: "Luma Dream Machine",
+                company: "Luma AI",
+                badge: "popular",
+                description: "Fast and accessible AI video generator with emphasis on speed and quality. Creates smooth, cinematic videos from text and images.",
+                features: [
+                    "5 second clips",
+                    "Fast generation (120 frames in 2 min)",
+                    "Smooth motion",
+                    "Cinematic quality",
+                    "Easy to use"
+                ],
+                specs: {
+                    maxLength: "5 seconds",
+                    resolution: "1080p",
+                    pricing: "$30/month",
+                    access: "Public"
+                },
+                pricing: "$30",
+                pricePeriod: "/month",
+                website: "https://lumalabs.ai",
+                docs: "https://lumalabs.ai/dream-machine",
+                tags: ["text-to-video", "image-to-video", "commercial", "free"],
+                freeTier: true
+            },
+            {
+                name: "HeyGen",
+                company: "HeyGen",
+                badge: "popular",
+                description: "Specialized in AI avatar videos with realistic talking heads. Perfect for creating professional video content with virtual presenters.",
+                features: [
+                    "AI avatars",
+                    "40+ languages",
+                    "Voice cloning",
+                    "Custom avatars",
+                    "Template library"
+                ],
+                specs: {
+                    maxLength: "Unlimited",
+                    resolution: "1080p",
+                    pricing: "$24/month",
+                    access: "Public"
+                },
+                pricing: "$24",
+                pricePeriod: "/month",
+                website: "https://heygen.com",
+                docs: "https://docs.heygen.com",
+                tags: ["text-to-video", "commercial", "free"],
+                freeTier: true
+            },
+            {
+                name: "Synthesia",
+                company: "Synthesia",
+                badge: "popular",
+                description: "Enterprise-focused AI video platform for creating professional videos with AI avatars. Trusted by Fortune 500 companies.",
+                features: [
+                    "140+ AI avatars",
+                    "120+ languages",
+                    "Custom avatars",
+                    "Screen recording",
+                    "Team collaboration"
+                ],
+                specs: {
+                    maxLength: "Unlimited",
+                    resolution: "1080p",
+                    pricing: "$22/month",
+                    access: "Public"
+                },
+                pricing: "$22",
+                pricePeriod: "/month",
+                website: "https://synthesia.io",
+                docs: "https://docs.synthesia.io",
+                tags: ["text-to-video", "commercial"],
+                freeTier: false
+            },
+            {
+                name: "Moonvalley",
+                company: "Moonvalley",
+                badge: "beta",
+                description: "AI video generator focused on artistic and stylized content. Offers unique aesthetic controls and creative flexibility.",
+                features: [
+                    "Artistic styles",
+                    "3-5 second clips",
+                    "Style mixing",
+                    "HD quality",
+                    "Community features"
+                ],
+                specs: {
+                    maxLength: "5 seconds",
+                    resolution: "HD",
+                    pricing: "$30/month",
+                    access: "Public Beta"
+                },
+                pricing: "$30",
+                pricePeriod: "/month",
+                website: "https://moonvalley.ai",
+                docs: "https://moonvalley.ai/docs",
+                tags: ["text-to-video", "image-to-video", "free"],
+                freeTier: true
+            },
+            {
+                name: "Genmo",
+                company: "Genmo",
+                badge: "beta",
+                description: "Creative AI video tool with focus on animation and motion graphics. Offers unique controls for creative expression.",
+                features: [
+                    "6 second clips",
+                    "Animation controls",
+                    "Camera movement",
+                    "FX effects",
+                    "Collaborative editing"
+                ],
+                specs: {
+                    maxLength: "6 seconds",
+                    resolution: "1080p",
+                    pricing: "$10/month",
+                    access: "Public Beta"
+                },
+                pricing: "$10",
+                pricePeriod: "/month",
+                website: "https://genmo.ai",
+                docs: "https://genmo.ai/docs",
+                tags: ["text-to-video", "image-to-video", "free"],
+                freeTier: true
+            },
+            {
+                name: "Kaiber",
+                company: "Kaiber",
+                badge: "popular",
+                description: "AI video generator for artists and musicians. Specializes in transforming images and videos into artistic animations.",
+                features: [
+                    "Audio reactivity",
+                    "Style transformation",
+                    "Video-to-video",
+                    "Multiple aspect ratios",
+                    "Music video creation"
+                ],
+                specs: {
+                    maxLength: "8 seconds",
+                    resolution: "1080p",
+                    pricing: "$5/month",
+                    access: "Public"
+                },
+                pricing: "$5",
+                pricePeriod: "/month",
+                website: "https://kaiber.ai",
+                docs: "https://kaiber.ai/docs",
+                tags: ["text-to-video", "image-to-video", "commercial", "free"],
+                freeTier: true
+            },
+            {
+                name: "Haiper",
+                company: "Haiper",
+                badge: "new",
+                description: "Emerging AI video platform with competitive quality and speed. Offers both text-to-video and image-to-video capabilities.",
+                features: [
+                    "4 second clips",
+                    "Fast generation",
+                    "HD quality",
+                    "Repaint feature",
+                    "Extend videos"
+                ],
+                specs: {
+                    maxLength: "4 seconds",
+                    resolution: "HD",
+                    pricing: "Free",
+                    access: "Public"
+                },
+                pricing: "Free",
+                pricePeriod: "(Beta)",
+                website: "https://haiper.ai",
+                docs: "https://haiper.ai/docs",
+                tags: ["text-to-video", "image-to-video", "free"],
+                freeTier: true
+            },
+            {
+                name: "Morph Studio",
+                company: "Morph",
+                badge: "beta",
+                description: "AI video creation platform with storyboard-based workflow. Ideal for creating narrative content and storytelling.",
+                features: [
+                    "Storyboard workflow",
+                    "Scene consistency",
+                    "Character persistence",
+                    "Multiple shots",
+                    "Export options"
+                ],
+                specs: {
+                    maxLength: "Variable",
+                    resolution: "1080p",
+                    pricing: "$20/month",
+                    access: "Public Beta"
+                },
+                pricing: "$20",
+                pricePeriod: "/month",
+                website: "https://morphstudio.com",
+                docs: "https://morphstudio.com/docs",
+                tags: ["text-to-video", "commercial", "free"],
+                freeTier: true
+            },
+            {
+                name: "Pixverse",
+                company: "Pixverse",
+                badge: "new",
+                description: "Free AI video generator with impressive quality. Offers both text-to-video and image-to-video with no watermarks.",
+                features: [
+                    "4 second clips",
+                    "No watermarks",
+                    "Multiple styles",
+                    "Upscaling",
+                    "Community gallery"
+                ],
+                specs: {
+                    maxLength: "4 seconds",
+                    resolution: "1024x1024",
+                    pricing: "Free",
+                    access: "Public"
+                },
+                pricing: "Free",
+                pricePeriod: "",
+                website: "https://pixverse.ai",
+                docs: "https://pixverse.ai/docs",
+                tags: ["text-to-video", "image-to-video", "free"],
+                freeTier: true
+            },
+            {
+                name: "Neural Frames",
+                company: "Neural Frames",
+                badge: "beta",
+                description: "AI animation generator focused on music videos and audio-reactive content. Perfect for musicians and content creators.",
+                features: [
+                    "Audio-reactive",
+                    "Prompt animation",
+                    "Custom models",
+                    "Unlimited length",
+                    "High FPS support"
+                ],
+                specs: {
+                    maxLength: "Unlimited",
+                    resolution: "1080p",
+                    pricing: "$19/month",
+                    access: "Public"
+                },
+                pricing: "$19",
+                pricePeriod: "/month",
+                website: "https://neuralframes.com",
+                docs: "https://neuralframes.com/docs",
+                tags: ["text-to-video", "commercial", "free"],
+                freeTier: true
+            }
+        ];
+
+        let currentFilter = 'all';
+        let searchTerm = '';
+
+        function renderModels() {
+            const grid = document.getElementById('modelsGrid');
+            const filteredModels = models.filter(model => {
+                const matchesFilter = currentFilter === 'all' ||
+                    (currentFilter === 'free' && model.freeTier) ||
+                    model.tags.includes(currentFilter);
+
+                const matchesSearch = searchTerm === '' ||
+                    model.name.toLowerCase().includes(searchTerm) ||
+                    model.company.toLowerCase().includes(searchTerm) ||
+                    model.description.toLowerCase().includes(searchTerm) ||
+                    model.features.some(f => f.toLowerCase().includes(searchTerm));
+
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filteredModels.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results" style="grid-column: 1 / -1;">
+                        <h3>No models found</h3>
+                        <p>Try adjusting your filters or search terms</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filteredModels.map(model => `
+                <div class="model-card">
+                    <div class="model-header">
+                        <div>
+                            <h2 class="model-name">${model.name}</h2>
+                            <p class="model-company">${model.company}</p>
+                        </div>
+                        <span class="model-badge badge-${model.badge}">${model.badge}</span>
+                    </div>
+
+                    <p class="model-description">${model.description}</p>
+
+                    <div class="model-features">
+                        ${model.features.slice(0, 4).map(feature => `
+                            <div class="feature-item">
+                                <span class="feature-icon">✓</span>
+                                <span>${feature}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="model-specs">
+                        <div class="spec">
+                            <span class="spec-label">Max Length</span>
+                            <span class="spec-value">${model.specs.maxLength}</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Resolution</span>
+                            <span class="spec-value">${model.specs.resolution}</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Access</span>
+                            <span class="spec-value">${model.specs.access}</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Free Tier</span>
+                            <span class="spec-value">${model.freeTier ? 'Yes' : 'No'}</span>
+                        </div>
+                    </div>
+
+                    <div class="model-pricing">
+                        <span class="price">${model.pricing}</span>
+                        <span class="price-period">${model.pricePeriod}</span>
+                    </div>
+
+                    <div class="model-links">
+                        <a href="${model.website}" target="_blank" class="btn btn-primary">Visit Website</a>
+                        <a href="${model.docs}" target="_blank" class="btn btn-secondary">Docs</a>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('modelCount').textContent = filteredModels.length;
+        }
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderModels();
+            });
+        });
+
+        // Search
+        document.getElementById('searchBox').addEventListener('input', (e) => {
+            searchTerm = e.target.value.toLowerCase();
+            renderModels();
+        });
+
+        // Initial render
+        renderModels();
+    </script>
+</body>
+</html>

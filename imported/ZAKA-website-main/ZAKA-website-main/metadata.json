@@ -1,0 +1,7 @@
+{
+  "name": "ZAKA AI Agent Infrastructure",
+  "description": "A pixel-perfect clone of the ZAKA AI Agent Infrastructure landing page, built with React, Tailwind CSS, and GSAP.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

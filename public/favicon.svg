@@ -1,0 +1,36 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" role="img" aria-labelledby="title desc">
+  <title id="title">ZAKA Logo</title>
+  <desc id="desc">Stylized ZAKA wordmark with audio waveform in the center</desc>
+  <defs>
+    <linearGradient id="zakaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c96b3e"/>
+      <stop offset="60%" stop-color="#d88a63"/>
+      <stop offset="100%" stop-color="#cfa084"/>
+    </linearGradient>
+    <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3a5147"/>
+      <stop offset="100%" stop-color="#c96b3e"/>
+    </linearGradient>
+  </defs>
+
+  <g fill="url(#zakaGrad)" stroke="url(#zakaGrad)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M64 64h158v14L136 154h94v14H60v-14l88-76H64z" fill="url(#zakaGrad)" stroke="none"/>
+
+    <path d="M242 111
+             L260 111
+             L274 66
+             L288 156
+             L302 38
+             L316 184
+             L330 66
+             L344 156
+             L358 92
+             L372 111
+             L390 111"
+          fill="none" stroke="url(#waveGrad)" stroke-width="14"/>
+
+    <path d="M407 60h18v52l46-52h24l-51 56 55 60h-25l-49-54v54h-18z" fill="url(#zakaGrad)" stroke="none"/>
+    <path d="M518 176h-22l62-116h22l62 116h-22l-13-25h-76zm51-95-29 53h57z" fill="url(#zakaGrad)" stroke="none"/>
+    <path d="M550 130H588" fill="none" stroke="url(#zakaGrad)" stroke-width="10" stroke-linecap="round"/>
+  </g>
+</svg>
