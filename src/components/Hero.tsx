@@ -1,10 +1,14 @@
-﻿import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ParticleOrb from "./ParticleOrb";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Entrance animation
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from("[data-hero-anim]", {
@@ -14,6 +18,34 @@ const Hero = () => {
         ease: "power3.out",
         stagger: 0.15,
         delay: 0.3,
+      });
+    }, containerRef);
+    return () => ctx.revert();
+  }, []);
+
+  // Parallax on scroll
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to("[data-hero-content]", {
+        y: -60,
+        opacity: 0.1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.2,
+        },
+      });
+      gsap.to("[data-hero-orb]", {
+        y: -25,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 2.5,
+        },
       });
     }, containerRef);
     return () => ctx.revert();
@@ -43,7 +75,11 @@ const Hero = () => {
         />
       </div>
 
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-8 md:px-16 pt-28 pb-6 text-center" dir="rtl">
+      <div
+        data-hero-content
+        className="relative z-10 w-full max-w-4xl mx-auto px-8 md:px-16 pt-28 pb-6 text-center"
+        dir="rtl"
+      >
         <p
           data-hero-anim
           className="font-display font-bold text-xl text-clay tracking-wide md:text-4xl"
@@ -93,7 +129,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div data-hero-anim className="relative z-10 w-full max-w-xl mx-auto mt-12 pb-8">
+      <div data-hero-orb data-hero-anim className="relative z-10 w-full max-w-xl mx-auto mt-12 pb-8">
         <ParticleOrb />
       </div>
     </section>

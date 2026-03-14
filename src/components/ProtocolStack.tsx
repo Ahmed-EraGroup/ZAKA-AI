@@ -87,23 +87,43 @@ const ProtocolStack = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray<HTMLElement>("[data-stack-card]");
+
+      // Entrance: each card slides up
+      cards.forEach((card) => {
+        gsap.from(card, {
+          scrollTrigger: { trigger: card, start: "top 85%", once: true },
+          y: 60,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      });
+
+      // Stack depth effect as later cards enter
       cards.forEach((card, i) => {
         if (i === 0) return;
         ScrollTrigger.create({
           trigger: card,
-          start: "top 80%",
+          start: "top 75%",
           onEnter: () => {
             for (let j = 0; j < i; j++) {
               gsap.to(cards[j], {
-                scale: 0.92 - (i - j - 1) * 0.03,
-                filter: `blur(${(i - j) * 6}px)`,
-                opacity: 0.5 - (i - j - 1) * 0.15,
-                duration: 0.6,
+                scale: 0.93 - (i - j - 1) * 0.025,
+                filter: `blur(${(i - j) * 5}px)`,
+                opacity: 0.45 - (i - j - 1) * 0.12,
+                duration: 0.7,
+                ease: "power2.out",
               });
             }
           },
           onLeaveBack: () => {
-            gsap.to(cards[i - 1], { scale: 1, filter: "blur(0px)", opacity: 1, duration: 0.6 });
+            gsap.to(cards[i - 1], {
+              scale: 1,
+              filter: "blur(0px)",
+              opacity: 1,
+              duration: 0.7,
+              ease: "power2.out",
+            });
           },
         });
       });

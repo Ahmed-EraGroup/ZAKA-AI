@@ -11,10 +11,43 @@ import ProtocolStack from "@/components/ProtocolStack";
 import Pricing from "@/components/Pricing";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import { useLenis } from "@/hooks/useLenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const marqueeItems = [
+  "وكيل صوتي",
+  "دردشة ذكية",
+  "أتمتة متكاملة",
+  "تكامل CRM",
+  "ربط API",
+  "استجابة فورية",
+  "دعم 24/7",
+  "لغة عربية",
+];
+
+const MarqueeStrip = () => {
+  const items = [...marqueeItems, ...marqueeItems];
+  return (
+    <div className="overflow-hidden border-y border-white/5 py-4 bg-white/[0.012]">
+      <div className="flex gap-10 animate-marquee whitespace-nowrap w-max">
+        {items.map((tag, i) => (
+          <span
+            key={i}
+            className="flex items-center gap-4 text-xs font-mono-system text-foreground/35 uppercase tracking-widest"
+          >
+            {tag}
+            <span className="h-[3px] w-[3px] rounded-full bg-clay/50" />
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Index = () => {
+  useLenis();
+
   useEffect(() => {
     // Glow-on-enter for all section headings
     const headings = document.querySelectorAll(".text-heading-gradient");
@@ -34,7 +67,7 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
-        
+        <MarqueeStrip />
         <HowItWorks />
         <AgentShowcase />
         <Features />

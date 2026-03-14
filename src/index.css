@@ -145,6 +145,16 @@
   50% { transform: scaleY(1); }
 }
 
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
 /* Smooth scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
