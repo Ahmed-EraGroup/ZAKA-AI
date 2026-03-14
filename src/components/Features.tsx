@@ -55,7 +55,9 @@ const VoiceAgent = () => {
             style={{
               animation: `waveform ${waveformDurations[i]}s ease-in-out infinite`,
               animationDelay: `${i * 0.05}s`,
-              height: "8px",
+              height: "28px",
+              transformOrigin: "center",
+              willChange: "transform",
             }}
           />
         ))}

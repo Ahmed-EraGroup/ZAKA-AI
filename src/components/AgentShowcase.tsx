@@ -1,5 +1,8 @@
 ﻿import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AgentShowcase = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -7,12 +10,12 @@ const AgentShowcase = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from("[data-showcase-anim]", {
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
         y: 50,
         opacity: 0,
-        duration: 1,
+        duration: 0.8,
         ease: "power3.out",
         stagger: 0.15,
-        delay: 0.2,
       });
     }, sectionRef);
 
@@ -28,7 +31,7 @@ const AgentShowcase = () => {
       <div className="max-w-5xl mx-auto px-6 md:px-16 text-center" dir="rtl">
         <h2
           data-showcase-anim
-          className="font-display font-extrabold text-3xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] text-heading-gradient"
+          className="font-display font-bold text-3xl md:text-5xl text-heading-gradient mt-4"
         >
           لمن هذه الخدمة؟
         </h2>

@@ -15,7 +15,6 @@ const tiers = [
       "تركيب على الموقع",
       "صيانة وتشغيل مستمر",
     ],
-    note: "5000 إعداد + 1,500 شهري تشغيل",
     highlighted: false,
   },
   {
@@ -29,7 +28,6 @@ const tiers = [
       "استضافة خاصة",
       "دعم أولوية",
     ],
-    note: "تبدأ من 25,000 حسب نطاق العمل",
     highlighted: true,
   },
 ];
@@ -88,8 +86,6 @@ const Pricing = () => {
                   </li>
                 ))}
               </ul>
-              <p className="text-clay text-sm mb-6 font-medium">{tier.note}</p>
-
               <a
                 href="#deploy"
                 className={`group relative inline-flex items-center justify-center font-semibold px-6 py-3.5 rounded-full text-sm overflow-hidden transition-all ${

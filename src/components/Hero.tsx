@@ -52,7 +52,7 @@ const Hero = () => {
         </p>
         <h1
           data-hero-anim
-          className="font-display font-extrabold text-7xl tracking-tight text-heading-gradient leading-[1.15] mt-4"
+          className="font-display font-extrabold text-7xl tracking-tight text-heading-gradient mt-4"
         >
           وكلاء ذكاء اصطناعي
           <br />

@@ -41,7 +41,7 @@ const Philosophy = () => {
 
 
 
-        <h2 data-phil-line className="font-display font-bold text-4xl md:text-6xl text-heading-gradient leading-tight mb-16">
+        <h2 data-phil-line className="font-display font-bold text-3xl md:text-5xl text-heading-gradient mt-4 mb-16">
           لماذا ZAKA؟
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

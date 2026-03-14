@@ -16,15 +16,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
   useEffect(() => {
+    // Glow-on-enter for all section headings
     const headings = document.querySelectorAll(".text-heading-gradient");
-    headings.forEach((el) => {
+    const triggers = Array.from(headings).map((el) =>
       ScrollTrigger.create({
         trigger: el,
-        start: "top 80%",
+        start: "top 85%",
+        once: true,
         onEnter: () => el.classList.add("glow-active"),
-      });
-    });
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+      })
+    );
+    return () => triggers.forEach((t) => t.kill());
   }, []);
 
   return (

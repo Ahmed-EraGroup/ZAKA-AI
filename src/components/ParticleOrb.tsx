@@ -196,6 +196,7 @@ const ParticleOrb = () => {
                 transform: "translate(-50%, -50%)",
                 animation: `particle-float ${p.speed}s ease-in-out ${p.delay}s infinite alternate`,
                 transition: "background 0.4s, box-shadow 0.4s",
+                willChange: "transform, opacity",
               }}
             />
           );
@@ -211,6 +212,7 @@ const ParticleOrb = () => {
         style={{
           background: config.gradient,
           boxShadow: config.shadow,
+          willChange: "transform",
         }}
       />
 
