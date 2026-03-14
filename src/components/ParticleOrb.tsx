@@ -1,6 +1,6 @@
-﻿import { useMemo, useRef, useState } from "react";
+﻿import { useMemo, useRef, useState, useCallback, useEffect } from "react";
 
-type OrbState = "idle" | "listening" | "speaking";
+type OrbState = "idle" | "listening" | "processing" | "speaking";
 
 interface SpeechRecognitionLike {
   lang: string;
@@ -35,134 +35,186 @@ type ExtendedWindow = Window & {
   webkitSpeechRecognition?: SpeechRecognitionCtor;
 };
 
+const NUM_PARTICLES = 28;
+
+interface Particle {
+  id: number;
+  angle: number;
+  radius: number;
+  size: number;
+  speed: number;
+  opacity: number;
+  delay: number;
+}
+
+const generateParticles = (): Particle[] =>
+  Array.from({ length: NUM_PARTICLES }, (_, i) => ({
+    id: i,
+    angle: (360 / NUM_PARTICLES) * i + Math.random() * 15,
+    radius: 120 + Math.random() * 60,
+    size: 2 + Math.random() * 4,
+    speed: 8 + Math.random() * 12,
+    opacity: 0.3 + Math.random() * 0.7,
+    delay: Math.random() * 5,
+  }));
+
+const stateConfig: Record<
+  OrbState,
+  { label: string; gradient: string; shadow: string; particleColor: string }
+> = {
+  idle: {
+    label: "اضغط للتحدث",
+    gradient: "radial-gradient(circle at 30% 30%, #4facfe, #00f2fe)",
+    shadow: "0 0 40px rgba(79, 172, 254, 0.5), 0 0 80px rgba(0, 242, 254, 0.2)",
+    particleColor: "rgba(79, 172, 254,",
+  },
+  listening: {
+    label: "جارٍ الاستماع...",
+    gradient: "radial-gradient(circle at 30% 30%, #43e97b, #38f9d7)",
+    shadow: "0 0 60px rgba(67, 233, 123, 0.6), 0 0 120px rgba(56, 249, 215, 0.3)",
+    particleColor: "rgba(67, 233, 123,",
+  },
+  processing: {
+    label: "جارٍ المعالجة...",
+    gradient: "radial-gradient(circle at 30% 30%, #f9d423, #ff4e50)",
+    shadow: "0 0 60px rgba(249, 212, 35, 0.6), 0 0 100px rgba(255, 78, 80, 0.3)",
+    particleColor: "rgba(249, 212, 35,",
+  },
+  speaking: {
+    label: "جارٍ الرد...",
+    gradient: "radial-gradient(circle at 30% 30%, #fa709a, #fee140)",
+    shadow: "0 0 70px rgba(250, 112, 154, 0.7), 0 0 140px rgba(254, 225, 64, 0.3)",
+    particleColor: "rgba(250, 112, 154,",
+  },
+};
+
 const ParticleOrb = () => {
   const [orbState, setOrbState] = useState<OrbState>("idle");
   const orbStateRef = useRef<OrbState>(orbState);
-  const [statusText, setStatusText] = useState("اضغط للتحدث");
+  const [particles, setParticles] = useState<Particle[]>(generateParticles);
+  const recognitionRef = useRef<any>(null);
 
-  const orbClasses = useMemo(() => {
-    if (orbState === "listening") return "listening";
-    if (orbState === "speaking") return "speaking";
-    return "";
+  const config = stateConfig[orbState];
+
+  useEffect(() => {
+    orbStateRef.current = orbState;
   }, [orbState]);
 
-  const respond = (userText: string) => {
-    let reply = "لم أفهم طلبك، هل يمكنك تكراره؟";
-
-    if (userText.includes("مرحبا") || userText.includes("أهلا")) {
-      reply = "أهلا بك، كيف يمكنني مساعدتك؟";
-    } else if (userText.includes("وقت") || userText.includes("الساعة")) {
-      const now = new Date().toLocaleTimeString("ar-SA");
-      reply = `الساعة الآن ${now}`;
-    } else if (userText.includes("اسمك")) {
-      reply = "أنا مساعدك الصوتي التجريبي.";
+  useEffect(() => {
+    // Reduce particle radii on small screens for better fit
+    const w = typeof window !== 'undefined' ? window.innerWidth : 1280;
+    if (w < 640) {
+      setParticles((prev) => prev.map((p) => ({ ...p, radius: p.radius * 0.6, size: Math.max(1, p.size * 0.8) })));
     }
+  }, []);
 
-    const utterance = new SpeechSynthesisUtterance(reply);
+  const speak = useCallback((text: string) => {
+    const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "ar-SA";
     utterance.onend = () => {
-      orbStateRef.current = "idle";
       setOrbState("idle");
-      setStatusText("اضغط للتحدث");
     };
-
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(utterance);
-  };
+  }, []);
 
-  const startRecognition = () => {
-    const browserWindow = window as ExtendedWindow;
-    const SpeechRecognition =
-      browserWindow.SpeechRecognition || browserWindow.webkitSpeechRecognition;
+  const respond = useCallback(
+    (userText: string) => {
+      let reply = "لم أفهم طلبك، هل يمكنك تكراره؟";
 
-    if (!SpeechRecognition) {
-      setOrbState("idle");
-      setStatusText("متصفحك لا يدعم خاصية التعرف على الصوت.");
-      return;
-    }
+      if (userText.includes("مرحبا") || userText.includes("أهلا")) {
+        reply = "أهلاً بك، كيف يمكنني مساعدتك؟";
+      } else if (userText.includes("وقت") || userText.includes("الساعة")) {
+        const now = new Date().toLocaleTimeString("ar-SA");
+        reply = `الساعة الآن ${now}`;
+      } else if (userText.includes("اسمك")) {
+        reply = "أنا زكاء، مساعدك الصوتي الذكي.";
+      }
+
+      setOrbState("speaking");
+      speak(reply);
+    },
+    [speak]
+  );
+
+  const handleOrbClick = useCallback(() => {
+    const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+    if (!SpeechRecognition) return;
+    if (orbState !== "idle") return;
 
     const recognition = new SpeechRecognition();
     recognition.lang = "ar-SA";
     recognition.continuous = false;
     recognition.interimResults = false;
+    recognitionRef.current = recognition;
 
     recognition.onstart = () => {
       orbStateRef.current = "listening";
       setOrbState("listening");
-      setStatusText("جارٍ الاستماع...");
     };
 
-    recognition.onresult = (event) => {
+    recognition.onresult = (event: any) => {
       const transcript = event.results[0][0].transcript;
-      orbStateRef.current = "speaking";
-      setOrbState("speaking");
-      setStatusText("جارٍ المعالجة...");
-      respond(transcript);
+      setOrbState("processing");
+      setTimeout(() => respond(transcript), 600);
     };
 
     recognition.onerror = () => {
-      orbStateRef.current = "idle";
       setOrbState("idle");
-      setStatusText("حدث خطأ، حاول مرة أخرى.");
     };
 
     recognition.onend = () => {
-      if (orbStateRef.current !== "speaking") {
-        setOrbState("idle");
-        orbStateRef.current = "idle";
-        setStatusText("اضغط للتحدث");
-      }
+      setOrbState((prev) => (prev === "listening" ? "idle" : prev));
     };
 
     try {
       recognition.start();
-    } catch {
-      setStatusText("التعرف الصوتي يعمل بالفعل.");
+    } catch (e) {
+      // ignore
     }
-  };
+  }, [orbState, respond]);
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center" dir="rtl">
-      <style>{`
-        .voice-orb {
-          width: 150px;
-          height: 150px;
-          background: radial-gradient(circle at 30% 30%, #4facfe, #00f2fe);
-          border-radius: 9999px;
-          box-shadow: 0 0 20px rgba(79, 172, 254, 0.4);
-          cursor: pointer;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          position: relative;
-          border: 0;
-        }
-        .voice-orb:hover {
-          transform: scale(1.05);
-        }
-        .voice-orb.listening {
-          animation: voice-pulse 1.5s infinite;
-          background: radial-gradient(circle at 30% 30%, #43e97b, #38f9d7);
-          box-shadow: 0 0 40px rgba(67, 233, 123, 0.6);
-        }
-        .voice-orb.speaking {
-          background: radial-gradient(circle at 30% 30%, #fa709a, #fee140);
-          box-shadow: 0 0 50px rgba(250, 112, 154, 0.8);
-          transform: scale(1.1);
-        }
-        @keyframes voice-pulse {
-          0% { transform: scale(1); box-shadow: 0 0 20px rgba(67, 233, 123, 0.4); }
-          50% { transform: scale(1.1); box-shadow: 0 0 40px rgba(67, 233, 123, 0.8); }
-          100% { transform: scale(1); box-shadow: 0 0 20px rgba(67, 233, 123, 0.4); }
-        }
-      `}</style>
+    <div className="relative w-full h-full flex flex-col items-center justify-center gap-6" dir="rtl">
+      {/* Particles */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        {particles.map((p) => {
+          const rad = (p.angle * Math.PI) / 180;
+          const x = Math.cos(rad) * p.radius;
+          const y = Math.sin(rad) * p.radius;
+          return (
+            <div
+              key={p.id}
+              className="absolute rounded-full"
+              style={{
+                width: p.size,
+                height: p.size,
+                background: `${config.particleColor}${p.opacity})`,
+                boxShadow: `0 0 ${p.size * 2}px ${config.particleColor}${p.opacity * 0.6})`,
+                left: `calc(50% + ${x}px)`,
+                top: `calc(50% + ${y}px)`,
+                transform: "translate(-50%, -50%)",
+                animation: `particle-float ${p.speed}s ease-in-out ${p.delay}s infinite alternate`,
+                transition: "background 0.4s, box-shadow 0.4s",
+              }}
+            />
+          );
+        })}
+      </div>
 
-      <button
-        type="button"
-        aria-label="voice-orb"
-        className={`voice-orb ${orbClasses}`}
-        onClick={startRecognition}
+      {/* Orb */}
+      <div
+        className={`relative z-10 w-[160px] h-[160px] sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] rounded-full cursor-pointer transition-all duration-300 hover:scale-105 ${
+          orbState === "listening" ? "animate-orb-pulse" : ""
+        } ${orbState === "speaking" ? "scale-110" : ""}`}
+        onClick={handleOrbClick}
+        style={{
+          background: config.gradient,
+          boxShadow: config.shadow,
+        }}
       />
 
-      <p className="mt-8 text-xl text-gray-300">{statusText}</p>
+      <p className="mt-6 text-sm text-foreground/70">{config.label}</p>
     </div>
   );
 };

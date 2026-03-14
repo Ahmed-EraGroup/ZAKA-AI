@@ -32,6 +32,7 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        
         <HowItWorks />
         <AgentShowcase />
         <Features />

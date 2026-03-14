@@ -58,9 +58,9 @@ const ContactForm = () => {
     "w-full bg-midnight border border-border rounded-2xl px-5 py-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-clay/50 transition-all font-mono-system";
 
   return (
-    <section className="py-32 px-8 md:px-16" id="deploy" dir="rtl">
+    <section className="section-spacing px-8 md:px-16" id="deploy" dir="rtl">
       <div className="max-w-2xl mx-auto">
-        <h2 className="font-display font-bold text-3xl md:text-5xl text-foreground mt-4 mb-4 drop-shadow-[0_0_14px_hsl(var(--clay)/0.25)]">
+        <h2 className="font-display font-bold text-3xl md:text-5xl text-heading-gradient mt-4 mb-4">
           جاهز تنشر وكيلك الذكي؟
         </h2>
         <p className="text-foreground/75 mb-12">أدخل بياناتك وسنتواصل معك لنشر الوكيل في موقعك.</p>

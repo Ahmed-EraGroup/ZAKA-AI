@@ -198,7 +198,7 @@ const Features = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 px-8 md:px-16" id="agents" dir="rtl">
+    <section ref={sectionRef} className="section-spacing px-8 md:px-16" id="agents" dir="rtl">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="font-display font-bold text-3xl md:text-5xl text-heading-gradient mt-4">ماذا تقدم ذكــاء؟</h2>

@@ -53,9 +53,9 @@ const Pricing = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 px-8 md:px-16" id="enterprise" dir="rtl">
+    <section ref={sectionRef} className="section-spacing px-8 md:px-16" id="enterprise" dir="rtl">
       <div className="max-w-6xl mx-auto">
-        <h2 className="font-display font-bold text-3xl md:text-5xl text-foreground text-right mt-4 mb-16 drop-shadow-[0_0_14px_hsl(var(--clay)/0.25)]">
+        <h2 className="font-display font-bold text-3xl md:text-5xl text-heading-gradient text-center mt-4 mb-16">
           انشر بنيتك التحتية
         </h2>
 

@@ -112,7 +112,7 @@ const ProtocolStack = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 px-8 md:px-16" id="infrastructure" dir="rtl">
+    <section ref={sectionRef} className="section-spacing px-8 md:px-16" id="infrastructure" dir="rtl">
       <div className="max-w-5xl mx-auto">
         <span className="font-mono-system text-xs text-muted-foreground uppercase tracking-widest">حزمة البروتوكولات</span>
         <h2 className="font-display font-bold text-3xl md:text-5xl text-heading-gradient mt-4 mb-20">

@@ -49,10 +49,10 @@ const HowItWorks = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="pt-12 pb-20 px-8 md:px-16" id="how-it-works" dir="rtl">
+    <section ref={sectionRef} className="section-spacing px-8 md:px-16" id="how-it-works" dir="rtl">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10" data-how-title>
-          <h2 className="font-display font-bold text-3xl md:text-5xl text-foreground drop-shadow-[0_0_14px_hsl(var(--clay)/0.25)]">
+          <h2 className="font-display font-bold text-3xl md:text-5xl text-heading-gradient drop-shadow-[0_0_8px_hsl(var(--clay)/0.18)]">
             كيف يعمل في موقعك؟
           </h2>
           <p className="text-foreground/75 text-lg mt-4">

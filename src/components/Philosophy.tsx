@@ -27,7 +27,7 @@ const Philosophy = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-40 px-8 md:px-16 bg-charcoal overflow-hidden"
+      className="relative section-spacing px-8 md:px-16 bg-charcoal overflow-hidden"
       dir="rtl">
 
       {/* Grid overlay */}
