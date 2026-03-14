@@ -80,12 +80,46 @@ const Hero = () => {
         className="relative z-10 w-full max-w-4xl mx-auto px-8 md:px-16 pt-28 pb-6 text-center"
         dir="rtl"
       >
-        <p
-          data-hero-anim
-          className="font-display font-bold text-xl text-clay tracking-wide md:text-4xl"
-        >
-          ذكــاء
-        </p>
+        {/* Brand name — SVG draw animation */}
+        <div data-hero-anim className="relative inline-flex flex-col items-center">
+          <svg
+            viewBox="0 0 280 80"
+            className="w-44 md:w-64"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <style>{`
+                .zaka-stroke {
+                  font-family: 'Outfit', sans-serif;
+                  font-size: 68px;
+                  font-weight: 800;
+                  fill: transparent;
+                  stroke: #c96b3e;
+                  stroke-width: 1.6;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-dasharray: 1100;
+                  stroke-dashoffset: 1100;
+                  animation: drawZaka 2.4s cubic-bezier(0.4,0,0.2,1) 0.5s forwards;
+                }
+                @keyframes drawZaka {
+                  0%   { stroke-dashoffset: 1100; fill: transparent; }
+                  65%  { stroke-dashoffset: 0;    fill: transparent; }
+                  100% { stroke-dashoffset: 0;    fill: #c96b3e; stroke-width: 0.6; }
+                }
+              `}</style>
+            </defs>
+            <text
+              x="50%"
+              y="66"
+              textAnchor="middle"
+              className="zaka-stroke"
+              direction="rtl"
+            >
+              ذكاء
+            </text>
+          </svg>
+        </div>
         <h1
           data-hero-anim
           className="font-display font-extrabold text-7xl tracking-tight text-heading-gradient mt-4"
@@ -129,7 +163,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div data-hero-orb data-hero-anim className="relative z-10 w-full max-w-xl mx-auto mt-12 pb-8">
+      <div data-hero-orb data-hero-anim className="relative z-10 w-full max-w-xl mx-auto mt-12 pb-24">
         <ParticleOrb />
       </div>
     </section>

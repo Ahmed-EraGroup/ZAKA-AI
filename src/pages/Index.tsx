@@ -26,24 +26,24 @@ const marqueeItems = [
   "لغة عربية",
 ];
 
-const MarqueeStrip = () => {
-  const items = [...marqueeItems, ...marqueeItems];
-  return (
-    <div className="overflow-hidden border-y border-white/5 py-4 bg-white/[0.012]">
-      <div className="flex gap-10 animate-marquee whitespace-nowrap w-max">
-        {items.map((tag, i) => (
-          <span
-            key={i}
-            className="flex items-center gap-4 text-xs font-mono-system text-foreground/35 uppercase tracking-widest"
-          >
-            {tag}
-            <span className="h-[3px] w-[3px] rounded-full bg-clay/50" />
-          </span>
-        ))}
-      </div>
+const MarqueeStrip = () => (
+  <div className="border-y border-white/5 py-5 bg-white/[0.012]">
+    <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 px-8" dir="rtl">
+      {marqueeItems.map((tag, i) => (
+        <span
+          key={i}
+          className="flex items-center gap-3 text-xs font-mono-system uppercase tracking-widest"
+          style={{
+            animation: `tagBreath ${3.5 + i * 0.4}s ease-in-out ${i * 0.3}s infinite alternate`,
+          }}
+        >
+          <span className="h-[3px] w-[3px] rounded-full bg-clay/60 flex-shrink-0" />
+          {tag}
+        </span>
+      ))}
     </div>
-  );
-};
+  </div>
+);
 
 const Index = () => {
   useLenis();

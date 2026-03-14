@@ -25,7 +25,7 @@ const AgentShowcase = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative section-spacing overflow-hidden bg-background opacity-90"
+      className="relative section-spacing overflow-hidden bg-background"
       id="agent-showcase"
     >
       <div className="max-w-5xl mx-auto px-6 md:px-16 text-center" dir="rtl">

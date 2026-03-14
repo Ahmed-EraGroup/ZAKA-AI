@@ -135,9 +135,6 @@
   50% { opacity: 1; }
   100% { transform: translate(-50%, -50%) translateY(-18px) scale(1.3); opacity: 0.3; }
 }
-.particle {
-  will-change: transform, opacity;
-}
 
 /* Waveform animation — scaleY is GPU-composited, avoids layout reflow */
 @keyframes waveform {
@@ -145,14 +142,22 @@
   50% { transform: scaleY(1); }
 }
 
-/* Marquee */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+/* Orb rings pulse */
+@keyframes ringPulse {
+  0%   { opacity: 0.4; transform: translate(-50%, -50%) scale(0.97); }
+  100% { opacity: 1;   transform: translate(-50%, -50%) scale(1.03); }
 }
-.animate-marquee {
-  animation: marquee 28s linear infinite;
-  will-change: transform;
+
+/* Click ripple */
+@keyframes rippleOut {
+  0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+}
+
+/* Tag breath — gentle opacity + slight upward float */
+@keyframes tagBreath {
+  0%   { opacity: 0.25; transform: translateY(0px); }
+  100% { opacity: 0.65; transform: translateY(-2px); }
 }
 
 /* Smooth scrollbar */
