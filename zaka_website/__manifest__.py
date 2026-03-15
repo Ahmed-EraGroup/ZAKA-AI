@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'ذكاء — Landing Page',
-    'version': '1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Website',
-    'summary': 'Zaka AI agents landing page served as a standalone Odoo website page',
+    'summary': 'Zaka AI agents landing page',
     'author': 'Zaka',
     'depends': ['website'],
     'data': [
         'views/templates.xml',
     ],
     'installable': True,
-    'application': False,
-    'auto_install': False,
-    'license': 'LGPL-3',
+    'application': True,
+    'license': 'OPL-1',
 }
