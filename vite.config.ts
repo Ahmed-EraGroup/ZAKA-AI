@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import { viteSingleFile } from "vite-plugin-singlefile";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
@@ -9,29 +8,22 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    hmr: {
-      overlay: false,
-    },
+    hmr: { overlay: false },
   },
-  plugins: [
-    react(),
-    mode === "development" && componentTagger(),
-    mode === "production" && viteSingleFile(),
-  ].filter(Boolean),
+  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
+    alias: { "@": path.resolve(__dirname, "./src") },
   },
   build: {
-    // Single file mode — inline everything into index.html
-    cssCodeSplit: false,
-    assetsInlineLimit: 100_000_000,
     rollupOptions: {
       output: {
-        inlineDynamicImports: true,
+        manualChunks: {
+          "vendor-react": ["react", "react-dom", "react-router-dom"],
+          "vendor-three": ["three", "@react-three/fiber", "@react-three/drei"],
+          "vendor-gsap": ["gsap", "lenis"],
+        },
       },
     },
-    chunkSizeWarningLimit: 10000,
+    chunkSizeWarningLimit: 900,
   },
 }));

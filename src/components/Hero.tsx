@@ -57,7 +57,7 @@ const Hero = () => {
       className="relative min-h-[76dvh] flex flex-col items-center overflow-hidden bg-background"
       id="hero"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(220,40%,6%)] via-background to-[hsl(260,20%,8%)]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(216,22%,6%)] via-background to-[hsl(20,18%,7%)]" />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
       <div className="absolute inset-0 flex items-start justify-center pointer-events-none z-0">
         <div
@@ -67,7 +67,7 @@ const Hero = () => {
             maxWidth: '80%',
             maxHeight: '50%',
             background:
-              'radial-gradient(circle at 50% 35%, rgba(59,130,246,0.65) 0%, rgba(59,130,246,0.12) 25%, rgba(0,0,0,0) 60%), radial-gradient(circle at 50% 45%, rgba(249,115,22,0.12) 0%, rgba(249,115,22,0) 30%)',
+              'radial-gradient(circle at 50% 35%, rgba(201,107,62,0.42) 0%, rgba(201,107,62,0.08) 28%, rgba(0,0,0,0) 62%), radial-gradient(circle at 50% 50%, rgba(201,107,62,0.1) 0%, rgba(0,0,0,0) 40%)',
             filter: 'blur(48px)',
             borderRadius: '9999px',
             opacity: 0.95,
@@ -142,7 +142,7 @@ const Hero = () => {
 
         <div className="mt-6 flex items-center justify-center gap-4">
           <a
-            href="#pricing"
+            href="#enterprise"
             className="inline-flex items-center gap-3 bg-clay text-bone px-5 py-3 rounded-full shadow-lg hover:brightness-95"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -152,7 +152,7 @@ const Hero = () => {
           </a>
 
           <a
-            href="#contact"
+            href="#deploy"
             className="inline-flex items-center gap-3 border border-border/60 text-foreground px-5 py-3 rounded-full hover:bg-white/3"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

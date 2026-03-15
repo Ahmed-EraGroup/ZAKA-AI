@@ -7,8 +7,10 @@ import HowItWorks from "@/components/HowItWorks";
 import AgentShowcase from "@/components/AgentShowcase";
 import Features from "@/components/Features";
 import Philosophy from "@/components/Philosophy";
+import Testimonials from "@/components/Testimonials";
 import ProtocolStack from "@/components/ProtocolStack";
 import Pricing from "@/components/Pricing";
+import ClosingCTA from "@/components/ClosingCTA";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import { useLenis } from "@/hooks/useLenis";
@@ -72,8 +74,10 @@ const Index = () => {
         <AgentShowcase />
         <Features />
         <Philosophy />
+        <Testimonials />
         <ProtocolStack />
         <Pricing />
+        <ClosingCTA />
         <ContactForm />
       </main>
       <Footer />
