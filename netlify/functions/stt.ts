@@ -1,0 +1,42 @@
+import type { Handler, HandlerEvent } from "@netlify/functions";
+import FormData from "form-data";
+
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
+
+export const handler: Handler = async (event: HandlerEvent) => {
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Content-Type": "application/json",
+  };
+
+  if (event.httpMethod === "OPTIONS") return { statusCode: 204, headers, body: "" };
+  if (event.httpMethod !== "POST") return { statusCode: 405, headers, body: "Method not allowed" };
+  if (!GROQ_API_KEY) return { statusCode: 500, headers, body: JSON.stringify({ error: "API key not configured" }) };
+
+  try {
+    const audioBuffer = Buffer.from(event.body || "", event.isBase64Encoded ? "base64" : "utf8");
+
+    const form = new FormData();
+    form.append("file", audioBuffer, { filename: "audio.webm", contentType: "audio/webm" });
+    form.append("model", "whisper-large-v3-turbo");
+    form.append("language", "ar");
+    form.append("response_format", "json");
+
+    const sttRes = await fetch("https://api.groq.com/openai/v1/audio/transcriptions", {
+      method: "POST",
+      headers: { "Authorization": `Bearer ${GROQ_API_KEY}`, ...form.getHeaders() },
+      body: form as any,
+    });
+
+    if (!sttRes.ok) {
+      return { statusCode: 502, headers, body: JSON.stringify({ error: "STT service error" }) };
+    }
+
+    const data = (await sttRes.json()) as { text?: string };
+    return { statusCode: 200, headers, body: JSON.stringify({ text: data.text || "" }) };
+  } catch (err: any) {
+    return { statusCode: 500, headers, body: JSON.stringify({ error: err.message }) };
+  }
+};

@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
@@ -13,6 +14,8 @@ import Pricing from "@/components/Pricing";
 import ClosingCTA from "@/components/ClosingCTA";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import ChatAgent from "@/components/ChatAgent";
 import { useLenis } from "@/hooks/useLenis";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -64,24 +67,32 @@ const Index = () => {
     return () => triggers.forEach((t) => t.kill());
   }, []);
 
+  const [loaded, setLoaded] = useState(false);
+  const handleLoaded = useCallback(() => setLoaded(true), []);
+
   return (
-    <div className="noise-overlay min-h-screen bg-background">
-      <Navbar />
-      <main>
-        <Hero />
-        <MarqueeStrip />
-        <HowItWorks />
-        <AgentShowcase />
-        <Features />
-        <Philosophy />
-        <Testimonials />
-        <ProtocolStack />
-        <Pricing />
-        <ClosingCTA />
-        <ContactForm />
-      </main>
-      <Footer />
-    </div>
+    <>
+      {!loaded && <Loader onDone={handleLoaded} />}
+      <div className={`noise-overlay min-h-screen bg-background ${!loaded ? "opacity-0" : "opacity-100 transition-opacity duration-500"}`}>
+        <Navbar />
+        <main>
+          <Hero />
+          <MarqueeStrip />
+          <HowItWorks />
+          <AgentShowcase />
+          <Features />
+          <Philosophy />
+          <Testimonials />
+          <ProtocolStack />
+          <Pricing />
+          <ClosingCTA />
+          <ContactForm />
+        </main>
+        <Footer />
+        <WhatsAppButton />
+        <ChatAgent />
+      </div>
+    </>
   );
 };
 
