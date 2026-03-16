@@ -1,5 +1,4 @@
 import type { Handler, HandlerEvent } from "@netlify/functions";
-import FormData from "form-data";
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
@@ -18,25 +17,30 @@ export const handler: Handler = async (event: HandlerEvent) => {
   try {
     const audioBuffer = Buffer.from(event.body || "", event.isBase64Encoded ? "base64" : "utf8");
 
+    // Use native Node.js 18 FormData + Blob (no npm package needed)
+    const blob = new Blob([audioBuffer], { type: "audio/webm" });
     const form = new FormData();
-    form.append("file", audioBuffer, { filename: "audio.webm", contentType: "audio/webm" });
+    form.append("file", blob, "audio.webm");
     form.append("model", "whisper-large-v3-turbo");
     form.append("language", "ar");
     form.append("response_format", "json");
 
     const sttRes = await fetch("https://api.groq.com/openai/v1/audio/transcriptions", {
       method: "POST",
-      headers: { "Authorization": `Bearer ${GROQ_API_KEY}`, ...form.getHeaders() },
-      body: form as any,
+      headers: { "Authorization": `Bearer ${GROQ_API_KEY}` },
+      body: form,
     });
 
     if (!sttRes.ok) {
+      const errText = await sttRes.text();
+      console.error("Groq STT error:", sttRes.status, errText);
       return { statusCode: 502, headers, body: JSON.stringify({ error: "STT service error" }) };
     }
 
     const data = (await sttRes.json()) as { text?: string };
     return { statusCode: 200, headers, body: JSON.stringify({ text: data.text || "" }) };
   } catch (err: any) {
+    console.error("STT function error:", err);
     return { statusCode: 500, headers, body: JSON.stringify({ error: err.message }) };
   }
 };
