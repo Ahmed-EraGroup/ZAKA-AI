@@ -88,7 +88,7 @@ const ParticleOrb = () => {
   const speak = useCallback(async (text: string) => {
     setOrbState("speaking");
 
-    const ttsUrl = import.meta.env.DEV ? "/api/tts" : "/.netlify/functions/tts";
+    const ttsUrl = "/api/tts";
     try {
       const res = await fetch(ttsUrl, {
         method: "POST",
@@ -128,7 +128,7 @@ const ParticleOrb = () => {
     conversationRef.current.push({ role: "user", content: userText });
 
     try {
-      const res = await fetch("/.netlify/functions/chat", {
+      const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: conversationRef.current.slice(-10) }),
@@ -226,7 +226,7 @@ const ParticleOrb = () => {
 
       setOrbState("processing");
       try {
-        const sttUrl = import.meta.env.DEV ? "/api/stt" : "/.netlify/functions/stt";
+        const sttUrl = "/api/stt";
         const res = await fetch(sttUrl, {
           method: "POST",
           headers: { "Content-Type": mimeType },

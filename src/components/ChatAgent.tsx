@@ -19,7 +19,7 @@ const FALLBACK =
 // ── API Call ────────────────────────────────────────
 async function callAgent(messages: Message[]): Promise<string> {
   try {
-    const res = await fetch("/.netlify/functions/chat", {
+    const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ messages }),
