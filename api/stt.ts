@@ -1,39 +1,9 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
+import FormData from "form-data";
 
 export const config = { api: { bodyParser: false } };
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
-
-// Build multipart/form-data manually — no FormData/Blob globals needed
-function buildMultipart(audioBuffer: Buffer, mimeType: string) {
-  const boundary = `----Boundary${Date.now()}`;
-  const parts: Buffer[] = [];
-
-  // file field
-  parts.push(Buffer.from(
-    `--${boundary}\r\nContent-Disposition: form-data; name="file"; filename="audio.webm"\r\nContent-Type: ${mimeType}\r\n\r\n`
-  ));
-  parts.push(audioBuffer);
-  parts.push(Buffer.from("\r\n"));
-
-  // text fields
-  for (const [key, val] of [
-    ["model", "whisper-large-v3-turbo"],
-    ["language", "ar"],
-    ["response_format", "json"],
-  ]) {
-    parts.push(Buffer.from(
-      `--${boundary}\r\nContent-Disposition: form-data; name="${key}"\r\n\r\n${val}\r\n`
-    ));
-  }
-
-  parts.push(Buffer.from(`--${boundary}--\r\n`));
-
-  return {
-    body: Buffer.concat(parts),
-    contentType: `multipart/form-data; boundary=${boundary}`,
-  };
-}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -45,25 +15,36 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!GROQ_API_KEY) return res.status(500).json({ error: "GROQ_API_KEY not configured" });
 
   try {
+    // Read raw binary body
     const chunks: Buffer[] = [];
     await new Promise<void>((resolve, reject) => {
-      req.on("data", (chunk) => chunks.push(chunk));
+      req.on("data", (chunk: Buffer) => chunks.push(chunk));
       req.on("end", resolve);
       req.on("error", reject);
     });
     const audioBuffer = Buffer.concat(chunks);
 
-    const mimeType = (req.headers["content-type"] as string) || "audio/webm";
-    const { body, contentType } = buildMultipart(audioBuffer, mimeType);
+    if (audioBuffer.length === 0) {
+      return res.status(400).json({ error: "Empty audio" });
+    }
+
+    // Use form-data package — getBuffer() + getHeaders() works with native fetch
+    const form = new FormData();
+    form.append("file", audioBuffer, { filename: "audio.webm", contentType: "audio/webm" });
+    form.append("model", "whisper-large-v3-turbo");
+    form.append("language", "ar");
+    form.append("response_format", "json");
+
+    const formBuffer = form.getBuffer();
+    const formHeaders = form.getHeaders();
 
     const sttRes = await fetch("https://api.groq.com/openai/v1/audio/transcriptions", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${GROQ_API_KEY}`,
-        "Content-Type": contentType,
-        "Content-Length": body.byteLength.toString(),
+        ...formHeaders,
       },
-      body,
+      body: new Uint8Array(formBuffer),
     });
 
     if (!sttRes.ok) {
@@ -75,7 +56,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const data = await sttRes.json() as { text?: string };
     return res.status(200).json({ text: data.text || "" });
   } catch (err: any) {
-    console.error("STT function error:", err);
+    console.error("STT function error:", err.message, err.stack);
     return res.status(500).json({ error: err.message });
   }
 }
