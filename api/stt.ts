@@ -1,5 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
+// Disable Vercel's automatic body parsing — we need raw binary audio
+export const config = { api: { bodyParser: false } };
+
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
