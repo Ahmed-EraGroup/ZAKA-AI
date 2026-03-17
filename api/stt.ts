@@ -1,8 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import Groq, { toFile } from "groq-sdk";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -13,6 +11,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!process.env.GROQ_API_KEY) return res.status(500).json({ error: "GROQ_API_KEY not configured" });
 
   try {
+    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
     const { audio, mimeType } = req.body as { audio: string; mimeType: string };
     const audioBuffer = Buffer.from(audio, "base64");
 
