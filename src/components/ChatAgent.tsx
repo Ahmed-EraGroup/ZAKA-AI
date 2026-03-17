@@ -139,7 +139,7 @@ const ChatAgent = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                 متصل الآن
               </p>
-              <span className="text-xs text-muted-foreground">• مدعوم بـ Claude AI</span>
+              <span className="text-xs text-muted-foreground">• مساعد آلي</span>
             </div>
           </div>
         </div>

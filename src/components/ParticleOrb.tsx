@@ -171,9 +171,9 @@ const ParticleOrb = () => {
     const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
     const SILENCE_THRESHOLD = 8;     // أي صوت فوق هذا = كلام
-    const SILENCE_DURATION = 1500;   // ms صمت بعد الكلام → وقف
-    const MIN_RECORD = 1200;         // أقل مدة تسجيل قبل اكتشاف الصمت
-    const MAX_DURATION = 15000;      // حد أقصى
+    const SILENCE_DURATION = 1000;   // ms صمت بعد الكلام → وقف (أسرع)
+    const MIN_RECORD = 800;          // أقل مدة تسجيل قبل اكتشاف الصمت
+    const MAX_DURATION = 12000;      // حد أقصى
 
     const recordStart = Date.now();
     let silenceStart = Date.now();
