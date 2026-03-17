@@ -229,11 +229,17 @@ const ParticleOrb = () => {
 
       setOrbState("processing");
       try {
-        const sttUrl = "/api/stt";
-        const res = await fetch(sttUrl, {
+        // Convert blob to base64 to avoid binary streaming issues in serverless
+        const base64 = await new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve((reader.result as string).split(",")[1]);
+          reader.readAsDataURL(audioBlob);
+        });
+
+        const res = await fetch("/api/stt", {
           method: "POST",
-          headers: { "Content-Type": mimeType },
-          body: audioBlob,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ audio: base64, mimeType }),
         });
         const data = await res.json();
         const text = data.text?.trim();

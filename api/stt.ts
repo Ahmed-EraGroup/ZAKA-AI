@@ -1,8 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import Groq, { toFile } from "groq-sdk";
 
-export const config = { api: { bodyParser: false } };
-
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -15,15 +13,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!process.env.GROQ_API_KEY) return res.status(500).json({ error: "GROQ_API_KEY not configured" });
 
   try {
-    const chunks: Buffer[] = [];
-    await new Promise<void>((resolve, reject) => {
-      req.on("data", (chunk: Buffer) => chunks.push(chunk));
-      req.on("end", resolve);
-      req.on("error", reject);
-    });
-    const audioBuffer = Buffer.concat(chunks);
+    const { audio, mimeType } = req.body as { audio: string; mimeType: string };
+    const audioBuffer = Buffer.from(audio, "base64");
 
-    const file = await toFile(audioBuffer, "audio.webm", { type: "audio/webm" });
+    const file = await toFile(audioBuffer, "audio.webm", { type: mimeType || "audio/webm" });
 
     const transcription = await groq.audio.transcriptions.create({
       file,
