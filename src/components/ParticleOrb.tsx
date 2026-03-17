@@ -170,11 +170,13 @@ const ParticleOrb = () => {
     analyserRef.current = analyser;
     const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-    let speechDetected = false;
+    const SILENCE_THRESHOLD = 8;     // أي صوت فوق هذا = كلام
+    const SILENCE_DURATION = 1500;   // ms صمت بعد الكلام → وقف
+    const MIN_RECORD = 1200;         // أقل مدة تسجيل قبل اكتشاف الصمت
+    const MAX_DURATION = 15000;      // حد أقصى
+
+    const recordStart = Date.now();
     let silenceStart = Date.now();
-    const SILENCE_THRESHOLD = 10;    // volume below this = silence
-    const SILENCE_DURATION = 1800;   // ms of silence before auto-stop
-    const MAX_DURATION = 12000;      // max recording time
 
     const maxTimer = setTimeout(() => stopRecording(), MAX_DURATION);
     demoTimersRef.current.push(maxTimer);
@@ -185,10 +187,11 @@ const ParticleOrb = () => {
       setVolume(avg);
 
       if (avg > SILENCE_THRESHOLD) {
-        speechDetected = true;
-        silenceStart = Date.now();
-      } else if (speechDetected && Date.now() - silenceStart > SILENCE_DURATION) {
-        // Silence after speech → stop
+        silenceStart = Date.now(); // إعادة ضبط مؤقت الصمت عند الكلام
+      } else if (
+        Date.now() - recordStart > MIN_RECORD &&
+        Date.now() - silenceStart > SILENCE_DURATION
+      ) {
         stopRecording();
         return;
       }
@@ -218,7 +221,7 @@ const ParticleOrb = () => {
       if (!activeRef.current) { setOrbState("idle"); setLiveTranscript(""); return; }
 
       const audioBlob = new Blob(audioChunksRef.current, { type: mimeType });
-      if (audioBlob.size < 2000) {
+      if (audioBlob.size < 500) {
         // Too short — listen again
         if (activeRef.current) startListening();
         return;
