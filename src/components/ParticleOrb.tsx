@@ -354,37 +354,18 @@ const ParticleOrb = () => {
           background: "radial-gradient(circle, rgba(255,255,255,0.35) 0%, transparent 80%)",
         }} />
 
-        {/* Icon */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          {orbState === "idle" && (
-            <svg className="w-12 h-12 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
-            </svg>
-          )}
-          {orbState === "listening" && (
-            <div className="flex items-end gap-[3px] h-10">
-              {[0.6, 1, 0.7, 1.2, 0.5, 1, 0.8].map((h, i) => (
-                <div key={i} className="w-[4px] bg-white/80 rounded-full"
-                  style={{
-                    height: `${Math.max(6, Math.min(40, (volume / 255) * 40 * h + 6))}px`,
-                    transition: "height 0.1s",
-                  }}
-                />
-              ))}
-            </div>
-          )}
-          {orbState === "processing" && (
-            <svg className="w-10 h-10 text-white/80 animate-spin" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
-            </svg>
-          )}
-          {orbState === "speaking" && (
-            <svg className="w-12 h-12 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.75 5.25S18.75 7.5 18.75 12s-3 6.75-3 6.75M12 7.5S14.25 9 14.25 12 12 16.5 12 16.5M3.75 9.75h2.25L9.75 6v12l-3.75-3.75H3.75a1.5 1.5 0 01-1.5-1.5v-3a1.5 1.5 0 011.5-1.5z" />
-            </svg>
-          )}
-        </div>
+        {/* Subtle animated inner glow per state — no icons */}
+        <div className="absolute inset-0 rounded-full pointer-events-none" style={{
+          background: orbState === "listening"
+            ? `radial-gradient(circle, rgba(255,255,255,${0.08 + (volume / 255) * 0.25}) 0%, transparent 70%)`
+            : orbState === "processing"
+            ? "radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%)"
+            : orbState === "speaking"
+            ? "radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 65%)"
+            : "none",
+          animation: orbState === "processing" ? "pulse 1.5s ease-in-out infinite" : undefined,
+          transition: "background 0.3s",
+        }} />
       </div>
 
       {/* Label */}
