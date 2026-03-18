@@ -72,20 +72,20 @@ const ChatAgent = () => {
       const trimmed = text.trim();
 
       // Add user message to display
-      setDisplayMessages((prev) => [...prev, { role: "user", text: trimmed }]);
+      setDisplayMessages((prev) => [...prev, { role: "user" as const, text: trimmed }].slice(-50));
       setInput("");
       setTyping(true);
 
       // Build conversation history for Claude
-      const newHistory: Message[] = [...history, { role: "user", content: trimmed }];
+      const newHistory: Message[] = ([...history, { role: "user" as const, content: trimmed }] as Message[]).slice(-20);
       setHistory(newHistory);
 
       // Call Claude
       const reply = await callAgent(newHistory);
 
       // Add bot response
-      setHistory((prev) => [...prev, { role: "assistant", content: reply }]);
-      setDisplayMessages((prev) => [...prev, { role: "bot", text: reply }]);
+      setHistory((prev) => [...prev, { role: "assistant" as const, content: reply }].slice(-20));
+      setDisplayMessages((prev) => [...prev, { role: "bot" as const, text: reply }].slice(-50));
       setTyping(false);
     },
     [history, typing]

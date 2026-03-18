@@ -1,21 +1,22 @@
-import { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, Suspense } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import HowItWorks from "@/components/HowItWorks";
-import AgentShowcase from "@/components/AgentShowcase";
-import Features from "@/components/Features";
-import Philosophy from "@/components/Philosophy";
-import Testimonials from "@/components/Testimonials";
-import ProtocolStack from "@/components/ProtocolStack";
-import Pricing from "@/components/Pricing";
-import ClosingCTA from "@/components/ClosingCTA";
-import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ChatAgent from "@/components/ChatAgent";
+
+const HowItWorks = React.lazy(() => import("@/components/HowItWorks"));
+const AgentShowcase = React.lazy(() => import("@/components/AgentShowcase"));
+const Features = React.lazy(() => import("@/components/Features"));
+const Philosophy = React.lazy(() => import("@/components/Philosophy"));
+const Testimonials = React.lazy(() => import("@/components/Testimonials"));
+const ProtocolStack = React.lazy(() => import("@/components/ProtocolStack"));
+const Pricing = React.lazy(() => import("@/components/Pricing"));
+const ClosingCTA = React.lazy(() => import("@/components/ClosingCTA"));
+const ContactForm = React.lazy(() => import("@/components/ContactForm"));
 import { useLenis } from "@/hooks/useLenis";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -78,15 +79,17 @@ const Index = () => {
         <main>
           <Hero />
           <MarqueeStrip />
-          <HowItWorks />
-          <AgentShowcase />
-          <Features />
-          <Philosophy />
-          <Testimonials />
-          <ProtocolStack />
-          <Pricing />
-          <ClosingCTA />
-          <ContactForm />
+          <Suspense fallback={<div />}>
+            <HowItWorks />
+            <AgentShowcase />
+            <Features />
+            <Philosophy />
+            <Testimonials />
+            <ProtocolStack />
+            <Pricing />
+            <ClosingCTA />
+            <ContactForm />
+          </Suspense>
         </main>
         <Footer />
         <WhatsAppButton />

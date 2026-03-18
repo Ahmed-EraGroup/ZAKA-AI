@@ -78,6 +78,7 @@ const Navbar = () => {
           className="md:hidden flex flex-col gap-[5px] p-2"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="القائمة"
+          aria-expanded={menuOpen}
         >
           <span className={`block w-5 h-[2px] bg-foreground transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
           <span className={`block w-5 h-[2px] bg-foreground transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />

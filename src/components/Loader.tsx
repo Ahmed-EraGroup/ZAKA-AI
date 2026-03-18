@@ -80,7 +80,7 @@ const Loader = ({ onDone }: { onDone: () => void }) => {
   useEffect(() => {
     let raf: number;
     let start: number | null = null;
-    const duration = 2400;
+    const duration = 1400;
 
     const tick = (ts: number) => {
       if (!start) start = ts;
@@ -100,7 +100,7 @@ const Loader = ({ onDone }: { onDone: () => void }) => {
         raf = requestAnimationFrame(tick);
       } else {
         setHiding(true);
-        setTimeout(onDone, 800);
+        setTimeout(onDone, 400);
       }
     };
 

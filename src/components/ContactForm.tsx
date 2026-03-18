@@ -1,18 +1,7 @@
 ﻿import { useState, useRef, type FormEvent } from "react";
 import { z } from "zod";
-import emailjs from "@emailjs/browser";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-
-// ── EmailJS config ─────────────────────────────────
-// 1. سجّل حساب مجاني على https://www.emailjs.com
-// 2. أضف خدمة بريد (Gmail مثلاً) → انسخ Service ID
-// 3. أنشئ Template فيها المتغيرات: {{from_name}}, {{from_email}}, {{company}}, {{message}}
-//    واجعل To Email = ahmed@letsw.com
-// 4. انسخ Template ID و Public Key وحطهم هنا:
-const EMAILJS_SERVICE  = "service_zaka";    // ← غيّره
-const EMAILJS_TEMPLATE = "template_zaka";   // ← غيّره
-const EMAILJS_PUBLIC   = "YOUR_PUBLIC_KEY"; // ← غيّره
 
 const leadSchema = z.object({
   name: z.string().trim().min(1, "الاسم مطلوب").max(100),
@@ -53,18 +42,6 @@ const ContactForm = () => {
         message: result.data.message,
       },
     ]);
-
-    // Send email notification via EmailJS
-    try {
-      await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
-        from_name: result.data.name,
-        from_email: result.data.email,
-        company: result.data.company || "—",
-        message: result.data.message,
-      }, EMAILJS_PUBLIC);
-    } catch {
-      // Email send failed silently — lead is still saved in Supabase
-    }
 
     setLoading(false);
 

@@ -339,6 +339,9 @@ const ParticleOrb = () => {
       <div
         className="relative z-10 rounded-full cursor-pointer"
         onClick={handleOrbClick}
+        aria-label="وكيل صوتي — اضغط للتحدث"
+        role="button"
+        tabIndex={0}
         style={{
           width: 200, height: 200,
           background: config.gradient,
