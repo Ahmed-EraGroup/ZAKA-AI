@@ -25,12 +25,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       body: JSON.stringify({
         text,
         model_id: "eleven_turbo_v2_5",
+        speed: 0.88,
         voice_settings: {
           stability: 0.65,
           similarity_boost: 0.75,
           style: 0.15,
           use_speaker_boost: true,
-          speed: 0.88,
         },
       }),
     });
