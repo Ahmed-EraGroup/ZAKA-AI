@@ -13,7 +13,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
     const { audio, mimeType } = req.body as { audio: string; mimeType: string };
-    const audioBuffer = Buffer.from(audio, "base64");
+    const base64Data = audio.includes(",") ? audio.split(",")[1] : audio;
+    const audioBuffer = Buffer.from(base64Data, "base64");
 
     const file = await toFile(audioBuffer, "audio.webm", { type: mimeType || "audio/webm" });
 
