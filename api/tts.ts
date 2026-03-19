@@ -10,11 +10,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (req.method === "OPTIONS") return res.status(204).end();
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
-  if (!ELEVENLABS_API_KEY) return res.status(500).json({ error: "ELEVENLABS_API_KEY not configured" });
+  if (!ELEVENLABS_API_KEY) return res.status(500).json({ error: "ELEVENLABS_API_KEY not configured", hint: "Add env var in Vercel" });
 
   try {
     const { text } = req.body as { text: string };
-    if (!text) return res.status(400).json({ error: "Text required" });
+    if (!text) return res.status(400).json({ error: "Text required", body: req.body });
 
     const ttsRes = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`, {
       method: "POST",
@@ -38,7 +38,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (!ttsRes.ok) {
       const err = await ttsRes.text();
       console.error("ElevenLabs error:", ttsRes.status, err);
-      return res.status(502).json({ error: "TTS service error" });
+      return res.status(502).json({ error: "TTS service error", status: ttsRes.status, detail: err });
     }
 
     const audioBuffer = await ttsRes.arrayBuffer();
