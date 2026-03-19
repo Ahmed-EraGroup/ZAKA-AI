@@ -123,34 +123,34 @@ const Loader = ({ onDone }: { onDone: () => void }) => {
         <div className="relative">
           {/* Outer glow ring */}
           <div
-            className="absolute inset-0 rounded-full animate-ping"
+            className="absolute rounded-full animate-ping pointer-events-none"
             style={{
-              width: 120,
-              height: 120,
-              top: -10,
-              left: -10,
+              width: 92,
+              height: 92,
+              top: -6,
+              left: -6,
               background: "radial-gradient(circle, rgba(201,107,62,0.15) 0%, transparent 70%)",
               animationDuration: "2s",
             }}
           />
 
           {/* Spinning ring */}
-          <svg width="100" height="100" viewBox="0 0 100 100" className="animate-spin" style={{ animationDuration: "3s" }}>
+          <svg width="80" height="80" viewBox="0 0 80 80" className="animate-spin" style={{ animationDuration: "3s" }}>
             <circle
-              cx="50" cy="50" r="45"
+              cx="40" cy="40" r="36"
               fill="none"
               stroke="rgba(201,107,62,0.15)"
-              strokeWidth="1"
+              strokeWidth="1.5"
             />
             <circle
-              cx="50" cy="50" r="45"
+              cx="40" cy="40" r="36"
               fill="none"
               stroke="#c96b3e"
-              strokeWidth="2"
+              strokeWidth="2.5"
               strokeLinecap="round"
-              strokeDasharray={`${progress * 2.83} 283`}
+              strokeDasharray={`${progress * 2.26} 226`}
               className="transition-all duration-200"
-              transform="rotate(-90 50 50)"
+              transform="rotate(-90 40 40)"
             />
           </svg>
 
@@ -159,8 +159,9 @@ const Loader = ({ onDone }: { onDone: () => void }) => {
             <img
               src="/zaka-logo.svg"
               alt="ذكــاء"
-              className="h-8 w-auto object-contain"
+              className="w-auto object-contain"
               style={{
+                height: 48,
                 filter: `drop-shadow(0 0 ${8 + progress * 0.2}px rgba(201,107,62,0.5))`,
               }}
             />
