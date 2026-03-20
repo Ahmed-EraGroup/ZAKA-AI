@@ -160,6 +160,102 @@
   100% { opacity: 0.65; transform: translateY(-2px); }
 }
 
+/* ── Hero animated gradient mesh ── */
+.hero-mesh-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  will-change: transform;
+}
+.hero-mesh-blob-1 {
+  width: 600px;
+  height: 400px;
+  top: -5%;
+  left: 15%;
+  background: radial-gradient(circle, rgba(201,107,62,0.35) 0%, transparent 70%);
+  animation: meshFloat1 12s ease-in-out infinite alternate;
+}
+.hero-mesh-blob-2 {
+  width: 500px;
+  height: 350px;
+  top: 20%;
+  right: 10%;
+  background: radial-gradient(circle, rgba(46,87,64,0.25) 0%, transparent 70%);
+  animation: meshFloat2 15s ease-in-out infinite alternate;
+}
+.hero-mesh-blob-3 {
+  width: 450px;
+  height: 300px;
+  bottom: 5%;
+  left: 35%;
+  background: radial-gradient(circle, rgba(201,107,62,0.18) 0%, transparent 70%);
+  animation: meshFloat3 18s ease-in-out infinite alternate;
+}
+
+@keyframes meshFloat1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(60px, 30px) scale(1.15); }
+}
+@keyframes meshFloat2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-40px, 40px) scale(1.1); }
+}
+@keyframes meshFloat3 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, -25px) scale(1.2); }
+}
+
+/* ── Pricing shimmer border ── */
+.pricing-shimmer {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    hsl(var(--clay) / 0.4) 10%,
+    transparent 20%,
+    transparent 100%
+  );
+  animation: shimmerRotate 4s linear infinite;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  padding: 1.5px;
+}
+@keyframes shimmerRotate {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Footer animated gradient border ── */
+.footer-gradient-border {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 300%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(var(--clay) / 0.6) 15%,
+    hsl(var(--moss) / 0.5) 30%,
+    hsl(var(--clay) / 0.4) 45%,
+    transparent 60%,
+    hsl(var(--moss) / 0.3) 75%,
+    transparent 100%
+  );
+  animation: footerBorderSlide 6s linear infinite;
+}
+@keyframes footerBorderSlide {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(33.33%); }
+}
+
+/* Footer noise texture (self-contained, no external URL) */
+.noise-overlay-inline {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 /* Smooth scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

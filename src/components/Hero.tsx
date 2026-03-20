@@ -57,23 +57,14 @@ const Hero = () => {
       className="relative min-h-[76dvh] flex flex-col items-center overflow-hidden bg-background"
       id="hero"
     >
+      {/* Animated gradient mesh background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[hsl(216,22%,6%)] via-background to-[hsl(20,18%,7%)]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-      <div className="absolute inset-0 flex items-start justify-center pointer-events-none z-0">
-        <div
-          style={{
-            width: 720,
-            height: 420,
-            maxWidth: '80%',
-            maxHeight: '50%',
-            background:
-              'radial-gradient(circle at 50% 35%, rgba(201,107,62,0.42) 0%, rgba(201,107,62,0.08) 28%, rgba(0,0,0,0) 62%), radial-gradient(circle at 50% 50%, rgba(201,107,62,0.1) 0%, rgba(0,0,0,0) 40%)',
-            filter: 'blur(48px)',
-            borderRadius: '9999px',
-            opacity: 0.95,
-          }}
-        />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="hero-mesh-blob hero-mesh-blob-1" />
+        <div className="hero-mesh-blob hero-mesh-blob-2" />
+        <div className="hero-mesh-blob hero-mesh-blob-3" />
       </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
 
       <div
         data-hero-content
