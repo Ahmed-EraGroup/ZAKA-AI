@@ -56,7 +56,7 @@ const AgentShowcase = () => {
         <div data-showcase-anim className="mt-8">
           <a
             href="#deploy"
-            className="relative inline-flex items-center gap-2 px-10 py-4 rounded-full font-semibold text-sm text-foreground bg-gradient-to-l from-cyan-500 to-purple-600 shadow-[0_0_30px_rgba(6,182,212,0.4),0_0_60px_rgba(147,51,234,0.2)] hover:shadow-[0_0_40px_rgba(6,182,212,0.6),0_0_80px_rgba(147,51,234,0.3)] transition-shadow duration-300"
+            className="relative inline-flex items-center gap-2 px-10 py-4 rounded-full font-semibold text-sm text-foreground bg-clay shadow-lg shadow-clay/25 hover:brightness-110 hover:shadow-xl hover:shadow-clay/35 hover:scale-[1.02] transition-all duration-300"
           >
             ابدأ الآن
           </a>

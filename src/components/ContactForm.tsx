@@ -59,7 +59,7 @@ const ContactForm = () => {
   };
 
   const inputClass =
-    "w-full bg-midnight border border-border rounded-2xl px-5 py-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-clay/50 transition-all font-mono-system";
+    "w-full bg-midnight border border-border rounded-2xl px-5 py-4 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-clay/50 focus:shadow-[0_0_0_3px_rgba(201,107,62,0.1),0_0_20px_rgba(201,107,62,0.06)] transition-all duration-300 font-mono-system";
 
   return (
     <section className="section-spacing px-8 md:px-16" id="deploy" dir="rtl">
@@ -70,15 +70,18 @@ const ContactForm = () => {
         <p className="text-foreground/75 mb-12">أدخل بياناتك وسنتواصل معك لنشر الوكيل في موقعك.</p>
 
         <div className="mb-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div className="rounded-xl border border-border/80 bg-card/80 px-4 py-3 text-center text-sm text-foreground/80">
-            زمن استجابة أقل من 200ms
-          </div>
-          <div className="rounded-xl border border-border/80 bg-card/80 px-4 py-3 text-center text-sm text-foreground/80">
-            دعم عربي كامل
-          </div>
-          <div className="rounded-xl border border-border/80 bg-card/80 px-4 py-3 text-center text-sm text-foreground/80">
-            تكامل مباشر مع CRM
-          </div>
+          {[
+            { label: "زمن استجابة أقل من 200ms", icon: "M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" },
+            { label: "دعم عربي كامل", icon: "M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802" },
+            { label: "تكامل مباشر مع CRM", icon: "M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" },
+          ].map((item) => (
+            <div key={item.label} className="flex items-center gap-2.5 rounded-xl border border-border/60 bg-card/60 px-4 py-3 text-sm text-foreground/75">
+              <svg className="w-4 h-4 text-clay flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
+              </svg>
+              {item.label}
+            </div>
+          ))}
         </div>
 
         <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
