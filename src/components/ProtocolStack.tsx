@@ -90,13 +90,11 @@ const ProtocolStack = () => {
 
       // Entrance: each card slides up
       cards.forEach((card) => {
-        gsap.from(card, {
-          scrollTrigger: { trigger: card, start: "top 85%", once: true },
-          y: 60,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out",
-        });
+        gsap.fromTo(card,
+          { y: 60, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
+            scrollTrigger: { trigger: card, start: "top 85%", once: true } }
+        );
       });
 
       // Stack depth effect as later cards enter

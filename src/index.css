@@ -262,10 +262,11 @@
   display: flex;
   gap: 2.5rem;
   width: max-content;
-  animation: marqueeScroll 30s linear infinite;
+  animation: marqueeScroll 35s linear infinite;
+  direction: ltr;
 }
 @keyframes marqueeScroll {
-  0%   { transform: translateX(0); }
+  0%   { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
 }
 .marquee-track:hover {

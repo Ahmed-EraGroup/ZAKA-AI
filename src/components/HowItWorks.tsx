@@ -42,22 +42,17 @@ const HowItWorks = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from("[data-how-title]", {
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
-        y: 24,
-        opacity: 0,
-        duration: 0.6,
-        ease: "power3.out",
-      });
+      gsap.fromTo("[data-how-title]",
+        { y: 24, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out",
+          scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true } }
+      );
 
-      gsap.from("[data-how-card]", {
-        scrollTrigger: { trigger: sectionRef.current, start: "top 72%" },
-        y: 40,
-        opacity: 0,
-        duration: 0.75,
-        stagger: 0.15,
-        ease: "power3.out",
-      });
+      gsap.fromTo("[data-how-card]",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.75, stagger: 0.15, ease: "power3.out",
+          scrollTrigger: { trigger: sectionRef.current, start: "top 72%", once: true } }
+      );
     }, sectionRef);
 
     return () => ctx.revert();

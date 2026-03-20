@@ -11,14 +11,10 @@ const Hero = () => {
   // Entrance animation
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from("[data-hero-anim]", {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.15,
-        delay: 0.3,
-      });
+      gsap.fromTo("[data-hero-anim]",
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: "power3.out", stagger: 0.15, delay: 0.3 }
+      );
     }, containerRef);
     return () => ctx.revert();
   }, []);

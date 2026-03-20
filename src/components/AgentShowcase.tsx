@@ -9,14 +9,11 @@ const AgentShowcase = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from("[data-showcase-anim]", {
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        stagger: 0.15,
-      });
+      gsap.fromTo("[data-showcase-anim]",
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", stagger: 0.15,
+          scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true } }
+      );
     }, sectionRef);
 
     return () => ctx.revert();

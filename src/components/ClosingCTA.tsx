@@ -9,14 +9,11 @@ const ClosingCTA = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from("[data-cta-el]", {
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-      });
+      gsap.fromTo("[data-cta-el]",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power3.out",
+          scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true } }
+      );
     }, sectionRef);
     return () => ctx.revert();
   }, []);

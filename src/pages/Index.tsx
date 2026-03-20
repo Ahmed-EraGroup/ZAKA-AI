@@ -72,6 +72,14 @@ const Index = () => {
   const [loaded, setLoaded] = useState(false);
   const handleLoaded = useCallback(() => setLoaded(true), []);
 
+  // Refresh ScrollTrigger after lazy components mount
+  useEffect(() => {
+    if (loaded) {
+      const t = setTimeout(() => ScrollTrigger.refresh(true), 600);
+      return () => clearTimeout(t);
+    }
+  }, [loaded]);
+
   return (
     <>
       {!loaded && <Loader onDone={handleLoaded} />}

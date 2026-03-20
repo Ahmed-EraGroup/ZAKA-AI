@@ -48,17 +48,11 @@ const Philosophy = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from("[data-phil-line]", {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.2,
-        ease: "power3.out",
-      });
+      gsap.fromTo("[data-phil-line]",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, stagger: 0.2, ease: "power3.out",
+          scrollTrigger: { trigger: sectionRef.current, start: "top 70%", once: true } }
+      );
     }, sectionRef);
     return () => ctx.revert();
   }, []);
