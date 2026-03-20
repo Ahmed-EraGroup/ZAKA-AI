@@ -41,10 +41,25 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(502).json({ error: "TTS service error", status: ttsRes.status, detail: err });
     }
 
-    const audioBuffer = await ttsRes.arrayBuffer();
     res.setHeader("Content-Type", "audio/mpeg");
-    res.setHeader("Content-Length", audioBuffer.byteLength.toString());
-    return res.status(200).send(Buffer.from(audioBuffer));
+    res.status(200);
+
+    if (ttsRes.body) {
+      const reader = ttsRes.body.getReader();
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          res.write(Buffer.from(value));
+        }
+      } finally {
+        res.end();
+      }
+    } else {
+      const buf = await ttsRes.arrayBuffer();
+      res.end(Buffer.from(buf));
+    }
+    return;
   } catch (err: any) {
     console.error("TTS error:", err);
     return res.status(500).json({ error: err.message });

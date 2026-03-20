@@ -84,37 +84,83 @@ const ParticleOrb = () => {
     setVolume(0);
   }, []);
 
-  // ── TTS via ElevenLabs ──
+  // ── TTS via ElevenLabs (streaming) ──
   const speak = useCallback(async (text: string) => {
     setOrbState("speaking");
 
-    const ttsUrl = "/api/tts";
+    const onEnded = () => {
+      audioRef.current = null;
+      if (activeRef.current) startListening();
+      else { setOrbState("idle"); setLiveTranscript(""); }
+    };
+
     try {
-      const res = await fetch(ttsUrl, {
+      const res = await fetch("/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
       });
       if (!res.ok) throw new Error("TTS failed");
 
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      const audio = new Audio(url);
-      audioRef.current = audio;
+      // Try streaming via MediaSource (Chrome/Firefox/Edge)
+      const mimeType = "audio/mpeg";
+      if (res.body && "MediaSource" in window && MediaSource.isTypeSupported(mimeType)) {
+        const mediaSource = new MediaSource();
+        const url = URL.createObjectURL(mediaSource);
+        const audio = new Audio(url);
+        audioRef.current = audio;
 
-      audio.onended = () => {
-        URL.revokeObjectURL(url);
-        audioRef.current = null;
-        // Auto-listen again after speaking
-        if (activeRef.current) startListening();
-        else { setOrbState("idle"); setLiveTranscript(""); }
-      };
-      audio.onerror = () => {
-        URL.revokeObjectURL(url);
-        if (activeRef.current) startListening();
-        else setOrbState("idle");
-      };
-      await audio.play();
+        mediaSource.addEventListener("sourceopen", async () => {
+          const sb = mediaSource.addSourceBuffer(mimeType);
+          const reader = res.body!.getReader();
+          const queue: Uint8Array[] = [];
+          let appending = false;
+          let streamDone = false;
+
+          const tryFlush = () => {
+            if (appending || queue.length === 0) {
+              if (streamDone && queue.length === 0 && !appending) {
+                try { mediaSource.endOfStream(); } catch {}
+                URL.revokeObjectURL(url);
+              }
+              return;
+            }
+            appending = true;
+            sb.appendBuffer(queue.shift()!);
+          };
+
+          sb.addEventListener("updateend", () => {
+            appending = false;
+            tryFlush();
+          });
+
+          audio.onended = onEnded;
+          audio.onerror = onEnded;
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) { streamDone = true; tryFlush(); break; }
+            queue.push(value);
+            tryFlush();
+            // Start playback as soon as first chunk is appended
+            if (queue.length === 0 && sb.buffered.length > 0 && audio.paused) {
+              audio.play().catch(() => {});
+            }
+          }
+        }, { once: true });
+
+        audio.play().catch(() => {});
+        return;
+      }
+
+      // Fallback: wait for full blob (Safari / unsupported MSE)
+      const blob = await res.blob();
+      const url2 = URL.createObjectURL(blob);
+      const audio2 = new Audio(url2);
+      audioRef.current = audio2;
+      audio2.onended = () => { URL.revokeObjectURL(url2); onEnded(); };
+      audio2.onerror = () => { URL.revokeObjectURL(url2); onEnded(); };
+      await audio2.play();
     } catch {
       if (activeRef.current) startListening();
       else setOrbState("idle");
@@ -171,8 +217,8 @@ const ParticleOrb = () => {
     const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
     const SILENCE_THRESHOLD = 8;     // أي صوت فوق هذا = كلام
-    const SILENCE_DURATION = 1000;   // ms صمت بعد الكلام → وقف (أسرع)
-    const MIN_RECORD = 800;          // أقل مدة تسجيل قبل اكتشاف الصمت
+    const SILENCE_DURATION = 700;    // ms صمت بعد الكلام → وقف
+    const MIN_RECORD = 500;          // أقل مدة تسجيل قبل اكتشاف الصمت
     const MAX_DURATION = 12000;      // حد أقصى
 
     const recordStart = Date.now();
