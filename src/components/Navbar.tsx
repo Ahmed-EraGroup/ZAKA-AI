@@ -13,10 +13,19 @@ const Navbar = () => {
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    let ticking = false;
     const onScroll = () => {
-      setScrolled(window.scrollY > 60);
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (docHeight > 0) setScrollProgress(Math.min(window.scrollY / docHeight, 1));
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        setScrolled(y > 60);
+        if (y > 60) {
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (docHeight > 0) setScrollProgress(Math.min(y / docHeight, 1));
+        }
+        ticking = false;
+      });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -43,8 +52,8 @@ const Navbar = () => {
         dir="rtl"
         className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 rounded-full px-6 py-3 flex items-center gap-6 ${
           scrolled
-            ? "bg-midnight/70 backdrop-blur-2xl border border-border/60 shadow-2xl shadow-midnight/60"
-            : "bg-midnight/30 backdrop-blur-lg border border-white/[0.06]"
+            ? "bg-midnight/70 border border-border/60 shadow-2xl shadow-midnight/60"
+            : "bg-midnight/30 border border-white/[0.06]"
         }`}
         style={{
           backdropFilter: scrolled ? "blur(24px) saturate(1.4)" : "blur(12px) saturate(1.1)",

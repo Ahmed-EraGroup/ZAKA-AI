@@ -59,6 +59,7 @@ const ParticleOrb = () => {
   const [volume, setVolume] = useState(0);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const ttsReaderRef = useRef<ReadableStreamDefaultReader<Uint8Array> | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const streamRef = useRef<MediaStream | null>(null);
@@ -74,6 +75,7 @@ const ParticleOrb = () => {
 
   // ── Stop all audio/recording ──
   const stopEverything = useCallback(() => {
+    if (ttsReaderRef.current) { ttsReaderRef.current.cancel().catch(() => {}); ttsReaderRef.current = null; }
     if (audioRef.current) { audioRef.current.pause(); audioRef.current = null; }
     if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
       try { mediaRecorderRef.current.stop(); } catch {}
@@ -113,6 +115,7 @@ const ParticleOrb = () => {
         mediaSource.addEventListener("sourceopen", async () => {
           const sb = mediaSource.addSourceBuffer(mimeType);
           const reader = res.body!.getReader();
+          ttsReaderRef.current = reader;
           const queue: Uint8Array[] = [];
           let appending = false;
           let streamDone = false;

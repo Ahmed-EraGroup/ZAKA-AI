@@ -218,9 +218,10 @@
     transparent 100%
   );
   animation: shimmerRotate 4s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: xor;
   -webkit-mask-composite: xor;
+  mask-composite: exclude;
   padding: 1.5px;
 }
 @keyframes shimmerRotate {
