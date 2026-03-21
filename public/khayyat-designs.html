@@ -6,178 +6,115 @@
 <title>كتالوج تصاميم خياط ✂️</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
-  :root{--navy:#1B2A4A;--gold:#D4A84B;--gold-light:#F5E6C4;--cream:#FAF7F2;--dark:#0D1B2A;--green:#2ecc71;--blue:#3498db;--fabric:#F8F4EE}
+  :root{--navy:#1B2A4A;--gold:#D4A84B;--gold-light:#F5E6C4;--cream:#FAF7F2;--dark:#0D1B2A;--fabric:#F8F4EE;--stitch:#C8B89A;--shadow:rgba(27,42,74,0.08)}
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh;overflow-x:hidden}
 
-  /* ===== HERO ===== */
+  /* HERO */
   .hero{background:linear-gradient(135deg,var(--dark) 0%,#1a2744 50%,#243350 100%);padding:50px 20px 40px;text-align:center;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L55 30 L30 55 L5 30Z' fill='none' stroke='%23D4A84B' stroke-width='0.3' opacity='0.08'/%3E%3C/svg%3E");opacity:0.5}
-  .hero *{position:relative;z-index:1}
-  .hero .logo{font-size:3.5rem;margin-bottom:8px;filter:drop-shadow(0 0 20px rgba(212,168,75,0.3))}
-  .hero h1{font-size:2.4rem;font-weight:900;color:#fff;margin-bottom:6px;letter-spacing:-0.5px}
+  .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L55 30 30 55 5 30Z' fill='none' stroke='%23D4A84B' stroke-width='.3' opacity='.08'/%3E%3C/svg%3E")}
+  .hero *{position:relative}
+  .hero .logo{font-size:3.5rem;margin-bottom:8px;filter:drop-shadow(0 0 20px rgba(212,168,75,.3))}
+  .hero h1{font-size:2.4rem;font-weight:900;color:#fff;margin-bottom:6px}
   .hero h1 span{color:var(--gold)}
-  .hero p{color:rgba(255,255,255,0.5);font-size:0.9rem;margin-bottom:20px}
+  .hero p{color:rgba(255,255,255,.45);font-size:.9rem;margin-bottom:20px}
   .hero-stats{display:flex;justify-content:center;gap:30px;flex-wrap:wrap}
-  .hero-stat{text-align:center}
   .hero-stat .num{font-size:2rem;font-weight:900;color:var(--gold);line-height:1}
-  .hero-stat .label{font-size:0.7rem;color:rgba(255,255,255,0.4);margin-top:2px}
+  .hero-stat .label{font-size:.7rem;color:rgba(255,255,255,.35);margin-top:2px}
 
-  /* ===== THOBE PREVIEW ===== */
-  .preview-section{background:linear-gradient(180deg,var(--dark) 0%,#0a1628 100%);padding:0 20px 50px;position:relative}
+  /* PREVIEW */
+  .preview-section{background:linear-gradient(180deg,var(--dark),#0a1628);padding:0 20px 50px}
   .preview-wrap{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
-  .preview-thobe{position:relative;width:320px;height:480px;flex-shrink:0}
-  .preview-thobe svg{width:100%;height:100%;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.3))}
-  .preview-labels{flex:1;min-width:280px;display:flex;flex-direction:column;gap:12px}
-  .preview-label{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(212,168,75,0.15);border-radius:12px;padding:12px 16px;cursor:pointer;transition:all 0.3s}
-  .preview-label:hover{background:rgba(212,168,75,0.08);border-color:var(--gold);transform:translateX(-5px)}
-  .preview-label .icon{width:40px;height:40px;border-radius:10px;background:rgba(212,168,75,0.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
-  .preview-label .info .title{color:#fff;font-size:0.85rem;font-weight:700}
-  .preview-label .info .count{color:rgba(255,255,255,0.4);font-size:0.7rem}
-  .preview-label .arrow{color:var(--gold);margin-right:auto;font-size:0.8rem;opacity:0.5;transition:opacity 0.3s}
+  .preview-thobe{position:relative;width:280px;height:440px;flex-shrink:0}
+  .preview-thobe svg{width:100%;height:100%;filter:drop-shadow(0 20px 40px rgba(0,0,0,.3))}
+  .preview-labels{flex:1;min-width:280px;display:flex;flex-direction:column;gap:10px}
+  .preview-label{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.12);border-radius:12px;padding:12px 16px;cursor:pointer;transition:all .3s;text-decoration:none}
+  .preview-label:hover{background:rgba(212,168,75,.08);border-color:var(--gold);transform:translateX(-5px)}
+  .preview-label .icon{width:38px;height:38px;border-radius:10px;background:rgba(212,168,75,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+  .preview-label .info .title{color:#fff;font-size:.82rem;font-weight:700}
+  .preview-label .info .count{color:rgba(255,255,255,.35);font-size:.68rem}
+  .preview-label .arrow{color:var(--gold);margin-right:auto;opacity:.4;transition:opacity .3s}
   .preview-label:hover .arrow{opacity:1}
 
-  /* ===== MAIN CONTENT ===== */
+  /* MAIN */
   .main{padding:50px 20px}
-  .category{max-width:1300px;margin:0 auto 60px}
-  .category-header{display:flex;align-items:center;gap:15px;margin-bottom:25px;flex-wrap:wrap}
-  .category-icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--gold),#c49a3a);display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 15px rgba(212,168,75,0.3)}
-  .category-title{font-size:1.4rem;font-weight:800;color:var(--navy)}
-  .category-count{background:var(--navy);color:#fff;font-size:0.7rem;padding:4px 12px;border-radius:20px;font-weight:600}
-  .category-line{flex:1;height:2px;background:linear-gradient(90deg,var(--gold) 0%,transparent 100%);min-width:50px}
+  .category{max-width:1400px;margin:0 auto 55px}
+  .category-header{display:flex;align-items:center;gap:14px;margin-bottom:22px;flex-wrap:wrap}
+  .category-icon{width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,var(--gold),#c49a3a);display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 4px 15px rgba(212,168,75,.3)}
+  .category-title{font-size:1.3rem;font-weight:800;color:var(--navy)}
+  .category-count{background:var(--navy);color:#fff;font-size:.68rem;padding:4px 12px;border-radius:20px;font-weight:600}
+  .category-line{flex:1;height:2px;background:linear-gradient(90deg,var(--gold),transparent);min-width:40px}
 
-  /* ===== GRID ===== */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:16px}
+  /* GRID */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:14px}
 
-  /* ===== CARD ===== */
-  .card{background:#fff;border-radius:16px;padding:22px 14px 16px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.04);transition:all 0.35s cubic-bezier(0.4,0,0.2,1);cursor:pointer;border:2px solid transparent;position:relative;overflow:hidden}
-  .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),#e8c76a);transform:scaleX(0);transition:transform 0.35s;transform-origin:right}
-  .card:hover{transform:translateY(-6px);box-shadow:0 12px 35px rgba(27,42,74,0.12);border-color:var(--gold)}
+  /* CARD */
+  .card{background:#fff;border-radius:14px;padding:18px 10px 14px;text-align:center;box-shadow:0 2px 8px var(--shadow);transition:all .3s cubic-bezier(.4,0,.2,1);cursor:pointer;border:2px solid transparent;position:relative;overflow:hidden}
+  .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),#e8c76a);transform:scaleX(0);transition:transform .3s;transform-origin:right}
+  .card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(27,42,74,.1);border-color:var(--gold)}
   .card:hover::before{transform:scaleX(1);transform-origin:left}
-  .card .svg-wrap{width:130px;height:95px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;background:var(--fabric);border-radius:12px;padding:8px;transition:background 0.3s}
+  .card .svg-wrap{width:120px;height:90px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;background:var(--fabric);border-radius:10px;padding:6px;transition:background .3s}
   .card:hover .svg-wrap{background:var(--gold-light)}
   .card svg{width:100%;height:100%}
-  .card .name{font-size:0.82rem;font-weight:700;color:var(--navy);line-height:1.5}
-  .card .name-en{font-size:0.65rem;color:#aaa;margin-top:2px}
-  .badge{position:absolute;top:12px;left:12px;color:#fff;font-size:0.6rem;padding:3px 10px;border-radius:10px;font-weight:700;letter-spacing:0.3px}
+  .card .name{font-size:.78rem;font-weight:700;color:var(--navy);line-height:1.4}
+  .card .name-en{font-size:.62rem;color:#aaa;margin-top:2px}
+  .badge{position:absolute;top:10px;left:10px;color:#fff;font-size:.58rem;padding:2px 8px;border-radius:8px;font-weight:700}
   .badge.popular{background:linear-gradient(135deg,#27ae60,#2ecc71)}
   .badge.modern{background:linear-gradient(135deg,#2980b9,#3498db)}
   .badge.new{background:linear-gradient(135deg,#e74c3c,#e67e22)}
-  .badge.trending{background:linear-gradient(135deg,#8e44ad,#9b59b6)}
 
-  .divider{max-width:1300px;margin:0 auto 60px;border:none;border-top:2px dashed rgba(212,168,75,0.2)}
-
-  /* ===== FOOTER ===== */
-  .footer{background:var(--dark);text-align:center;padding:30px 20px;color:rgba(255,255,255,0.3);font-size:0.8rem}
+  .divider{max-width:1400px;margin:0 auto 55px;border:none;border-top:2px dashed rgba(212,168,75,.15)}
+  .footer{background:var(--dark);text-align:center;padding:30px 20px;color:rgba(255,255,255,.3);font-size:.78rem}
   .footer span{color:var(--gold)}
 
-  /* ===== RESPONSIVE ===== */
   @media(max-width:768px){
-    .hero h1{font-size:1.8rem}
+    .hero h1{font-size:1.7rem}
     .preview-wrap{flex-direction:column}
-    .preview-thobe{width:250px;height:380px}
-    .grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}
+    .preview-thobe{width:220px;height:350px}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px}
   }
 </style>
 </head>
 <body>
 
-<!-- ===== HERO ===== -->
 <div class="hero">
   <div class="logo">✂️</div>
   <h1>كتالوج تصاميم <span>خياط</span></h1>
   <p>جميع أنماط تفصيل الثوب السعودي — بأسماء السوق الأصيلة</p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="num">65+</div><div class="label">تصميم</div></div>
-    <div class="hero-stat"><div class="num">7</div><div class="label">فئات</div></div>
-    <div class="hero-stat"><div class="num">SVG</div><div class="label">رسومات متجهة</div></div>
+    <div class="hero-stat"><div class="num">75+</div><div class="label">تصميم</div></div>
+    <div class="hero-stat"><div class="num">4</div><div class="label">فئات رئيسية</div></div>
+    <div class="hero-stat"><div class="num">SVG</div><div class="label">رسومات ملونة</div></div>
   </div>
 </div>
 
-<!-- ===== THOBE PREVIEW ===== -->
 <div class="preview-section">
   <div class="preview-wrap">
     <div class="preview-labels">
-      <a href="#collars" class="preview-label">
-        <div class="icon">👔</div>
-        <div class="info"><div class="title">القلاب (الياقة)</div><div class="count">14 نوع — شامي، ملكي، صيني...</div></div>
-        <div class="arrow">←</div>
-      </a>
-      <a href="#plackets" class="preview-label">
-        <div class="icon">📐</div>
-        <div class="info"><div class="title">الجبزور (فتحة الصدر)</div><div class="count">8 أنواع — مربع، مثلث، سحّاب...</div></div>
-        <div class="arrow">←</div>
-      </a>
-      <a href="#cuffs" class="preview-label">
-        <div class="icon">💎</div>
-        <div class="info"><div class="title">الأكمام والأساور</div><div class="count">10 أنواع — كبك، مربع، مستدير...</div></div>
-        <div class="arrow">←</div>
-      </a>
-      <a href="#zippers" class="preview-label">
-        <div class="icon">🔗</div>
-        <div class="info"><div class="title">السحّاب (الزم)</div><div class="count">6 أنواع — مخفي، ظاهر، نصفي...</div></div>
-        <div class="arrow">←</div>
-      </a>
-      <a href="#pockets" class="preview-label">
-        <div class="icon">👝</div>
-        <div class="info"><div class="title">الجيب</div><div class="count">7 أنواع — مربع، كويتي، مخفي...</div></div>
-        <div class="arrow">←</div>
-      </a>
-      <a href="#buttons" class="preview-label">
-        <div class="icon">⚙️</div>
-        <div class="info"><div class="title">الأزرار والكبك</div><div class="count">5 أنواع — قماش، معدن، خشب...</div></div>
-        <div class="arrow">←</div>
-      </a>
-      <a href="#chest" class="preview-label">
-        <div class="icon">🎨</div>
-        <div class="info"><div class="title">واجهة الصدر</div><div class="count">5 أنواع — سادة، كسرة، تطريز...</div></div>
-        <div class="arrow">←</div>
-      </a>
+      <a href="#collars" class="preview-label"><div class="icon">👔</div><div class="info"><div class="title">القلاب (الياقة)</div><div class="count">20 نوع — شامي، ملكي، صيني، باند...</div></div><div class="arrow">←</div></a>
+      <a href="#cuffs" class="preview-label"><div class="icon">💎</div><div class="info"><div class="title">الأكمام والأساور (الكم)</div><div class="count">23 نوع — كبك فرنسي، مربع، مستدير، مزدوج...</div></div><div class="arrow">←</div></a>
+      <a href="#pockets" class="preview-label"><div class="icon">👝</div><div class="info"><div class="title">جيب الصدر</div><div class="count">12 نوع — رسمي، كويتي، مثلث، مائل...</div></div><div class="arrow">←</div></a>
+      <a href="#zippers" class="preview-label"><div class="icon">🔗</div><div class="info"><div class="title">السحّاب (الزم)</div><div class="count">8 أنواع — مخفي، ظاهر، نصفي، معدني...</div></div><div class="arrow">←</div></a>
     </div>
     <div class="preview-thobe">
-      <svg viewBox="0 0 300 460" fill="none">
+      <svg viewBox="0 0 280 440" fill="none">
         <defs>
-          <linearGradient id="thobeGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F8F6F0"/><stop offset="50%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#EDE8DD"/></linearGradient>
-          <filter id="shadow"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.15"/></filter>
-          <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D4A84B"/><stop offset="100%" stop-color="#E8C76A"/></linearGradient>
+          <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F8F6F0"/><stop offset="50%" stop-color="#FFF"/><stop offset="100%" stop-color="#EDE8DD"/></linearGradient>
+          <linearGradient id="gg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D4A84B"/><stop offset="100%" stop-color="#E8C76A"/></linearGradient>
+          <filter id="sh"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity=".15"/></filter>
         </defs>
-        <!-- Thobe body -->
-        <path d="M90 60 Q100 50 120 42 L140 35 Q150 32 150 32 Q150 32 160 35 L180 42 Q200 50 210 60 L225 90 L215 95 L200 75 L205 420 Q205 440 185 440 L115 440 Q95 440 95 420 L100 75 L85 95 L75 90 Z" fill="url(#thobeGrad)" stroke="#C8C0B0" stroke-width="1.5" filter="url(#shadow)"/>
-        <!-- Collar -->
-        <path d="M120 42 Q135 55 150 58 Q165 55 180 42" stroke="#A09080" stroke-width="1.5" fill="none"/>
-        <path d="M130 44 L135 60 M170 44 L165 60" stroke="#B0A090" stroke-width="1" stroke-linecap="round"/>
-        <!-- Center line -->
-        <line x1="150" y1="58" x2="150" y2="420" stroke="#D8D0C5" stroke-width="1" stroke-dasharray="6,4"/>
-        <!-- Buttons -->
-        <circle cx="150" cy="75" r="3" fill="url(#goldGrad)"/>
-        <circle cx="150" cy="100" r="3" fill="url(#goldGrad)"/>
-        <circle cx="150" cy="125" r="3" fill="url(#goldGrad)"/>
-        <!-- Pocket -->
-        <rect x="155" y="85" width="30" height="25" rx="3" fill="none" stroke="#C8C0B0" stroke-width="1" stroke-dasharray="3,2"/>
-        <!-- Cuff left -->
-        <rect x="75" y="86" width="22" height="12" rx="3" fill="none" stroke="#C8C0B0" stroke-width="1.5"/>
-        <!-- Cuff right -->
-        <rect x="203" y="86" width="22" height="12" rx="3" fill="none" stroke="#C8C0B0" stroke-width="1.5"/>
-        <!-- Annotation lines -->
-        <line x1="120" y1="48" x2="60" y2="30" stroke="var(--gold)" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.6"/>
-        <circle cx="60" cy="30" r="4" fill="var(--gold)" opacity="0.3"/><circle cx="60" cy="30" r="2" fill="var(--gold)"/>
-        <text x="45" y="25" fill="var(--gold)" font-size="9" font-family="Cairo" text-anchor="middle" opacity="0.8">القلاب</text>
-
-        <line x1="150" y1="100" x2="250" y2="130" stroke="var(--gold)" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.6"/>
-        <circle cx="250" cy="130" r="4" fill="var(--gold)" opacity="0.3"/><circle cx="250" cy="130" r="2" fill="var(--gold)"/>
-        <text x="265" y="125" fill="var(--gold)" font-size="9" font-family="Cairo" opacity="0.8">الجبزور</text>
-
-        <line x1="86" y1="92" x2="45" y2="110" stroke="var(--gold)" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.6"/>
-        <circle cx="45" cy="110" r="4" fill="var(--gold)" opacity="0.3"/><circle cx="45" cy="110" r="2" fill="var(--gold)"/>
-        <text x="35" y="125" fill="var(--gold)" font-size="9" font-family="Cairo" opacity="0.8">الكم</text>
-
-        <line x1="170" y1="97" x2="250" y2="85" stroke="var(--gold)" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.6"/>
-        <circle cx="250" cy="85" r="4" fill="var(--gold)" opacity="0.3"/><circle cx="250" cy="85" r="2" fill="var(--gold)"/>
-        <text x="265" y="80" fill="var(--gold)" font-size="9" font-family="Cairo" opacity="0.8">الجيب</text>
-
-        <line x1="150" y1="200" x2="55" y2="220" stroke="var(--gold)" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.6"/>
-        <circle cx="55" cy="220" r="4" fill="var(--gold)" opacity="0.3"/><circle cx="55" cy="220" r="2" fill="var(--gold)"/>
-        <text x="40" y="235" fill="var(--gold)" font-size="9" font-family="Cairo" opacity="0.8">الصدر</text>
+        <path d="M85 58Q95 48 115 40L135 33Q140 31 140 31Q140 31 155 33L175 40Q195 48 205 58L218 85 208 90 195 72 200 400Q200 418 182 418L108 418Q90 418 90 400L95 72 82 90 72 85Z" fill="url(#tg)" stroke="#C8C0B0" stroke-width="1.5" filter="url(#sh)"/>
+        <path d="M115 40Q130 52 140 55Q150 52 175 40" stroke="#A09080" stroke-width="1.5" fill="none"/>
+        <path d="M125 42L129 56M165 42L161 56" stroke="#B0A090" stroke-width="1"/>
+        <line x1="140" y1="55" x2="140" y2="400" stroke="#D8D0C5" stroke-width="1" stroke-dasharray="5,4"/>
+        <circle cx="140" cy="72" r="2.5" fill="url(#gg)"/><circle cx="140" cy="95" r="2.5" fill="url(#gg)"/><circle cx="140" cy="118" r="2.5" fill="url(#gg)"/>
+        <rect x="148" y="80" width="28" height="22" rx="3" fill="none" stroke="#C8C0B0" stroke-width="1" stroke-dasharray="3,2"/>
+        <rect x="70" y="82" width="20" height="10" rx="3" fill="none" stroke="#C8C0B0" stroke-width="1.5"/>
+        <rect x="198" y="82" width="20" height="10" rx="3" fill="none" stroke="#C8C0B0" stroke-width="1.5"/>
+        <line x1="115" y1="45" x2="55" y2="28" stroke="var(--gold)" stroke-width=".8" stroke-dasharray="3,3" opacity=".6"/><circle cx="55" cy="28" r="3" fill="var(--gold)" opacity=".4"/><circle cx="55" cy="28" r="1.5" fill="var(--gold)"/><text x="42" y="22" fill="var(--gold)" font-size="8" font-family="Cairo" text-anchor="middle" opacity=".8">القلاب</text>
+        <line x1="80" y1="87" x2="40" y2="105" stroke="var(--gold)" stroke-width=".8" stroke-dasharray="3,3" opacity=".6"/><circle cx="40" cy="105" r="3" fill="var(--gold)" opacity=".4"/><circle cx="40" cy="105" r="1.5" fill="var(--gold)"/><text x="30" y="118" fill="var(--gold)" font-size="8" font-family="Cairo" opacity=".8">الكم</text>
+        <line x1="162" y1="91" x2="232" y2="78" stroke="var(--gold)" stroke-width=".8" stroke-dasharray="3,3" opacity=".6"/><circle cx="232" cy="78" r="3" fill="var(--gold)" opacity=".4"/><circle cx="232" cy="78" r="1.5" fill="var(--gold)"/><text x="248" y="74" fill="var(--gold)" font-size="8" font-family="Cairo" opacity=".8">الجيب</text>
+        <line x1="140" y1="95" x2="232" y2="125" stroke="var(--gold)" stroke-width=".8" stroke-dasharray="3,3" opacity=".6"/><circle cx="232" cy="125" r="3" fill="var(--gold)" opacity=".4"/><circle cx="232" cy="125" r="1.5" fill="var(--gold)"/><text x="248" y="121" fill="var(--gold)" font-size="8" font-family="Cairo" opacity=".8">السحّاب</text>
       </svg>
     </div>
   </div>
@@ -185,597 +122,608 @@
 
 <div class="main">
 
-<!-- ==================== القلاب / الياقة ==================== -->
+<!-- ======================== القلاب / الياقة — 20 نوع ======================== -->
 <div class="category" id="collars">
   <div class="category-header">
     <div class="category-icon">👔</div>
     <h2 class="category-title">القلاب (الياقة)</h2>
-    <span class="category-count">14 نوع</span>
+    <span class="category-count">20 نوع</span>
     <div class="category-line"></div>
   </div>
   <div class="grid">
 
-    <div class="card">
-      <span class="badge popular">الأكثر طلباً</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M25 75 Q35 42 50 34 Q58 30 65 30 Q72 30 80 34 Q95 42 105 75" stroke="var(--navy)" stroke-width="2.5" fill="var(--fabric)" stroke-linecap="round"/><path d="M50 34 Q58 46 65 48 Q72 46 80 34" stroke="var(--navy)" stroke-width="2" fill="none"/><path d="M53 37 L57 52 M77 37 L73 52" stroke="var(--navy)" stroke-width="1.5" stroke-linecap="round"/><circle cx="65" cy="32" r="2.5" fill="var(--gold)"/><circle cx="65" cy="32" r="4" fill="none" stroke="var(--gold)" stroke-width="0.5" opacity="0.4"/></svg>
-      </div>
-      <div class="name">قلاب شامي</div>
-      <div class="name-en">Damascus Collar</div>
-    </div>
+    <!-- 1 قلاب شامي — spread collar classic -->
+    <div class="card"><span class="badge popular">الأكثر طلباً</span><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M20 70Q30 40 45 32Q55 28 60 28Q65 28 75 32Q90 40 100 70" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M45 32Q53 44 60 47Q67 44 75 32" stroke="var(--navy)" stroke-width="1.8" fill="#fff"/>
+      <path d="M48 35L52 50" stroke="var(--navy)" stroke-width="1.3"/><path d="M72 35L68 50" stroke="var(--navy)" stroke-width="1.3"/>
+      <circle cx="60" cy="30" r="2.2" fill="var(--gold)"/>
+      <path d="M45 34L40 25Q39 23 41 23L48 30" stroke="var(--stitch)" stroke-width=".8" fill="none"/>
+      <path d="M75 34L80 25Q81 23 79 23L72 30" stroke="var(--stitch)" stroke-width=".8" fill="none"/>
+    </svg></div><div class="name">قلاب شامي</div><div class="name-en">Damascus Spread Collar</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M25 75 Q33 38 47 28 L55 23 Q60 20 65 20 Q70 20 75 23 L83 28 Q97 38 105 75" stroke="var(--navy)" stroke-width="2.5" fill="var(--fabric)" stroke-linecap="round"/><path d="M47 28 Q55 42 65 45 Q75 42 83 28" stroke="var(--navy)" stroke-width="2" fill="none"/><path d="M55 23 L52 15 M75 23 L78 15" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round"/><circle cx="65" cy="22" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">قلاب ملكي</div>
-      <div class="name-en">Royal Collar</div>
-    </div>
+    <!-- 2 قلاب ملكي — wider spread -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M18 70Q28 36 42 27L52 22Q57 19 60 19Q63 19 68 22L78 27Q92 36 102 70" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M42 27Q52 40 60 44Q68 40 78 27" stroke="var(--navy)" stroke-width="1.8" fill="#fff"/>
+      <path d="M52 22L48 13" stroke="var(--navy)" stroke-width="1.5"/><path d="M68 22L72 13" stroke="var(--navy)" stroke-width="1.5"/>
+      <circle cx="60" cy="21" r="2.2" fill="var(--gold)"/>
+    </svg></div><div class="name">قلاب ملكي</div><div class="name-en">Royal Wide Spread</div></div>
 
-    <div class="card">
-      <span class="badge trending">رائج</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="35" y="28" width="60" height="47" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/><line x1="65" y1="28" x2="65" y2="75" stroke="var(--navy)" stroke-width="1.5" stroke-dasharray="3,3"/><circle cx="65" cy="38" r="2.5" fill="var(--gold)"/><circle cx="65" cy="52" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">قلاب صيني (ماندارين)</div>
-      <div class="name-en">Mandarin / Chinese</div>
-    </div>
+    <!-- 3 قلاب كلاسيكي — standard spread -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 70Q32 42 48 33Q55 29 60 29Q65 29 72 33Q88 42 98 70" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M48 33Q55 44 60 46Q65 44 72 33" stroke="var(--navy)" stroke-width="1.8" fill="#fff"/>
+      <path d="M50 35L54 48" stroke="var(--navy)" stroke-width="1.2"/><path d="M70 35L66 48" stroke="var(--navy)" stroke-width="1.2"/>
+      <circle cx="60" cy="31" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">قلاب كلاسيكي</div><div class="name-en">Classic Spread Collar</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M25 75 Q35 42 53 32 L60 28 Q65 26 70 28 L77 32 Q95 42 105 75" stroke="var(--navy)" stroke-width="2.5" fill="var(--fabric)" stroke-linecap="round"/><path d="M53 32 L43 18 M77 32 L87 18" stroke="var(--navy)" stroke-width="2" stroke-linecap="round"/><path d="M60 28 Q63 38 65 42 Q67 38 70 28" stroke="var(--navy)" stroke-width="1.5" fill="none"/><circle cx="65" cy="28" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">قلاب إيطالي (قلابي)</div>
-      <div class="name-en">Italian Spread</div>
-    </div>
+    <!-- 4 ماندارين/صيني — band no fold, 3D cylinder -->
+    <div class="card"><span class="badge popular">رائج</span><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M25 60Q25 42 40 36L56 32Q60 31 60 31Q60 31 64 32L80 36Q95 42 95 60" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M25 60Q40 65 60 66Q80 65 95 60" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <ellipse cx="60" cy="32" rx="18" ry="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.5"/>
+      <line x1="60" y1="36" x2="60" y2="66" stroke="var(--navy)" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <circle cx="60" cy="42" r="2" fill="var(--gold)"/><circle cx="60" cy="54" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">قلاب صيني (ماندارين)</div><div class="name-en">Mandarin / Chinese</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M25 75 Q35 45 55 38 Q62 35 65 38 Q68 35 75 38 Q95 45 105 75" stroke="var(--navy)" stroke-width="2.5" fill="var(--fabric)" stroke-linecap="round"/><path d="M55 38 Q60 48 65 50 Q70 48 75 38" stroke="var(--navy)" stroke-width="2" fill="none"/><path d="M65 38 L65 75" stroke="var(--navy)" stroke-width="1.2" stroke-dasharray="3,3"/></svg>
-      </div>
-      <div class="name">قلاب دائري</div>
-      <div class="name-en">Round Collar</div>
-    </div>
+    <!-- 5 باند عريض — wide band -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 62Q22 38 38 32L56 27Q60 26 60 26Q60 26 64 27L82 32Q98 38 98 62" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M22 62Q40 68 60 69Q80 68 98 62" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <ellipse cx="60" cy="27" rx="20" ry="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.5"/>
+      <circle cx="60" cy="44" r="2.5" fill="var(--gold)"/>
+    </svg></div><div class="name">باند عريض</div><div class="name-en">Wide Band Collar</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M25 75 Q35 42 53 30 Q58 26 65 26 Q72 26 77 30 Q95 42 105 75" stroke="var(--navy)" stroke-width="2.5" fill="var(--fabric)" stroke-linecap="round"/><path d="M53 30 L45 16 L40 20 M77 30 L85 16 L90 20" stroke="var(--navy)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="65" cy="28" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">قلاب فرنسي</div>
-      <div class="name-en">French Collar</div>
-    </div>
+    <!-- 6 باند بزر — band with button -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M28 58Q28 42 42 37L56 33Q60 32 60 32Q60 32 64 33L78 37Q92 42 92 58" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M28 58Q42 63 60 64Q78 63 92 58" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <ellipse cx="60" cy="33" rx="16" ry="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.5"/>
+      <line x1="60" y1="37" x2="60" y2="64" stroke="var(--navy)" stroke-width="1" stroke-dasharray="3,3"/>
+      <circle cx="60" cy="44" r="2.5" fill="var(--gold)"/>
+      <circle cx="60" cy="44" r="4" fill="none" stroke="var(--gold)" stroke-width=".6" opacity=".4"/>
+    </svg></div><div class="name">باند بزر واحد</div><div class="name-en">Band with Single Button</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M25 75 Q35 42 53 32 Q60 28 65 28 Q70 28 77 32 Q95 42 105 75" stroke="var(--navy)" stroke-width="2.5" fill="var(--fabric)" stroke-linecap="round"/><path d="M53 32 Q51 26 48 24 M77 32 Q79 26 82 24" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round"/><circle cx="48" cy="34" r="3.5" fill="none" stroke="var(--gold)" stroke-width="2"/><circle cx="82" cy="34" r="3.5" fill="none" stroke="var(--gold)" stroke-width="2"/><circle cx="65" cy="30" r="2" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">قلاب مثبت بأزرة</div>
-      <div class="name-en">Button-Down</div>
-    </div>
+    <!-- 7 باند متوسط — medium band -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M26 60Q26 40 40 34L56 30Q60 29 60 29Q60 29 64 30L80 34Q94 40 94 60" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M26 60Q42 66 60 67Q78 66 94 60" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <ellipse cx="60" cy="30" rx="18" ry="4.5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.5"/>
+      <circle cx="60" cy="42" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">باند متوسط</div><div class="name-en">Medium Band Collar</div></div>
 
-    <div class="card">
-      <span class="badge modern">عصري</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="30" y="28" width="70" height="47" rx="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/><path d="M62 28 L62 75 M68 28 L68 75" stroke="var(--navy)" stroke-width="1.2" stroke-dasharray="2,3"/><rect x="59" y="35" width="12" height="6" rx="2" fill="none" stroke="var(--gold)" stroke-width="1.5"/></svg>
-      </div>
-      <div class="name">قلاب شريطي (ستاند)</div>
-      <div class="name-en">Band / Stand</div>
-    </div>
+    <!-- 8 باند ضيق — narrow band -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M30 56Q30 44 42 40L56 37Q60 36 60 36Q60 36 64 37L78 40Q90 44 90 56" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M30 56Q44 60 60 61Q76 60 90 56" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <ellipse cx="60" cy="37" rx="15" ry="3.5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.5"/>
+      <circle cx="60" cy="46" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">باند ضيق</div><div class="name-en">Narrow Band Collar</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M25 75 Q35 40 50 32 Q58 28 65 28 Q72 28 80 32 Q95 40 105 75" stroke="var(--navy)" stroke-width="2.5" fill="var(--fabric)" stroke-linecap="round"/><path d="M50 32 Q48 26 44 22 Q42 21 42 24 Q42 28 50 32" stroke="var(--navy)" stroke-width="1.8" fill="none"/><path d="M80 32 Q82 26 86 22 Q88 21 88 24 Q88 28 80 32" stroke="var(--navy)" stroke-width="1.8" fill="none"/><path d="M48 25 L42 20 Q40 18 42 17 L50 22" stroke="var(--gold)" stroke-width="1.2" fill="none"/><path d="M82 25 L88 20 Q90 18 88 17 L80 22" stroke="var(--gold)" stroke-width="1.2" fill="none"/></svg>
-      </div>
-      <div class="name">قلاب ممتد</div>
-      <div class="name-en">Extended Collar</div>
-    </div>
+    <!-- 9 باند بزرين — band two buttons -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M25 62Q25 40 40 34L56 29Q60 28 60 28Q60 28 64 29L80 34Q95 40 95 62" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M25 62Q42 68 60 69Q78 68 95 62" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <ellipse cx="60" cy="29" rx="18" ry="4.5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.5"/>
+      <line x1="60" y1="33" x2="60" y2="69" stroke="var(--navy)" stroke-width="1" stroke-dasharray="3,3"/>
+      <circle cx="60" cy="40" r="2" fill="var(--gold)"/><circle cx="60" cy="52" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">باند بزرّين</div><div class="name-en">Band with Two Buttons</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="30" y="22" width="70" height="53" rx="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/><line x1="65" y1="22" x2="65" y2="40" stroke="var(--navy)" stroke-width="1.5"/><circle cx="65" cy="30" r="2.5" fill="var(--gold)"/><circle cx="65" cy="38" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">قلاب عالي (وقّية)</div>
-      <div class="name-en">High Stand</div>
-    </div>
+    <!-- 10 باند رفيع — thin band -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M32 54Q32 46 44 42L56 40Q60 39 60 39Q60 39 64 40L76 42Q88 46 88 54" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M32 54Q46 58 60 59Q74 58 88 54" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <ellipse cx="60" cy="40" rx="14" ry="3" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.5"/>
+      <circle cx="60" cy="48" r="1.8" fill="var(--gold)"/>
+    </svg></div><div class="name">باند رفيع</div><div class="name-en">Slim Band Collar</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M30 75 Q38 40 50 30 L55 26 Q60 24 65 24 Q70 24 75 26 L80 30 Q92 40 100 75" stroke="var(--navy)" stroke-width="2.5" fill="var(--fabric)" stroke-linecap="round"/><path d="M55 26 L50 18 Q48 15 51 14 L60 24 M75 26 L80 18 Q82 15 79 14 L70 24" stroke="var(--navy)" stroke-width="1.5" fill="none"/><path d="M51 20 Q58 22 65 20 Q72 22 79 20" stroke="var(--gold)" stroke-width="1.2" fill="none"/></svg>
-      </div>
-      <div class="name">قلاب مثلث</div>
-      <div class="name-en">Triangle Collar</div>
-    </div>
+    <!-- 11 باند مموج — curved band -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M26 60Q26 42 40 36L56 31Q60 30 60 30Q60 30 64 31L80 36Q94 42 94 60" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M26 60Q42 66 60 67Q78 66 94 60" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <path d="M42 31Q50 27 60 28Q70 27 78 31" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <circle cx="60" cy="46" r="2" fill="var(--gold)"/>
+      <path d="M42 36Q51 40 60 38Q69 40 78 36" stroke="var(--stitch)" stroke-width=".8" fill="none"/>
+    </svg></div><div class="name">باند مموّج</div><div class="name-en">Curved Band Collar</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="30" y="28" width="70" height="47" rx="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/><line x1="65" y1="28" x2="65" y2="75" stroke="var(--navy)" stroke-width="2.5"/><path d="M61 36 L65 41 L69 36 M61 50 L65 55 L69 50" stroke="var(--gold)" stroke-width="1.5" fill="none"/><rect x="62" y="28" width="6" height="6" rx="1" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">قلاب بسحّاب</div>
-      <div class="name-en">Zipper Collar</div>
-    </div>
+    <!-- 12 قلاب رسمي — formal fold collar -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M20 70Q30 40 48 32Q55 28 60 28Q65 28 72 32Q90 40 100 70" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M48 32Q55 42 60 45Q65 42 72 32" stroke="var(--navy)" stroke-width="1.8" fill="#fff"/>
+      <path d="M48 32L44 22L42 24" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <path d="M72 32L76 22L78 24" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <circle cx="60" cy="30" r="2" fill="var(--gold)"/>
+      <path d="M44 26Q52 30 60 28Q68 30 76 26" stroke="var(--stitch)" stroke-width=".7" fill="none"/>
+    </svg></div><div class="name">قلاب رسمي</div><div class="name-en">Formal Collar</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="30" y="28" width="70" height="47" rx="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/><line x1="65" y1="28" x2="65" y2="75" stroke="var(--navy)" stroke-width="1.5" stroke-dasharray="3,3"/><path d="M42 35 Q52 40 62 35" stroke="var(--gold)" stroke-width="1.5" fill="none"/><path d="M68 35 Q78 40 88 35" stroke="var(--gold)" stroke-width="1.5" fill="none"/><path d="M42 48 Q52 53 62 48" stroke="var(--gold)" stroke-width="1.5" fill="none"/><path d="M68 48 Q78 53 88 48" stroke="var(--gold)" stroke-width="1.5" fill="none"/><circle cx="65" cy="36" r="2" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">قلاب مطرّز</div>
-      <div class="name-en">Embroidered Collar</div>
-    </div>
+    <!-- 13 باند بكبسة — snap band -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M28 58Q28 42 42 36L56 32Q60 31 60 31Q60 31 64 32L78 36Q92 42 92 58" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M28 58Q42 63 60 64Q78 63 92 58" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <ellipse cx="60" cy="32" rx="16" ry="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.5"/>
+      <rect x="56" y="40" width="8" height="5" rx="1.5" fill="none" stroke="var(--gold)" stroke-width="1.5"/>
+    </svg></div><div class="name">باند بكبسة</div><div class="name-en">Snap Band Collar</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M25 75 Q38 48 55 42 Q62 40 65 42 Q68 40 75 42 Q92 48 105 75" stroke="var(--navy)" stroke-width="2.5" fill="var(--fabric)" stroke-linecap="round"/><line x1="65" y1="42" x2="65" y2="75" stroke="var(--navy)" stroke-width="1.2" stroke-dasharray="3,3"/></svg>
-      </div>
-      <div class="name">بدون ياقة (مفتوح)</div>
-      <div class="name-en">No Collar / Open Neck</div>
-    </div>
+    <!-- 14 باند مائل — angled band -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M28 60Q28 42 42 35L56 30Q60 29 60 29Q60 29 64 30L78 35Q92 42 92 60" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M28 60Q42 66 60 67Q78 66 92 60" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <path d="M42 30Q50 26 60 28Q70 26 78 30" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <line x1="60" y1="34" x2="60" y2="67" stroke="var(--navy)" stroke-width="1.5"/>
+      <circle cx="60" cy="42" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">باند بخط وسط</div><div class="name-en">Center Line Band</div></div>
+
+    <!-- 15 قلاب حاد — sharp pointed -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M20 70Q30 42 48 32Q55 28 60 26Q65 28 72 32Q90 42 100 70" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M48 32Q55 42 60 44Q65 42 72 32" stroke="var(--navy)" stroke-width="1.8" fill="#fff"/>
+      <path d="M48 32L38 18" stroke="var(--navy)" stroke-width="1.8"/><path d="M72 32L82 18" stroke="var(--navy)" stroke-width="1.8"/>
+      <circle cx="60" cy="28" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">قلاب حاد</div><div class="name-en">Sharp Point Collar</div></div>
+
+    <!-- 16 إيطالي عريض — wide italian -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M18 70Q28 40 45 30Q55 25 60 25Q65 25 75 30Q92 40 102 70" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M45 30Q53 42 60 45Q67 42 75 30" stroke="var(--navy)" stroke-width="1.8" fill="#fff"/>
+      <path d="M45 30L32 16" stroke="var(--navy)" stroke-width="2"/><path d="M75 30L88 16" stroke="var(--navy)" stroke-width="2"/>
+      <circle cx="60" cy="27" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">قلاب إيطالي عريض</div><div class="name-en">Wide Italian Spread</div></div>
+
+    <!-- 17 قلاب متوسط الحدة — medium point -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 70Q32 42 48 33Q56 29 60 28Q64 29 72 33Q88 42 98 70" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M48 33Q56 43 60 45Q64 43 72 33" stroke="var(--navy)" stroke-width="1.8" fill="#fff"/>
+      <path d="M48 33L40 20" stroke="var(--navy)" stroke-width="1.6"/><path d="M72 33L80 20" stroke="var(--navy)" stroke-width="1.6"/>
+      <circle cx="60" cy="30" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">قلاب متوسط</div><div class="name-en">Medium Point Collar</div></div>
+
+    <!-- 18 قلاب مثلث حاد — angular sharp -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M20 68Q30 40 48 30Q56 26 60 25Q64 26 72 30Q90 40 100 68" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M48 30Q55 40 60 42Q65 40 72 30" stroke="var(--navy)" stroke-width="1.8" fill="#fff"/>
+      <path d="M48 30L34 14" stroke="var(--navy)" stroke-width="1.8"/><path d="M72 30L86 14" stroke="var(--navy)" stroke-width="1.8"/>
+      <path d="M60 42L60 68" stroke="var(--navy)" stroke-width="1" stroke-dasharray="3,3"/>
+      <circle cx="60" cy="27" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">قلاب مثلث حاد</div><div class="name-en">Angular Sharp Collar</div></div>
+
+    <!-- 19 V عميق — deep V collar -->
+    <div class="card"><span class="badge modern">عصري</span><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M20 65Q30 38 45 28Q55 24 60 24Q65 24 75 28Q90 38 100 65" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M45 28L60 52L75 28" stroke="var(--navy)" stroke-width="1.8" fill="#fff"/>
+      <path d="M45 28L30 14" stroke="var(--navy)" stroke-width="1.8"/><path d="M75 28L90 14" stroke="var(--navy)" stroke-width="1.8"/>
+      <circle cx="60" cy="48" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">قلاب V عميق</div><div class="name-en">Deep V Collar</div></div>
+
+    <!-- 20 قلاب عريض مفرود — wide spread flat -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M16 68Q26 38 44 28Q54 24 60 24Q66 24 76 28Q94 38 104 68" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)"/>
+      <path d="M44 28Q52 40 60 44Q68 40 76 28" stroke="var(--navy)" stroke-width="1.8" fill="#fff"/>
+      <path d="M44 28L28 16" stroke="var(--navy)" stroke-width="2"/><path d="M76 28L92 16" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M28 16L25 20" stroke="var(--navy)" stroke-width="1.5"/><path d="M92 16L95 20" stroke="var(--navy)" stroke-width="1.5"/>
+      <circle cx="60" cy="26" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">قلاب عريض مفرود</div><div class="name-en">Wide Flat Spread</div></div>
 
   </div>
 </div>
 
 <hr class="divider"/>
 
-<!-- ==================== الجبزور ==================== -->
-<div class="category" id="plackets">
+<!-- ======================== الأكمام — 23 نوع ======================== -->
+<div class="category" id="cuffs">
   <div class="category-header">
-    <div class="category-icon">📐</div>
-    <h2 class="category-title">الجبزور (فتحة الصدر)</h2>
+    <div class="category-icon">💎</div>
+    <h2 class="category-title">الأكمام والأساور (الكم)</h2>
+    <span class="category-count">23 نوع</span>
+    <div class="category-line"></div>
+  </div>
+  <div class="grid">
+
+    <!-- 1 كبك فرنسي -->
+    <div class="card"><span class="badge popular">الأكثر طلباً</span><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M25 20L85 20L95 35L95 65L85 75L25 75L25 20Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.8"/>
+      <path d="M25 20L35 10L95 10L95 35L85 20" fill="#fff" stroke="var(--navy)" stroke-width="1.5"/>
+      <line x1="25" y1="48" x2="85" y2="48" stroke="var(--navy)" stroke-width="1" stroke-dasharray="3,3"/>
+      <path d="M35 10L35 20" stroke="var(--navy)" stroke-width="1"/>
+      <rect x="72" y="14" width="10" height="7" rx="1.5" fill="none" stroke="var(--gold)" stroke-width="1.8"/>
+    </svg></div><div class="name">كبك فرنسي</div><div class="name-en">French Cuff (Cufflinks)</div></div>
+
+    <!-- 2 مربع عادي -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M30 22L80 22L90 34L90 68L80 75L30 75L30 22Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.8"/>
+      <path d="M30 22L38 14L90 14L90 34L80 22" fill="#fff" stroke="var(--navy)" stroke-width="1.5"/>
+      <path d="M38 14L38 22" stroke="var(--navy)" stroke-width="1"/>
+      <circle cx="78" cy="18" r="2.5" fill="var(--gold)"/>
+    </svg></div><div class="name">كم مربع عادي</div><div class="name-en">Square Cuff</div></div>
+
+    <!-- 3 مربع بأزرار -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M30 22L80 22L90 34L90 68L80 75L30 75L30 22Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.8"/>
+      <path d="M30 22L38 14L90 14L90 34L80 22" fill="#fff" stroke="var(--navy)" stroke-width="1.5"/>
+      <path d="M38 14L38 22" stroke="var(--navy)" stroke-width="1"/>
+      <circle cx="50" cy="18" r="2" fill="var(--gold)"/><circle cx="64" cy="18" r="2" fill="var(--gold)"/><circle cx="78" cy="18" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">مربع بأزرار</div><div class="name-en">Square with Buttons</div></div>
+
+    <!-- 4 مزدوج/طبقتين -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M28 25L78 25L88 37L88 65L78 72L28 72L28 25Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.8"/>
+      <path d="M28 25L36 16L88 16L88 37L78 25" fill="#EDE8DD" stroke="var(--navy)" stroke-width="1.5"/>
+      <path d="M28 25L34 19L86 19" stroke="var(--navy)" stroke-width="1" stroke-dasharray="2,2"/>
+      <path d="M36 16L36 25" stroke="var(--navy)" stroke-width="1"/><path d="M34 19L34 25" stroke="var(--navy)" stroke-width=".8"/>
+      <circle cx="76" cy="20" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">مزدوج (طبقتين)</div><div class="name-en">Double Layered Cuff</div></div>
+
+    <!-- 5 مستدير -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M30 22L75 22Q90 22 90 37L90 60Q90 75 75 75L30 75L30 22Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.8"/>
+      <path d="M30 22L38 14L82 14Q90 14 90 22L90 37Q90 22 75 22" fill="#fff" stroke="var(--navy)" stroke-width="1.5"/>
+      <path d="M38 14L38 22" stroke="var(--navy)" stroke-width="1"/>
+      <circle cx="76" cy="18" r="2.5" fill="var(--gold)"/>
+    </svg></div><div class="name">كم مستدير</div><div class="name-en">Rounded Cuff</div></div>
+
+    <!-- 6 سادة بسيط -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M30 25L80 25Q88 25 88 33L88 65Q88 72 80 72L30 72L30 25Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.8"/>
+      <path d="M30 25L36 18L82 18Q88 18 88 25" fill="#fff" stroke="var(--navy)" stroke-width="1.3"/>
+      <path d="M36 18L36 25" stroke="var(--navy)" stroke-width="1"/>
+    </svg></div><div class="name">كم سادة</div><div class="name-en">Plain Cuff</div></div>
+
+    <!-- 7 سادة مربع -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <rect x="30" y="22" width="58" height="52" rx="3" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.8"/>
+      <path d="M30 22L38 14L88 14L88 30" fill="#fff" stroke="var(--navy)" stroke-width="1.3"/>
+      <path d="M38 14L38 22" stroke="var(--navy)" stroke-width="1"/>
+    </svg></div><div class="name">كم سادة مربع</div><div class="name-en">Plain Square Cuff</div></div>
+
+    <!-- 8 مطوي داكن — folded dark -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 35L70 35L82 48L82 75L22 75Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".15"/>
+      <path d="M22 35L70 35L82 48L82 75L22 75Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M70 35L82 48" stroke="var(--navy)" stroke-width="1.5"/>
+      <path d="M82 48L95 38L95 22L32 22L22 35" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M32 22L32 35" stroke="var(--navy)" stroke-width="1"/>
+      <circle cx="80" cy="30" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">كم مطوي كلاسيك</div><div class="name-en">Classic Fold Cuff</div></div>
+
+    <!-- 9 مزدوج مطوي -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 38L68 38L80 50L80 75L22 75Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M22 38L68 38L80 50L80 75L22 75Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M80 50L93 40L93 25L30 25L22 38" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="22" y1="32" x2="86" y2="32" stroke="var(--navy)" stroke-width="1" stroke-dasharray="2,2"/>
+      <path d="M30 25L30 38" stroke="var(--navy)" stroke-width="1"/>
+      <circle cx="78" cy="33" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">مزدوج مطوي</div><div class="name-en">Double Fold Cuff</div></div>
+
+    <!-- 10 مزخرف -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 38L68 38L80 50L80 75L22 75Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M22 38L68 38L80 50L80 75L22 75Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M80 50L93 40L93 25L30 25L22 38" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M30 25L30 38" stroke="var(--navy)" stroke-width="1"/>
+      <path d="M40 29Q55 33 70 29" stroke="var(--gold)" stroke-width="1.2" fill="none"/>
+      <path d="M40 34Q55 38 70 34" stroke="var(--gold)" stroke-width="1.2" fill="none"/>
+    </svg></div><div class="name">كم مزخرف</div><div class="name-en">Decorated Cuff</div></div>
+
+    <!-- 11 مطوي عريض -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M20 40L65 40L78 52L78 78L20 78Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M20 40L65 40L78 52L78 78L20 78Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M78 52L95 40L95 20L28 20L20 40" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M28 20L28 40" stroke="var(--navy)" stroke-width="1"/>
+      <circle cx="80" cy="30" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">مطوي عريض</div><div class="name-en">Wide Fold Cuff</div></div>
+
+    <!-- 12 مستدير مطوي -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 38L62 38Q75 38 78 50L78 65Q78 75 68 75L22 75Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M22 38L62 38Q75 38 78 50L78 65Q78 75 68 75L22 75Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M78 50Q82 40 90 38L90 22L30 22L22 38" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M30 22L30 38" stroke="var(--navy)" stroke-width="1"/>
+      <circle cx="76" cy="30" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">مستدير مطوي</div><div class="name-en">Rounded Fold Cuff</div></div>
+
+    <!-- 13 مطوي ضيق -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 42L68 42L78 52L78 75L22 75Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M22 42L68 42L78 52L78 75L22 75Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M78 52L90 44L90 30L30 30L22 42" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M30 30L30 42" stroke="var(--navy)" stroke-width="1"/>
+      <circle cx="76" cy="37" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">مطوي ضيق</div><div class="name-en">Narrow Fold Cuff</div></div>
+
+    <!-- 14 مطوي بزاوية -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 38L66 38L80 52L80 75L22 75Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M22 38L66 38L80 52L80 75L22 75Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M80 52L96 40L96 22L30 22L22 38" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M30 22L30 38" stroke="var(--navy)" stroke-width="1"/>
+    </svg></div><div class="name">مطوي بزاوية</div><div class="name-en">Angled Fold Cuff</div></div>
+
+    <!-- 15 مطوي عريض ثاني -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M20 40L64 40L78 54L78 78L20 78Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M20 40L64 40L78 54L78 78L20 78Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M78 54L96 42L96 18L28 18L20 40" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M28 18L28 40" stroke="var(--navy)" stroke-width="1"/>
+      <circle cx="78" cy="30" r="2" fill="var(--gold)"/><circle cx="66" cy="30" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">مطوي عريض بزرّين</div><div class="name-en">Wide Fold Two Buttons</div></div>
+
+    <!-- 16 مطوي بحافة -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 38L66 38L80 52L80 75L22 75Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M22 38L66 38L80 52L80 75L22 75Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M80 52L94 42L94 24L30 24L22 38" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M30 24L30 38" stroke="var(--navy)" stroke-width="1"/>
+      <line x1="30" y1="28" x2="90" y2="28" stroke="var(--stitch)" stroke-width=".8" stroke-dasharray="2,2"/>
+    </svg></div><div class="name">مطوي بحافة غرزة</div><div class="name-en">Stitched Edge Fold</div></div>
+
+    <!-- 17 مربع مطوي -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <rect x="22" y="38" width="58" height="37" rx="2" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <rect x="22" y="38" width="58" height="37" rx="2" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M80 52L94 42L94 22L30 22L22 38" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M30 22L30 38" stroke="var(--navy)" stroke-width="1"/>
+      <circle cx="78" cy="32" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">مربع مطوي</div><div class="name-en">Square Fold Cuff</div></div>
+
+    <!-- 18 مزخرف مطوي -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 38L66 38L80 52L80 75L22 75Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M22 38L66 38L80 52L80 75L22 75Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M80 52L94 42L94 24L30 24L22 38" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M30 24L30 38" stroke="var(--navy)" stroke-width="1"/>
+      <path d="M38 28Q56 34 74 28" stroke="var(--gold)" stroke-width="1.5" fill="none"/>
+      <path d="M38 34Q56 40 74 34" stroke="var(--gold)" stroke-width="1.5" fill="none"/>
+      <circle cx="56" cy="31" r="1.5" fill="var(--gold)"/>
+    </svg></div><div class="name">مزخرف مطوي</div><div class="name-en">Decorated Fold Cuff</div></div>
+
+    <!-- 19 مستدير مطوي 2 -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 38L60 38Q72 38 78 48L78 65Q78 75 68 75L22 75Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M22 38L60 38Q72 38 78 48L78 65Q78 75 68 75L22 75Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M78 48Q85 40 92 38L92 22L30 22L22 38" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M30 22L30 38" stroke="var(--navy)" stroke-width="1"/>
+    </svg></div><div class="name">مستدير مطوي ٢</div><div class="name-en">Rounded Fold Cuff 2</div></div>
+
+    <!-- 20 مستدير عريض -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M20 40L58 40Q72 40 78 52L78 65Q78 78 64 78L20 78Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M20 40L58 40Q72 40 78 52L78 65Q78 78 64 78L20 78Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M78 52Q86 42 94 40L94 18L28 18L20 40" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M28 18L28 40" stroke="var(--navy)" stroke-width="1"/>
+      <circle cx="78" cy="30" r="2.5" fill="var(--gold)"/>
+    </svg></div><div class="name">مستدير عريض</div><div class="name-en">Wide Rounded Fold</div></div>
+
+    <!-- 21 مطوي بسيط -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 40L66 40L78 52L78 75L22 75Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M22 40L66 40L78 52L78 75L22 75Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M78 52L92 42L92 25L30 25L22 40" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M30 25L30 40" stroke="var(--navy)" stroke-width="1"/>
+    </svg></div><div class="name">مطوي بسيط</div><div class="name-en">Simple Fold Cuff</div></div>
+
+    <!-- 22 مطوي مائل -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 42L64 42L78 55L78 75L22 75Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M22 42L64 42L78 55L78 75L22 75Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M78 55L94 44L94 26L30 26L22 42" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M30 26L30 42" stroke="var(--navy)" stroke-width="1"/>
+      <circle cx="80" cy="35" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">مطوي مائل</div><div class="name-en">Angled Fold Cuff 2</div></div>
+
+    <!-- 23 مطوي مع غرز -->
+    <div class="card"><span class="badge new">جديد</span><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M22 38L66 38L80 52L80 75L22 75Z" fill="var(--navy)" stroke="var(--navy)" stroke-width="1.5" opacity=".12"/>
+      <path d="M22 38L66 38L80 52L80 75L22 75Z" fill="none" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M80 52L94 42L94 22L30 22L22 38" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M30 22L30 38" stroke="var(--navy)" stroke-width="1"/>
+      <line x1="32" y1="26" x2="90" y2="26" stroke="var(--gold)" stroke-width="1" stroke-dasharray="2,1.5"/>
+      <line x1="32" y1="34" x2="76" y2="34" stroke="var(--gold)" stroke-width="1" stroke-dasharray="2,1.5"/>
+      <circle cx="82" cy="30" r="2" fill="var(--gold)"/>
+    </svg></div><div class="name">مطوي بغرز ذهبية</div><div class="name-en">Gold Stitched Fold</div></div>
+
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ======================== جيب الصدر — 12 نوع ======================== -->
+<div class="category" id="pockets">
+  <div class="category-header">
+    <div class="category-icon">👝</div>
+    <h2 class="category-title">جيب الصدر</h2>
+    <span class="category-count">12 نوع</span>
+    <div class="category-line"></div>
+  </div>
+  <div class="grid">
+
+    <!-- 1 رسمي مستطيل — formal rect rounded bottom -->
+    <div class="card"><span class="badge popular">كلاسيكي</span><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M25 15L95 15L95 70Q95 80 85 80L35 80Q25 80 25 70Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/>
+      <line x1="25" y1="15" x2="95" y2="15" stroke="var(--navy)" stroke-width="3"/>
+      <line x1="30" y1="20" x2="90" y2="20" stroke="var(--stitch)" stroke-width=".8" stroke-dasharray="2,2"/>
+    </svg></div><div class="name">جيب رسمي</div><div class="name-en">Formal Pocket</div></div>
+
+    <!-- 2 كويتي مستدير — rounded bottom -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M25 15L95 15L95 55Q95 80 60 80Q25 80 25 55Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/>
+      <line x1="25" y1="15" x2="95" y2="15" stroke="var(--navy)" stroke-width="3"/>
+      <line x1="30" y1="20" x2="90" y2="20" stroke="var(--stitch)" stroke-width=".8" stroke-dasharray="2,2"/>
+    </svg></div><div class="name">جيب كويتي</div><div class="name-en">Kuwaiti Pocket</div></div>
+
+    <!-- 3 مقسوم وسط — center split -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M25 15L95 15L95 75Q95 80 90 80L30 80Q25 80 25 75Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="25" y1="15" x2="95" y2="15" stroke="var(--navy)" stroke-width="3"/>
+      <path d="M60 15Q55 45 60 80" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+      <path d="M60 15Q65 45 60 80" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+    </svg></div><div class="name">جيب مقسوم</div><div class="name-en">Split Pocket</div></div>
+
+    <!-- 4 بخطين عمودية — two vertical lines -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M25 15L95 15L95 75Q95 80 90 80L30 80Q25 80 25 75Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="25" y1="15" x2="95" y2="15" stroke="var(--navy)" stroke-width="3"/>
+      <line x1="48" y1="15" x2="48" y2="80" stroke="var(--navy)" stroke-width="1.5"/>
+      <line x1="72" y1="15" x2="72" y2="80" stroke="var(--navy)" stroke-width="1.5"/>
+    </svg></div><div class="name">جيب بكسرتين</div><div class="name-en">Two Pleat Pocket</div></div>
+
+    <!-- 5 مائل — angled bottom -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M25 15L95 15L95 60L25 80Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/>
+      <line x1="25" y1="15" x2="95" y2="15" stroke="var(--navy)" stroke-width="3"/>
+      <path d="M30 20L90 20" stroke="var(--stitch)" stroke-width=".8" stroke-dasharray="2,2"/>
+    </svg></div><div class="name">جيب مائل</div><div class="name-en">Angled Pocket</div></div>
+
+    <!-- 6 منحني وسط — curved center -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M25 15L95 15L95 75Q95 80 90 80L30 80Q25 80 25 75Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="25" y1="15" x2="95" y2="15" stroke="var(--navy)" stroke-width="3"/>
+      <path d="M35 15Q60 50 85 15" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+    </svg></div><div class="name">جيب بقوس</div><div class="name-en">Curved Pocket</div></div>
+
+    <!-- 7 مائل خطوط — diagonal lines -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M25 15L95 15L95 75Q95 80 90 80L30 80Q25 80 25 75Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="25" y1="15" x2="95" y2="15" stroke="var(--navy)" stroke-width="3"/>
+      <line x1="25" y1="80" x2="95" y2="40" stroke="var(--navy)" stroke-width="1.2"/>
+      <line x1="25" y1="60" x2="95" y2="20" stroke="var(--navy)" stroke-width="1.2"/>
+    </svg></div><div class="name">جيب بخطوط مائلة</div><div class="name-en">Diagonal Line Pocket</div></div>
+
+    <!-- 8 مستدير بالكامل -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M30 15L90 15L90 50Q90 80 60 80Q30 80 30 50Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/>
+      <line x1="30" y1="15" x2="90" y2="15" stroke="var(--navy)" stroke-width="3"/>
+    </svg></div><div class="name">جيب مستدير كامل</div><div class="name-en">Full Round Pocket</div></div>
+
+    <!-- 9 V وسط — V center -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M25 15L95 15L95 75Q95 80 90 80L30 80Q25 80 25 75Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="25" y1="15" x2="95" y2="15" stroke="var(--navy)" stroke-width="3"/>
+      <path d="M40 15L60 55L80 15" stroke="var(--navy)" stroke-width="1.5" fill="none"/>
+    </svg></div><div class="name">جيب V</div><div class="name-en">V-Shape Pocket</div></div>
+
+    <!-- 10 مائل عكسي -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M25 15L95 15L25 60L25 15Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <path d="M25 15L95 15L95 80L25 80Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="25" y1="15" x2="95" y2="15" stroke="var(--navy)" stroke-width="3"/>
+      <line x1="25" y1="60" x2="95" y2="30" stroke="var(--navy)" stroke-width="1.2"/>
+    </svg></div><div class="name">جيب مائل عكسي</div><div class="name-en">Reverse Angled Pocket</div></div>
+
+    <!-- 11 مثلث/ماسي -->
+    <div class="card"><span class="badge new">جديد</span><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M25 15L95 15L95 75Q95 80 90 80L30 80Q25 80 25 75Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="25" y1="15" x2="95" y2="15" stroke="var(--navy)" stroke-width="3"/>
+      <path d="M60 20L85 50L60 80L35 50Z" stroke="var(--navy)" stroke-width="1.2" fill="none"/>
+      <line x1="35" y1="50" x2="85" y2="50" stroke="var(--navy)" stroke-width="1"/>
+    </svg></div><div class="name">جيب بنمط ماسي</div><div class="name-en">Diamond Pattern Pocket</div></div>
+
+    <!-- 12 مربع سادة -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <rect x="25" y="15" width="70" height="65" rx="2" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/>
+      <line x1="25" y1="15" x2="95" y2="15" stroke="var(--navy)" stroke-width="3"/>
+    </svg></div><div class="name">جيب مربع سادة</div><div class="name-en">Plain Square Pocket</div></div>
+
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ======================== السحّاب — 8 أنواع ======================== -->
+<div class="category" id="zippers">
+  <div class="category-header">
+    <div class="category-icon">🔗</div>
+    <h2 class="category-title">السحّاب (الزم)</h2>
     <span class="category-count">8 أنواع</span>
     <div class="category-line"></div>
   </div>
   <div class="grid">
 
-    <div class="card">
-      <span class="badge popular">الأكثر طلباً</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="30" y="10" width="70" height="80" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="65" y1="10" x2="65" y2="90" stroke="var(--navy)" stroke-width="1.5" stroke-dasharray="4,3"/><circle cx="65" cy="25" r="2.5" fill="var(--gold)"/><circle cx="65" cy="45" r="2.5" fill="var(--gold)"/><circle cx="65" cy="65" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">جبزور مربع — أزرار ظاهرة</div>
-      <div class="name-en">Square Placket — Visible Buttons</div>
-    </div>
+    <!-- 1 مستطيل سادة -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <rect x="48" y="5" width="24" height="82" rx="2" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="60" y1="12" x2="60" y2="82" stroke="var(--navy)" stroke-width="1.5"/>
+      <rect x="56" y="5" width="8" height="8" rx="1.5" fill="var(--gold)"/>
+    </svg></div><div class="name">سحّاب مستطيل</div><div class="name-en">Rectangle Zipper</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="30" y="10" width="70" height="80" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><path d="M55 10 L65 90" stroke="var(--navy)" stroke-width="1.8"/><path d="M75 10 L65 90" stroke="var(--navy)" stroke-width="1.8"/><circle cx="63" cy="30" r="2.5" fill="var(--gold)"/><circle cx="64" cy="55" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">جبزور مثلث — أزرار ظاهرة</div>
-      <div class="name-en">Triangle Placket — Visible</div>
-    </div>
+    <!-- 2 مدبب الأعلى -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M48 20L60 5L72 20L72 85L48 85Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="60" y1="15" x2="60" y2="82" stroke="var(--navy)" stroke-width="1.5"/>
+      <circle cx="60" cy="12" r="3" fill="var(--gold)"/>
+    </svg></div><div class="name">سحّاب مدبب</div><div class="name-en">Pointed Zipper</div></div>
 
-    <div class="card">
-      <span class="badge modern">عصري</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="30" y="10" width="70" height="80" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><rect x="57" y="10" width="16" height="80" fill="none" stroke="var(--navy)" stroke-width="1.5" rx="2"/><circle cx="65" cy="30" r="2" fill="var(--gold)" opacity="0.4"/><circle cx="65" cy="50" r="2" fill="var(--gold)" opacity="0.4"/><circle cx="65" cy="70" r="2" fill="var(--gold)" opacity="0.4"/></svg>
-      </div>
-      <div class="name">جبزور مربع — أزرار مخفية</div>
-      <div class="name-en">Square — Hidden Buttons</div>
-    </div>
+    <!-- 3 بقلب/V أعلى -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M48 10L48 85L72 85L72 10L60 22Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="60" y1="22" x2="60" y2="82" stroke="var(--navy)" stroke-width="1.5"/>
+      <path d="M56 18L60 24L64 18" stroke="var(--gold)" stroke-width="1.5" fill="none"/>
+      <rect x="56" y="8" width="8" height="6" rx="1" fill="var(--gold)"/>
+    </svg></div><div class="name">سحّاب V</div><div class="name-en">V-Notch Zipper</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="30" y="10" width="70" height="80" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><path d="M58 10 L65 90 M72 10 L65 90" stroke="var(--navy)" stroke-width="1.5"/><rect x="60" y="10" width="10" height="80" fill="none" stroke="var(--navy)" stroke-width="1" rx="1" opacity="0.3"/></svg>
-      </div>
-      <div class="name">جبزور مثلث — أزرار مخفية</div>
-      <div class="name-en">Triangle — Hidden Buttons</div>
-    </div>
+    <!-- 4 سادة رفيع -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <rect x="50" y="5" width="20" height="82" rx="2" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="60" y1="10" x2="60" y2="82" stroke="var(--navy)" stroke-width="1.2" stroke-dasharray="3,3"/>
+      <rect x="56" y="5" width="8" height="6" rx="1" fill="var(--gold)"/>
+    </svg></div><div class="name">سحّاب رفيع</div><div class="name-en">Slim Zipper</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="30" y="10" width="70" height="80" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="65" y1="10" x2="65" y2="90" stroke="var(--navy)" stroke-width="2.5"/><path d="M61 20 L65 25 L69 20 M61 38 L65 43 L69 38 M61 56 L65 61 L69 56 M61 74 L65 79 L69 74" stroke="var(--gold)" stroke-width="1.5" fill="none"/><rect x="62" y="10" width="6" height="8" rx="1" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">جبزور سحّاب مخفي</div>
-      <div class="name-en">Hidden Zipper</div>
-    </div>
+    <!-- 5 بغرز أفقية -->
+    <div class="card"><span class="badge popular">الأكثر طلباً</span><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <rect x="47" y="5" width="26" height="82" rx="2" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="60" y1="12" x2="60" y2="82" stroke="var(--navy)" stroke-width="1.8"/>
+      <line x1="50" y1="20" x2="70" y2="20" stroke="var(--stitch)" stroke-width=".8"/><line x1="50" y1="30" x2="70" y2="30" stroke="var(--stitch)" stroke-width=".8"/>
+      <line x1="50" y1="40" x2="70" y2="40" stroke="var(--stitch)" stroke-width=".8"/><line x1="50" y1="50" x2="70" y2="50" stroke="var(--stitch)" stroke-width=".8"/>
+      <line x1="50" y1="60" x2="70" y2="60" stroke="var(--stitch)" stroke-width=".8"/><line x1="50" y1="70" x2="70" y2="70" stroke="var(--stitch)" stroke-width=".8"/>
+      <rect x="56" y="5" width="8" height="8" rx="1.5" fill="var(--gold)"/>
+    </svg></div><div class="name">سحّاب بغرز</div><div class="name-en">Stitched Zipper</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="30" y="10" width="70" height="80" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><path d="M55 10 L55 90 M75 10 L75 90" stroke="var(--navy)" stroke-width="1.2"/><path d="M55 25 Q65 30 75 25 M55 50 Q65 55 75 50 M55 75 Q65 80 75 75" stroke="var(--gold)" stroke-width="1.2" fill="none"/><circle cx="65" cy="35" r="2.5" fill="var(--gold)"/><circle cx="65" cy="60" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">جبزور مزخرف (تطريز)</div>
-      <div class="name-en">Embroidered Placket</div>
-    </div>
+    <!-- 6 بغرز + خط مزدوج -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <rect x="46" y="5" width="28" height="82" rx="2" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="56" y1="12" x2="56" y2="82" stroke="var(--navy)" stroke-width="1.2"/>
+      <line x1="64" y1="12" x2="64" y2="82" stroke="var(--navy)" stroke-width="1.2"/>
+      <line x1="48" y1="22" x2="72" y2="22" stroke="var(--stitch)" stroke-width=".8"/><line x1="48" y1="35" x2="72" y2="35" stroke="var(--stitch)" stroke-width=".8"/>
+      <line x1="48" y1="48" x2="72" y2="48" stroke="var(--stitch)" stroke-width=".8"/><line x1="48" y1="61" x2="72" y2="61" stroke="var(--stitch)" stroke-width=".8"/>
+      <line x1="48" y1="74" x2="72" y2="74" stroke="var(--stitch)" stroke-width=".8"/>
+      <rect x="55" y="5" width="10" height="8" rx="1.5" fill="var(--gold)"/>
+    </svg></div><div class="name">سحّاب مزدوج بغرز</div><div class="name-en">Double Stitched Zipper</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="30" y="10" width="70" height="80" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><path d="M60 10 Q55 30 55 50 Q55 70 60 90" stroke="var(--navy)" stroke-width="1.5" fill="none"/><path d="M70 10 Q75 30 75 50 Q75 70 70 90" stroke="var(--navy)" stroke-width="1.5" fill="none"/><circle cx="65" cy="30" r="2.5" fill="var(--gold)"/><circle cx="65" cy="60" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">جبزور دائري (زوايا مدورة)</div>
-      <div class="name-en">Rounded Placket</div>
-    </div>
+    <!-- 7 مستدير الأسفل بغرز -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M48 5L72 5L72 68Q72 85 60 85Q48 85 48 68Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="60" y1="12" x2="60" y2="80" stroke="var(--navy)" stroke-width="1.5"/>
+      <line x1="50" y1="20" x2="70" y2="20" stroke="var(--stitch)" stroke-width=".8"/><line x1="50" y1="35" x2="70" y2="35" stroke="var(--stitch)" stroke-width=".8"/>
+      <line x1="50" y1="50" x2="70" y2="50" stroke="var(--stitch)" stroke-width=".8"/><line x1="50" y1="65" x2="70" y2="65" stroke="var(--stitch)" stroke-width=".8"/>
+      <rect x="56" y="5" width="8" height="8" rx="1.5" fill="var(--gold)"/>
+    </svg></div><div class="name">سحّاب مستدير</div><div class="name-en">Rounded Bottom Zipper</div></div>
 
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="30" y="10" width="70" height="80" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><path d="M55 10 L60 50 L55 90" stroke="var(--navy)" stroke-width="1.5" fill="none"/><path d="M60 50 L65 90" stroke="var(--navy)" stroke-width="1.5"/><circle cx="58" cy="30" r="2.5" fill="var(--gold)"/><circle cx="60" cy="60" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">جبزور مائل</div>
-      <div class="name-en">Diagonal Placket</div>
-    </div>
-
-  </div>
-</div>
-
-<hr class="divider"/>
-
-<!-- ==================== الأكمام / الأساور ==================== -->
-<div class="category" id="cuffs">
-  <div class="category-header">
-    <div class="category-icon">💎</div>
-    <h2 class="category-title">الأكمام والأساور (الكم)</h2>
-    <span class="category-count">10 أنواع</span>
-    <div class="category-line"></div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <span class="badge popular">كلاسيكي</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="20" y="15" width="90" height="65" rx="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="20" y1="60" x2="110" y2="60" stroke="var(--navy)" stroke-width="2.5"/><circle cx="95" cy="73" r="3" fill="none" stroke="var(--gold)" stroke-width="2"/><circle cx="83" cy="73" r="3" fill="none" stroke="var(--gold)" stroke-width="2"/></svg>
-      </div>
-      <div class="name">أكمام عادية (أزرار)</div>
-      <div class="name-en">Regular Cuff</div>
-    </div>
-
-    <div class="card">
-      <span class="badge popular">الأكثر طلباً</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="20" y="15" width="90" height="65" rx="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="20" y1="55" x2="110" y2="55" stroke="var(--navy)" stroke-width="2"/><path d="M20 55 L20 80 L110 80 L110 55" stroke="var(--navy)" stroke-width="2" fill="none"/><line x1="20" y1="67" x2="110" y2="67" stroke="var(--navy)" stroke-width="1" stroke-dasharray="3,3"/><rect x="86" y="59" width="14" height="15" rx="2" fill="none" stroke="var(--gold)" stroke-width="2"/></svg>
-      </div>
-      <div class="name">أكمام كبك</div>
-      <div class="name-en">French Cuff (Cufflinks)</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="20" y="15" width="90" height="65" rx="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="20" y1="60" x2="110" y2="60" stroke="var(--navy)" stroke-width="2.5"/><path d="M90 60 L90 80 L100 75 L100 60" stroke="var(--navy)" stroke-width="1.5" fill="none"/></svg>
-      </div>
-      <div class="name">أكمام مسكّرة (مقفولة)</div>
-      <div class="name-en">Closed / Barrel Cuff</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="20" y="15" width="90" height="65" rx="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="20" y1="60" x2="110" y2="60" stroke="var(--navy)" stroke-width="2.5"/><path d="M85 60 L85 80 Q85 82 87 82 L103 82 Q105 82 105 80 L105 60" stroke="var(--navy)" stroke-width="1.5" fill="none"/><line x1="85" y1="70" x2="105" y2="70" stroke="var(--gold)" stroke-width="1.2" stroke-dasharray="2,2"/></svg>
-      </div>
-      <div class="name">أكمام بفتحة جبروز</div>
-      <div class="name-en">Gauntlet Opening</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="20" y="15" width="90" height="55" rx="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><path d="M20 70 Q40 78 65 80 Q90 78 110 70" stroke="var(--navy)" stroke-width="2" fill="none"/><path d="M20 70 L20 75 Q40 83 65 85 Q90 83 110 75 L110 70" stroke="var(--navy)" stroke-width="1.5" fill="none"/></svg>
-      </div>
-      <div class="name">أكمام مطاط</div>
-      <div class="name-en">Elastic Cuff</div>
-    </div>
-
-    <div class="card">
-      <span class="badge modern">عصري</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M20 15 L20 75 L110 75 L110 15" stroke="var(--navy)" stroke-width="2" fill="var(--fabric)" stroke-linecap="round"/><path d="M20 55 L30 55 L30 75" stroke="var(--navy)" stroke-width="1.5" fill="none"/><path d="M110 55 L100 55 L100 75" stroke="var(--navy)" stroke-width="1.5" fill="none"/><path d="M40 60 Q65 65 90 60" stroke="var(--gold)" stroke-width="1.2" fill="none"/><path d="M40 68 Q65 73 90 68" stroke="var(--gold)" stroke-width="1.2" fill="none"/></svg>
-      </div>
-      <div class="name">أكمام ملفوفة (رول أب)</div>
-      <div class="name-en">Roll-Up Cuff</div>
-    </div>
-
-    <div class="card">
-      <span class="badge new">جديد</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="20" y="15" width="90" height="65" rx="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="20" y1="60" x2="110" y2="60" stroke="var(--navy)" stroke-width="2.5"/><rect x="80" y="62" width="25" height="16" rx="2" fill="none" stroke="var(--navy)" stroke-width="1.5"/><circle cx="93" cy="70" r="3" fill="none" stroke="var(--gold)" stroke-width="1.5"/></svg>
-      </div>
-      <div class="name">أكمام مربعة</div>
-      <div class="name-en">Square Cuff</div>
-    </div>
-
-    <div class="card">
-      <span class="badge new">جديد</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="20" y="15" width="90" height="65" rx="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="20" y1="60" x2="110" y2="60" stroke="var(--navy)" stroke-width="2.5"/><path d="M80 60 L80 78 Q80 82 85 82 L105 82 Q110 82 110 78 L110 60" stroke="var(--navy)" stroke-width="1.5" fill="none"/><circle cx="95" cy="72" r="3" fill="none" stroke="var(--gold)" stroke-width="1.5"/></svg>
-      </div>
-      <div class="name">أكمام مستديرة</div>
-      <div class="name-en">Rounded Cuff</div>
-    </div>
-
-    <div class="card">
-      <span class="badge new">جديد</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="20" y="15" width="90" height="65" rx="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="20" y1="55" x2="110" y2="55" stroke="var(--navy)" stroke-width="2"/><line x1="20" y1="60" x2="110" y2="60" stroke="var(--navy)" stroke-width="2"/><path d="M85 55 L85 80 L105 80 L105 55" stroke="var(--navy)" stroke-width="1.2" fill="none"/><path d="M87 62 Q95 66 103 62" stroke="var(--gold)" stroke-width="1" fill="none"/><path d="M87 70 Q95 74 103 70" stroke="var(--gold)" stroke-width="1" fill="none"/></svg>
-      </div>
-      <div class="name">أكمام طبقتين (مزدوجة)</div>
-      <div class="name-en">Double Layered Cuff</div>
-    </div>
-
-    <div class="card">
-      <span class="badge new">جديد</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="20" y="15" width="90" height="65" rx="5" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="20" y1="60" x2="110" y2="60" stroke="var(--navy)" stroke-width="2.5"/><path d="M80 60 L80 80 L108 80 L108 60" stroke="var(--navy)" stroke-width="1.5" fill="none"/><path d="M82 65 Q94 70 106 65" stroke="var(--gold)" stroke-width="1.5" fill="none"/><path d="M82 73 Q94 78 106 73" stroke="var(--gold)" stroke-width="1.5" fill="none"/><circle cx="94" cy="68" r="1.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">أكمام مزخرفة</div>
-      <div class="name-en">Decorated Cuff</div>
-    </div>
+    <!-- 8 مدبب بغرز -->
+    <div class="card"><div class="svg-wrap"><svg viewBox="0 0 120 90" fill="none">
+      <path d="M48 18L60 5L72 18L72 85L48 85Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/>
+      <line x1="60" y1="15" x2="60" y2="82" stroke="var(--navy)" stroke-width="1.5"/>
+      <line x1="50" y1="25" x2="70" y2="25" stroke="var(--stitch)" stroke-width=".8"/><line x1="50" y1="38" x2="70" y2="38" stroke="var(--stitch)" stroke-width=".8"/>
+      <line x1="50" y1="51" x2="70" y2="51" stroke="var(--stitch)" stroke-width=".8"/><line x1="50" y1="64" x2="70" y2="64" stroke="var(--stitch)" stroke-width=".8"/>
+      <line x1="50" y1="77" x2="70" y2="77" stroke="var(--stitch)" stroke-width=".8"/>
+      <circle cx="60" cy="12" r="3" fill="var(--gold)"/>
+    </svg></div><div class="name">سحّاب مدبب بغرز</div><div class="name-en">Pointed Stitched Zipper</div></div>
 
   </div>
 </div>
 
-<hr class="divider"/>
-
-<!-- ==================== السحّاب ==================== -->
-<div class="category" id="zippers">
-  <div class="category-header">
-    <div class="category-icon">🔗</div>
-    <h2 class="category-title">السحّاب (الزم)</h2>
-    <span class="category-count">6 أنواع</span>
-    <div class="category-line"></div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <span class="badge popular">الأكثر طلباً</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="55" y="5" width="20" height="85" rx="3" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="65" y1="15" x2="65" y2="85" stroke="var(--navy)" stroke-width="2"/><path d="M61 20 L65 24 L69 20 M61 32 L65 36 L69 32 M61 44 L65 48 L69 44 M61 56 L65 60 L69 56 M61 68 L65 72 L69 68" stroke="var(--gold)" stroke-width="1.2" fill="none"/><rect x="62" y="8" width="6" height="8" rx="1.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">سحّاب مخفي (كامل)</div>
-      <div class="name-en">Full Hidden Zipper</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="55" y="5" width="20" height="50" rx="3" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="65" y1="12" x2="65" y2="50" stroke="var(--navy)" stroke-width="2"/><path d="M61 18 L65 22 L69 18 M61 30 L65 34 L69 30 M61 42 L65 46 L69 42" stroke="var(--gold)" stroke-width="1.2" fill="none"/><rect x="62" y="7" width="6" height="6" rx="1" fill="var(--gold)"/><line x1="65" y1="55" x2="65" y2="88" stroke="var(--navy)" stroke-width="1.2" stroke-dasharray="3,3"/><circle cx="65" cy="65" r="2" fill="var(--gold)" opacity="0.4"/><circle cx="65" cy="78" r="2" fill="var(--gold)" opacity="0.4"/></svg>
-      </div>
-      <div class="name">سحّاب نصفي + أزرار</div>
-      <div class="name-en">Half Zipper + Buttons</div>
-    </div>
-
-    <div class="card">
-      <span class="badge modern">عصري</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="52" y="5" width="26" height="85" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="65" y1="12" x2="65" y2="85" stroke="var(--navy)" stroke-width="2.5"/><rect x="59" y="5" width="12" height="10" rx="2" fill="var(--navy)"/><rect x="61" y="7" width="8" height="6" rx="1" fill="var(--gold)"/><path d="M58 25 L65 30 L72 25 M58 42 L65 47 L72 42 M58 59 L65 64 L72 59" stroke="var(--gold)" stroke-width="1" fill="none" opacity="0.5"/></svg>
-      </div>
-      <div class="name">سحّاب ظاهر (ديكور)</div>
-      <div class="name-en">Exposed Decorative Zipper</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="55" y="5" width="20" height="85" rx="3" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="65" y1="12" x2="65" y2="85" stroke="var(--navy)" stroke-width="1.5"/><rect x="57" y="5" width="16" height="85" rx="3" fill="none" stroke="var(--navy)" stroke-width="1" stroke-dasharray="2,2" opacity="0.3"/><rect x="62" y="8" width="6" height="6" rx="1" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">سحّاب مخفي (مستور)</div>
-      <div class="name-en">Concealed Zipper</div>
-    </div>
-
-    <div class="card">
-      <span class="badge new">جديد</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="48" y="5" width="34" height="85" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="65" y1="14" x2="65" y2="85" stroke="var(--navy)" stroke-width="2"/><path d="M58 20 L65 25 L72 20 M58 35 L65 40 L72 35 M58 50 L65 55 L72 50 M58 65 L65 70 L72 65" stroke="var(--gold)" stroke-width="1.5" fill="none"/><rect x="60" y="5" width="10" height="10" rx="2" fill="var(--gold)"/><circle cx="65" cy="10" r="2" fill="var(--navy)"/></svg>
-      </div>
-      <div class="name">سحّاب عريض معدني</div>
-      <div class="name-en">Wide Metal Zipper</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="55" y="5" width="20" height="40" rx="3" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="65" y1="12" x2="65" y2="42" stroke="var(--navy)" stroke-width="2"/><path d="M61 18 L65 22 L69 18 M61 30 L65 34 L69 30" stroke="var(--gold)" stroke-width="1.2" fill="none"/><rect x="62" y="7" width="6" height="6" rx="1" fill="var(--gold)"/><path d="M55 45 Q65 50 75 45" stroke="var(--navy)" stroke-width="1.5" fill="none"/></svg>
-      </div>
-      <div class="name">سحّاب قصير (ربع)</div>
-      <div class="name-en">Quarter Zipper</div>
-    </div>
-
-  </div>
 </div>
-
-<hr class="divider"/>
-
-<!-- ==================== الأزرار ==================== -->
-<div class="category" id="buttons">
-  <div class="category-header">
-    <div class="category-icon">⚙️</div>
-    <h2 class="category-title">الأزرار والكبك</h2>
-    <span class="category-count">5 أنواع</span>
-    <div class="category-line"></div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><circle cx="45" cy="48" r="18" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/><circle cx="45" cy="48" r="11" fill="none" stroke="var(--navy)" stroke-width="1"/><circle cx="41" cy="44" r="2" fill="var(--navy)"/><circle cx="49" cy="44" r="2" fill="var(--navy)"/><circle cx="41" cy="52" r="2" fill="var(--navy)"/><circle cx="49" cy="52" r="2" fill="var(--navy)"/><circle cx="92" cy="48" r="13" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><circle cx="92" cy="48" r="7" fill="none" stroke="var(--navy)" stroke-width="1"/><circle cx="89" cy="45" r="1.5" fill="var(--navy)"/><circle cx="95" cy="45" r="1.5" fill="var(--navy)"/><circle cx="89" cy="51" r="1.5" fill="var(--navy)"/><circle cx="95" cy="51" r="1.5" fill="var(--navy)"/></svg>
-      </div>
-      <div class="name">أزرار قماش</div>
-      <div class="name-en">Fabric Buttons</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><circle cx="45" cy="48" r="18" fill="none" stroke="var(--gold)" stroke-width="3"/><circle cx="45" cy="48" r="12" fill="none" stroke="var(--gold)" stroke-width="1.5"/><circle cx="45" cy="48" r="5" fill="var(--gold)"/><circle cx="92" cy="48" r="13" fill="none" stroke="var(--gold)" stroke-width="3"/><circle cx="92" cy="48" r="9" fill="none" stroke="var(--gold)" stroke-width="1.5"/><circle cx="92" cy="48" r="4" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">أزرار معدنية</div>
-      <div class="name-en">Metal Buttons</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><circle cx="45" cy="48" r="18" fill="var(--fabric)" stroke="#8B6914" stroke-width="2.5"/><circle cx="45" cy="48" r="11" fill="none" stroke="#8B6914" stroke-width="1"/><path d="M38 45 L52 45 M38 51 L52 51" stroke="#8B6914" stroke-width="0.8" opacity="0.5"/><circle cx="42" cy="45" r="2" fill="#8B6914"/><circle cx="48" cy="45" r="2" fill="#8B6914"/><circle cx="42" cy="51" r="2" fill="#8B6914"/><circle cx="48" cy="51" r="2" fill="#8B6914"/><circle cx="92" cy="48" r="13" fill="var(--fabric)" stroke="#8B6914" stroke-width="2"/><circle cx="92" cy="48" r="7" fill="none" stroke="#8B6914" stroke-width="1"/><circle cx="89" cy="45" r="1.5" fill="#8B6914"/><circle cx="95" cy="51" r="1.5" fill="#8B6914"/></svg>
-      </div>
-      <div class="name">أزرار خشبية</div>
-      <div class="name-en">Wooden Buttons</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="28" y="30" width="32" height="32" rx="4" fill="none" stroke="var(--gold)" stroke-width="3"/><line x1="44" y1="38" x2="44" y2="55" stroke="var(--gold)" stroke-width="2"/><line x1="36" y1="46" x2="52" y2="46" stroke="var(--gold)" stroke-width="2"/><rect x="75" y="33" width="26" height="26" rx="4" fill="none" stroke="var(--gold)" stroke-width="2.5"/><line x1="88" y1="40" x2="88" y2="53" stroke="var(--gold)" stroke-width="1.5"/><line x1="82" y1="46" x2="95" y2="46" stroke="var(--gold)" stroke-width="1.5"/></svg>
-      </div>
-      <div class="name">أزرار إكسسوار (كبك فاخر)</div>
-      <div class="name-en">Accessory / Luxury Cufflinks</div>
-    </div>
-
-    <div class="card">
-      <span class="badge new">جديد</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><circle cx="45" cy="48" r="18" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><circle cx="45" cy="48" r="12" fill="none" stroke="var(--navy)" stroke-width="1.5"/><path d="M38 42 Q45 48 52 42 M38 54 Q45 48 52 54" stroke="var(--gold)" stroke-width="1.5" fill="none"/><circle cx="92" cy="48" r="13" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><circle cx="92" cy="48" r="8" fill="none" stroke="var(--navy)" stroke-width="1.5"/><path d="M86 43 Q92 48 98 43 M86 53 Q92 48 98 53" stroke="var(--gold)" stroke-width="1.5" fill="none"/></svg>
-      </div>
-      <div class="name">أزرار صدف (لؤلؤ)</div>
-      <div class="name-en">Mother of Pearl Buttons</div>
-    </div>
-
-  </div>
-</div>
-
-<hr class="divider"/>
-
-<!-- ==================== الجيب ==================== -->
-<div class="category" id="pockets">
-  <div class="category-header">
-    <div class="category-icon">👝</div>
-    <h2 class="category-title">الجيب</h2>
-    <span class="category-count">7 أنواع</span>
-    <div class="category-line"></div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="25" y="28" width="80" height="55" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/><line x1="25" y1="28" x2="105" y2="28" stroke="var(--navy)" stroke-width="3"/></svg>
-      </div>
-      <div class="name">جيب صدر مربع</div>
-      <div class="name-en">Square Chest Pocket</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M25 28 L65 23 L105 28 L105 83 L25 83 Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5" stroke-linejoin="round"/><circle cx="65" cy="33" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">جيب صدر مثلث</div>
-      <div class="name-en">Triangle Chest Pocket</div>
-    </div>
-
-    <div class="card">
-      <span class="badge modern">عصري</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="25" y="28" width="80" height="55" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="1.5" stroke-dasharray="4,3"/><line x1="25" y1="28" x2="105" y2="28" stroke="var(--navy)" stroke-width="3"/><path d="M58 28 L58 38 M72 28 L72 38" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/></svg>
-      </div>
-      <div class="name">جيب مخفي (داخلي)</div>
-      <div class="name-en">Hidden / Welt Pocket</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M25 24 L105 24 L105 83 L25 83 Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/><path d="M25 24 Q65 34 105 24" stroke="var(--navy)" stroke-width="2" fill="none"/><path d="M55 28 Q58 38 65 42 Q72 38 75 28" stroke="var(--gold)" stroke-width="1.5" fill="none"/></svg>
-      </div>
-      <div class="name">جيب صدر ظاهر مع تطريز</div>
-      <div class="name-en">Embroidered Chest Pocket</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M35 18 L95 18 L105 83 L25 83 Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5" stroke-linejoin="round"/><line x1="35" y1="18" x2="95" y2="18" stroke="var(--navy)" stroke-width="3"/></svg>
-      </div>
-      <div class="name">جيب جنب (جانبي)</div>
-      <div class="name-en">Side Pocket</div>
-    </div>
-
-    <div class="card">
-      <span class="badge new">جديد</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><path d="M25 28 Q65 28 105 28 L105 83 Q65 78 25 83 Z" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2.5"/><line x1="25" y1="28" x2="105" y2="28" stroke="var(--navy)" stroke-width="3"/><path d="M40 28 L40 40" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </div>
-      <div class="name">جيب كويتي (مستدير)</div>
-      <div class="name-en">Kuwaiti Pocket (Rounded)</div>
-    </div>
-
-    <div class="card">
-      <span class="badge new">جديد</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="25" y="28" width="80" height="55" rx="4" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="25" y1="28" x2="105" y2="28" stroke="var(--navy)" stroke-width="3"/><path d="M35 48 L95 48" stroke="var(--navy)" stroke-width="1.5" stroke-dasharray="3,3"/><rect x="40" y="35" width="50" height="10" rx="2" fill="none" stroke="var(--gold)" stroke-width="1"/></svg>
-      </div>
-      <div class="name">جيب رسمي (فورمال)</div>
-      <div class="name-en">Formal Chest Pocket</div>
-    </div>
-
-  </div>
-</div>
-
-<hr class="divider"/>
-
-<!-- ==================== واجهة الصدر ==================== -->
-<div class="category" id="chest">
-  <div class="category-header">
-    <div class="category-icon">🎨</div>
-    <h2 class="category-title">واجهة الصدر</h2>
-    <span class="category-count">5 أنواع</span>
-    <div class="category-line"></div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="25" y="10" width="80" height="80" rx="3" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="65" y1="10" x2="65" y2="90" stroke="var(--navy)" stroke-width="1.5" stroke-dasharray="4,3"/><circle cx="65" cy="25" r="2.5" fill="var(--gold)"/><circle cx="65" cy="50" r="2.5" fill="var(--gold)"/><circle cx="65" cy="75" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">صدر سادة</div>
-      <div class="name-en">Plain Front</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="25" y="10" width="80" height="80" rx="3" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><path d="M58 10 L58 90 M72 10 L72 90" stroke="var(--navy)" stroke-width="1.5"/><circle cx="65" cy="25" r="2.5" fill="var(--gold)"/><circle cx="65" cy="50" r="2.5" fill="var(--gold)"/><circle cx="65" cy="75" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">صدر بكسرة</div>
-      <div class="name-en">Pleated Front</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="25" y="10" width="80" height="80" rx="3" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><rect x="55" y="10" width="20" height="80" fill="none" stroke="var(--navy)" stroke-width="1.5" rx="2"/><circle cx="65" cy="30" r="2" fill="var(--gold)" opacity="0.4"/><circle cx="65" cy="50" r="2" fill="var(--gold)" opacity="0.4"/><circle cx="65" cy="70" r="2" fill="var(--gold)" opacity="0.4"/></svg>
-      </div>
-      <div class="name">صدر بأزرار مخفية</div>
-      <div class="name-en">Hidden Button Front</div>
-    </div>
-
-    <div class="card">
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="25" y="10" width="80" height="80" rx="3" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><path d="M55 10 L55 90 M75 10 L75 90" stroke="var(--navy)" stroke-width="1.2"/><path d="M55 20 Q65 26 75 20 M55 45 Q65 51 75 45 M55 70 Q65 76 75 70" stroke="var(--gold)" stroke-width="1.5" fill="none"/><circle cx="65" cy="32" r="2.5" fill="var(--gold)"/><circle cx="65" cy="57" r="2.5" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">صدر مزخرف (تطريز)</div>
-      <div class="name-en">Embroidered Front</div>
-    </div>
-
-    <div class="card">
-      <span class="badge new">جديد</span>
-      <div class="svg-wrap">
-        <svg viewBox="0 0 130 95" fill="none"><rect x="25" y="10" width="80" height="80" rx="3" fill="var(--fabric)" stroke="var(--navy)" stroke-width="2"/><line x1="65" y1="10" x2="65" y2="90" stroke="var(--navy)" stroke-width="2.5"/><path d="M61 18 L65 23 L69 18 M61 35 L65 40 L69 35 M61 52 L65 57 L69 52 M61 69 L65 74 L69 69" stroke="var(--gold)" stroke-width="1.5" fill="none"/><rect x="62" y="10" width="6" height="8" rx="1" fill="var(--gold)"/></svg>
-      </div>
-      <div class="name">صدر بسحّاب</div>
-      <div class="name-en">Zipper Front</div>
-    </div>
-
-  </div>
-</div>
-
-</div><!-- end .main -->
 
 <div class="footer">
   ✂️ كتالوج <span>خياط</span> — khayyat.app — جميع التصاميم بصيغة SVG<br>
   الأسماء المستخدمة هي المتعارف عليها في محلات الخياطة السعودية<br>
-  <span>65+ تصميم</span> · 7 فئات · أكثر من أي منافس في السوق
+  <span>63+ تصميم</span> · 20 ياقة · 23 كم · 12 جيب · 8 سحّاب — أكثر من أي منافس
 </div>
 
 <script>
-  // Smooth scroll for navigation links
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click',e=>{
-      e.preventDefault();
-      const t=document.querySelector(a.getAttribute('href'));
-      if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
-    });
-  });
-  // Intersection observer for fade-in
-  const obs=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}
-    });
-  },{threshold:0.1});
-  document.querySelectorAll('.card').forEach(c=>{
-    c.style.opacity='0';c.style.transform='translateY(20px)';c.style.transition='opacity 0.5s, transform 0.5s';
-    obs.observe(c);
-  });
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}})},{threshold:.1});
+document.querySelectorAll('.card').forEach(c=>{c.style.opacity='0';c.style.transform='translateY(20px)';c.style.transition='opacity .5s,transform .5s';obs.observe(c)});
 </script>
-
 </body>
 </html>
