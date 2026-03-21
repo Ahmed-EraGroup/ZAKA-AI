@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" fill="none">
-<path d="M15 50 L65 50 L80 35 L80 18 L30 18 L15 33 Z" stroke="#888" stroke-width="1.5" fill="#fff"/>
-<path d="M15 33 L65 33 L80 18" stroke="#888" stroke-width="1"/><path d="M65 33 L65 50" stroke="#888" stroke-width="1"/>
-<rect x="55" y="22" width="8" height="8" rx="1" stroke="#888" stroke-width="1" fill="none"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 60" fill="none">
+<path d="M10 38 L48 38 L62 26 L62 14 L24 14 L10 26 Z" stroke="#555" stroke-width="1.4" fill="#fff"/>
+<path d="M10 26 L48 26 L62 14" stroke="#555" stroke-width="1"/><path d="M48 26 L48 38" stroke="#555" stroke-width="1"/>
+<line x1="10" y1="32" x2="48" y2="32" stroke="#555" stroke-width="0.6" stroke-dasharray="2,2"/>
+<rect x="42" y="17" width="7" height="6" rx="1" stroke="#555" stroke-width="0.8" fill="none"/>
 </svg>

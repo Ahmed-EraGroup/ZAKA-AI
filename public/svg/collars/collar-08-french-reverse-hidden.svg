@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 90" fill="none">
+<path d="M30 70 Q40 52 52 44 L60 40 Q67 36 70 36 Q73 36 80 40 L88 44 Q100 52 110 70" stroke="#555" stroke-width="1.6" fill="#fff"/>
+<path d="M52 44 Q55 38 50 28 Q48 24 44 26 Q48 32 52 44" stroke="#555" stroke-width="1.4" fill="#fff"/>
+<path d="M88 44 Q85 38 90 28 Q92 24 96 26 Q92 32 88 44" stroke="#555" stroke-width="1.4" fill="#fff"/>
+<path d="M60 40 Q67 50 70 53 Q73 50 80 40" stroke="#555" stroke-width="1.2" fill="none"/>
+<line x1="55" y1="42" x2="52" y2="32" stroke="#555" stroke-width="1"/>
+<line x1="85" y1="42" x2="88" y2="32" stroke="#555" stroke-width="1"/>
+<line x1="70" y1="53" x2="70" y2="70" stroke="#555" stroke-width="0.8" stroke-dasharray="2,2"/>
+</svg>
