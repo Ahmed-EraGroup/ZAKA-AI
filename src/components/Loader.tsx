@@ -99,7 +99,7 @@ const Loader = ({ onDone }: { onDone: () => void }) => {
 
     let raf: number;
     let start: number | null = null;
-    const duration = 1800;
+    const duration = 1200;
 
     const tick = (ts: number) => {
       if (!start) start = ts;
@@ -118,10 +118,8 @@ const Loader = ({ onDone }: { onDone: () => void }) => {
       if (p < 1) {
         raf = requestAnimationFrame(tick);
       } else {
-        setTimeout(() => {
-          setHiding(true);
-          setTimeout(onDone, 500);
-        }, 200);
+        setHiding(true);
+        setTimeout(onDone, 350);
       }
     };
 
