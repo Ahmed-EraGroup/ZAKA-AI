@@ -1,0 +1,1031 @@
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  صفحة خياط الكاملة — نسخة أودو
+  ═══════════════════════════════════════════════════════════════════
+
+  تعليمات الاستخدام في أودو:
+  ١. انسخ كامل عنصر <section id="kh"> والصقه في محرر HTML لصفحة أودو
+  ٢. لا تنسَ إضافة رابط خط Tajawal في رأس الصفحة (أو في إعدادات الموقع)
+  ٣. ملف الجافاسكربت منفصل — أضفه في "Custom JS" أو كملف منفصل
+  ٤. جميع المحددات تبدأ بـ #kh لتجنب التعارض مع أنماط أودو
+  ٥. المتغيرات اللونية معرفة على عنصر #kh مباشرة
+  ٦. لا تعدل على الـ CSS إلا إذا كنت تعرف ما تفعله
+
+  العناصر التفاعلية (تحتاج جافاسكربت منفصل):
+  - التبويبات: id="khTabs" → أزرار بكلاس kh-tab
+  - الشاشة: id="khScreen" مع placeholder id="khPh"
+  - مسار العمل: id="khWf" مع كلاس kh-wf-step
+  - الأسعار: id="khToggle" للتبديل شهري/سنوي
+  - الأسئلة: كلاس kh-faq-q للأكورديون
+  ═══════════════════════════════════════════════════════════════════
+-->
+
+<style>
+/* ═══ خياط — أنماط أودو ═══ */
+
+#kh {
+  --gold: #D4A84B;
+  --gold2: #B8892A;
+  --navy: #1B2A4A;
+  --text: #1B2A4A;
+  --muted: #6b7280;
+  --bg: #fff;
+  --bg2: #f9f7f2;
+  --border: #e8e0d0;
+  --green: #10b981;
+  direction: rtl;
+  font-family: 'Tajawal', sans-serif;
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+#kh *, #kh *::before, #kh *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+
+#kh a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+/* ═══ TOP BANNER ═══ */
+#kh .top-banner {
+  background: linear-gradient(90deg, var(--navy) 0%, #162240 100%);
+  padding: 10px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#kh .top-banner::before {
+  content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(212,168,75,.06) 50%, transparent 100%);
+  animation: khBannerShine 4s ease-in-out infinite;
+}
+@keyframes khBannerShine {
+  0%, 100% { opacity: 0 }
+  50% { opacity: 1 }
+}
+#kh .top-banner .banner-inner {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  position: relative; z-index: 1; flex-wrap: wrap;
+}
+#kh .banner-icon {
+  background: rgba(212,168,75,.15);
+  width: 24px; height: 24px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .75rem; flex-shrink: 0;
+}
+#kh .banner-text {
+  color: rgba(255,255,255,.9); font-size: .82rem; font-weight: 600;
+}
+#kh .banner-text strong { color: var(--gold); font-weight: 800 }
+#kh .banner-cta {
+  background: var(--gold); color: #fff !important; font-family: inherit; font-weight: 700;
+  font-size: .72rem; padding: 5px 14px; border: none; border-radius: 6px;
+  cursor: pointer; text-decoration: none !important; transition: all .2s;
+  white-space: nowrap;
+}
+#kh .banner-cta:hover { background: var(--gold2); transform: translateY(-1px) }
+#kh .banner-close {
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: rgba(255,255,255,.3);
+  font-size: 1rem; cursor: pointer; transition: color .2s; z-index: 2;
+}
+#kh .banner-close:hover { color: rgba(255,255,255,.6) }
+
+/* ═══ HERO ═══ */
+#kh .hero {
+  max-width: 1440px; margin: 0 auto; padding: 60px 56px;
+  display: grid; grid-template-columns: 380px 1fr; gap: 36px; align-items: center;
+}
+#kh .hero-logo { width: 64px; height: 64px; margin-bottom: 18px; filter: drop-shadow(0 2px 8px rgba(212,168,75,.2)) }
+#kh .hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(212,168,75,.1); border: 1px solid rgba(212,168,75,.3);
+  color: var(--gold2); font-size: .75rem; font-weight: 700;
+  padding: 5px 13px; border-radius: 999px; margin-bottom: 22px;
+  animation: khBadgePulse 3s ease-in-out infinite;
+}
+#kh .hero-badge::before { content: '\2605'; font-size: .6rem }
+@keyframes khBadgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,168,75,.3) }
+  50% { box-shadow: 0 0 0 8px rgba(212,168,75,0) }
+}
+#kh .zatca-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(16,185,129,.06); border: 1px solid rgba(16,185,129,.2);
+  color: #059669; font-size: .72rem; font-weight: 700;
+  padding: 5px 13px; border-radius: 999px;
+}
+#kh .zatca-check {
+  width: 15px; height: 15px; border-radius: 50%; background: #059669;
+  color: #fff; font-size: .5rem; font-weight: 900;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+#kh .hero-h1 {
+  font-size: 2.8rem; font-weight: 900; line-height: 1.18;
+  letter-spacing: -1.5px; margin-bottom: 18px; color: var(--navy);
+}
+#kh .hero-h1 .grd {
+  background: linear-gradient(135deg, var(--gold) 0%, #c8922a 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; background-size: 200% auto;
+  animation: khShimmer 4s ease-in-out infinite;
+}
+@keyframes khShimmer {
+  0%, 100% { background-position: 0% center }
+  50% { background-position: 200% center }
+}
+#kh .hero-desc { font-size: .95rem; color: var(--muted); line-height: 1.9; margin-bottom: 28px }
+#kh .hero-btns { display: flex; gap: 10px; flex-wrap: wrap }
+#kh .btn-p {
+  background: var(--gold); color: #fff !important; font-family: inherit; font-weight: 700;
+  font-size: .92rem; padding: 12px 26px; border: none; border-radius: 11px;
+  cursor: pointer; text-decoration: none !important; display: inline-block;
+  box-shadow: 0 6px 20px rgba(212,168,75,.4); transition: all .22s;
+  position: relative; overflow: hidden;
+}
+#kh .btn-p:hover {
+  background: var(--gold2); transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(212,168,75,.45); color: #fff !important; text-decoration: none !important;
+}
+#kh .btn-s {
+  color: var(--navy) !important; font-family: inherit; font-weight: 600; font-size: .88rem;
+  padding: 12px 20px; border: 1.5px solid var(--border); border-radius: 11px;
+  cursor: pointer; text-decoration: none !important; display: inline-block;
+  background: transparent; transition: all .22s;
+}
+#kh .btn-s:hover { border-color: var(--gold); color: var(--gold) !important; text-decoration: none !important }
+#kh .hero-stats {
+  display: flex; gap: 28px; margin-top: 32px; padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+#kh .stat-n { font-size: 1.55rem; font-weight: 900; color: var(--gold) }
+#kh .stat-l { font-size: .76rem; color: var(--muted); margin-top: 2px }
+#kh .trust-badge {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 24px;
+  padding: 8px 16px; background: rgba(16,185,129,.06);
+  border: 1px solid rgba(16,185,129,.2); border-radius: 10px;
+}
+#kh .trust-text { font-size: .75rem; font-weight: 700; color: #059669; line-height: 1.4 }
+#kh .trust-sub { font-size: .65rem; color: var(--muted); font-weight: 400 }
+
+/* mockup */
+#kh .mock-col { position: relative; perspective: 1200px }
+#kh .mock-shadow {
+  position: absolute; top: 8%; left: 4%; right: 4%; bottom: -4%;
+  background: rgba(212,168,75,.08); filter: blur(44px); border-radius: 50%; pointer-events: none;
+}
+#kh .mock-3d {
+  transition: transform .15s ease-out; transform-style: preserve-3d;
+  will-change: transform; overflow: visible;
+}
+#kh .cursor-glow {
+  position: absolute; width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,168,75,.12) 0%, transparent 70%);
+  pointer-events: none; z-index: 20; transform: translate(-50%,-50%);
+  opacity: 0; transition: opacity .3s;
+}
+#kh .mock-col:hover .cursor-glow { opacity: 1 }
+#kh .feat-tabs {
+  display: flex; gap: 4px; margin-bottom: 12px;
+  background: #f5f0e8; border: 1px solid var(--border);
+  border-radius: 12px; padding: 4px; width: fit-content;
+}
+#kh .kh-tab {
+  padding: 6px 13px; border-radius: 8px; font-size: .78rem;
+  font-family: inherit; font-weight: 600; cursor: pointer;
+  color: var(--muted); border: none; background: transparent;
+  transition: all .22s; white-space: nowrap;
+}
+#kh .kh-tab.on {
+  background: #fff; color: var(--navy);
+  box-shadow: 0 1px 4px rgba(0,0,0,.1), 0 0 0 1px var(--border);
+}
+#kh .browser {
+  position: relative; z-index: 1; background: #fff; border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(27,42,74,.12), 0 4px 16px rgba(212,168,75,.08);
+  overflow: hidden; transition: box-shadow .3s;
+}
+#kh .mock-col:hover .browser {
+  box-shadow: 0 30px 80px rgba(27,42,74,.16), 0 8px 24px rgba(212,168,75,.12);
+}
+#kh .screen {
+  width: 100%; aspect-ratio: 16/9; background: #efecf4;
+  position: relative; overflow: hidden; cursor: grab;
+}
+#kh .screen:active { cursor: grabbing }
+#kh .screen img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: top; opacity: 0;
+  transition: opacity .5s cubic-bezier(.4,0,.2,1), transform .4s;
+  transform: scale(1.02);
+}
+#kh .screen img.on { opacity: 1; transform: scale(1) }
+#kh .screen.zoomed { cursor: move }
+#kh .screen.zoomed img.on {
+  transform: scale(var(--zoom,2));
+  transform-origin: var(--zx,50%) var(--zy,50%);
+  transition: opacity .5s, transform .15s ease-out;
+}
+#kh .screen-ph {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 14px; background: #f5f0fa;
+}
+
+/* workflow strip */
+#kh .wf-strip {
+  background: #f9f7f2; border-top: 1px solid var(--border);
+  padding: 14px 24px 12px;
+}
+#kh .wf-header {
+  text-align: center; font-size: .6rem; font-weight: 700;
+  color: var(--gold2); letter-spacing: .5px;
+  margin-bottom: 12px; text-transform: uppercase; opacity: .7;
+}
+#kh .wf-track { display: flex; align-items: center; position: relative }
+#kh .kh-wf-step { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; position: relative; cursor: default }
+#kh .wf-icon-wrap { position: relative; width: 28px; height: 28px; flex-shrink: 0 }
+#kh .wf-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: #fff; border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .75rem; position: relative; z-index: 2;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04); transition: all .3s;
+}
+#kh .kh-wf-step.done .wf-icon { background: rgba(212,168,75,.06); border-color: rgba(212,168,75,.3) }
+#kh .kh-wf-step.animated .wf-icon { animation: khWfPop .5s cubic-bezier(.34,1.56,.64,1) }
+@keyframes khWfPop { 0% { transform: scale(.5); opacity: 0 } 100% { transform: scale(1); opacity: 1 } }
+#kh .kh-wf-step.done .wf-icon-wrap::after {
+  content: '\2713'; position: absolute; top: -3px; left: -3px;
+  width: 12px; height: 12px; border-radius: 50%; background: var(--gold);
+  font-size: .45rem; font-weight: 900; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 1px 3px rgba(212,168,75,.5); z-index: 3;
+  transform: scale(0); transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+#kh .kh-wf-step.done.check-visible .wf-icon-wrap::after { transform: scale(1) }
+#kh .kh-wf-step.wf-active .wf-icon {
+  border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,168,75,.1); transform: scale(1.08);
+}
+#kh .kh-wf-step.wf-active .wf-t { color: var(--gold2) }
+#kh .wf-t { font-size: .62rem; font-weight: 700; color: var(--navy); transition: color .3s; white-space: nowrap }
+#kh .wf-arrow { color: var(--border); font-size: .6rem; margin: 0 2px; flex-shrink: 0 }
+
+/* annotations */
+#kh .ann {
+  position: absolute; background: #fff; border: 1px solid var(--border);
+  border-radius: 13px; padding: 10px 14px; white-space: nowrap; z-index: 10;
+  box-shadow: 0 8px 32px rgba(27,42,74,.12), 0 2px 8px rgba(0,0,0,.06);
+  animation: khAnnIn .55s cubic-bezier(.34,1.56,.64,1) forwards;
+  opacity: 0; cursor: default;
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+  transform-style: flat; backface-visibility: hidden;
+}
+#kh .ann:hover {
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 12px 40px rgba(27,42,74,.18), 0 4px 12px rgba(0,0,0,.08);
+  border-color: var(--gold);
+}
+#kh .ann-row { display: flex; align-items: center; gap: 7px; margin-bottom: 3px }
+#kh .ann-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0 }
+#kh .ann-title { font-size: .8rem; font-weight: 700; color: var(--navy) }
+#kh .ann-sub { font-size: .7rem; color: var(--muted) }
+#kh .ann-1 { top: 20px; left: -210px; animation-delay: .4s }
+#kh .ann-2 { top: 90px; left: -210px; animation-delay: .6s }
+#kh .ann-3 { top: 160px; left: -210px; animation-delay: .8s }
+#kh .ann-1::after, #kh .ann-2::after, #kh .ann-3::after {
+  content: ''; position: absolute; top: 50%; width: 14px; height: 1px;
+  background: linear-gradient(to left, var(--border), transparent); right: -14px;
+}
+@keyframes khAnnIn {
+  0% { opacity: 0; transform: translateY(8px) scale(.96) }
+  100% { opacity: 1; transform: translateY(0) scale(1) }
+}
+
+/* reveal */
+#kh .rv { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1) }
+#kh .rv.vis { opacity: 1; transform: translateY(0) }
+/* ═ Odoo edit mode — show everything ═ */
+.editor_enable #kh .rv,
+.o_editable #kh .rv { opacity: 1 !important; transform: none !important; }
+
+/* ═══════════════════════════════════════════
+   1. نحن نفهم شغلك
+   ═══════════════════════════════════════════ */
+#kh .understand { background: var(--bg2); padding: 90px 0; position: relative; overflow: hidden }
+#kh .understand::before {
+  content: ''; position: absolute; top: -80px; left: -80px;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: rgba(212,168,75,.06); pointer-events: none;
+}
+#kh .understand .wrap { max-width: 1200px; margin: 0 auto; padding: 0 48px; text-align: center }
+#kh .understand .emoji-top { font-size: 2.5rem; margin-bottom: 16px; display: block }
+#kh .understand h2 { font-size: 2.2rem; font-weight: 900; color: var(--navy); margin-bottom: 12px }
+#kh .understand h2 span { color: var(--gold) }
+#kh .understand .sub { font-size: 1rem; color: var(--muted); max-width: 600px; margin: 0 auto 48px; line-height: 1.9 }
+
+#kh .pain-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-bottom: 48px }
+#kh .pain-card {
+  background: #fff; border: 1.5px solid var(--border); border-radius: 16px;
+  padding: 28px 24px; text-align: center;
+  transition: all .3s; position: relative; overflow: hidden;
+}
+#kh .pain-card::before {
+  content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 0;
+  background: var(--gold); transition: height .4s; border-radius: 0 0 4px 0;
+}
+#kh .pain-card:hover::before { height: 100% }
+#kh .pain-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(27,42,74,.08); border-color: var(--gold) }
+#kh .pain-ico { font-size: 2rem; margin-bottom: 12px; display: block }
+#kh .pain-card h3 { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 8px }
+#kh .pain-card p { font-size: .85rem; color: var(--muted); line-height: 1.7 }
+
+#kh .target-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap }
+#kh .target-tag {
+  background: #fff; border: 1px solid var(--border); border-radius: 999px;
+  padding: 8px 20px; font-size: .82rem; font-weight: 600; color: var(--navy);
+  display: flex; align-items: center; gap: 6px; transition: all .2s;
+}
+#kh .target-tag:hover { border-color: var(--gold); color: var(--gold2) }
+
+/* ═══════════════════════════════════════════
+   2. المميزات
+   ═══════════════════════════════════════════ */
+#kh .features { padding: 90px 0; background: #fff }
+#kh .features .wrap { max-width: 1200px; margin: 0 auto; padding: 0 48px }
+#kh .features .tag {
+  display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 8px;
+}
+#kh .features .tag span {
+  background: rgba(212,168,75,.1); border: 1px solid rgba(212,168,75,.25);
+  color: var(--gold2); font-size: .7rem; font-weight: 700;
+  padding: 4px 14px; border-radius: 999px; letter-spacing: .3px;
+}
+#kh .features h2 { text-align: center; font-size: 2rem; font-weight: 900; color: var(--navy); margin-bottom: 8px }
+#kh .features .sub { text-align: center; color: var(--muted); font-size: .95rem; margin-bottom: 48px }
+
+#kh .feat-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px }
+#kh .feat-card {
+  background: var(--bg2); border: 1.5px solid transparent; border-radius: 18px;
+  padding: 30px 28px; display: flex; gap: 18px; align-items: flex-start;
+  transition: all .3s;
+}
+#kh .feat-card:hover { border-color: var(--gold); background: #fff; box-shadow: 0 12px 36px rgba(212,168,75,.08); transform: translateY(-3px) }
+#kh .feat-icon {
+  width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+  transition: transform .3s;
+}
+#kh .feat-card:hover .feat-icon { transform: scale(1.1) rotate(-5deg) }
+#kh .fi-blue { background: rgba(59,130,246,.08); border: 1px solid rgba(59,130,246,.15) }
+#kh .fi-green { background: rgba(16,185,129,.08); border: 1px solid rgba(16,185,129,.15) }
+#kh .fi-purple { background: rgba(124,58,237,.08); border: 1px solid rgba(124,58,237,.15) }
+#kh .fi-gold { background: rgba(212,168,75,.08); border: 1px solid rgba(212,168,75,.15) }
+#kh .feat-card h3 { font-size: .95rem; font-weight: 800; color: var(--navy); margin-bottom: 6px }
+#kh .feat-card p { font-size: .82rem; color: var(--muted); line-height: 1.7 }
+
+/* ═══════════════════════════════════════════
+   قبل / بعد
+   ═══════════════════════════════════════════ */
+#kh .compare { padding: 90px 0; background: var(--bg2) }
+#kh .compare-wrap { max-width: 880px; margin: 0 auto; padding: 0 48px }
+#kh .compare h2 { text-align: center; font-size: 1.8rem; font-weight: 900; color: var(--navy); margin-bottom: 6px }
+#kh .compare-sub { text-align: center; color: var(--muted); font-size: .9rem; margin-bottom: 44px }
+
+#kh .compare-table {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 4px 24px rgba(27,42,74,.06);
+  border: 1px solid var(--border);
+}
+
+#kh .compare-col { display: flex; flex-direction: column }
+#kh .compare-head {
+  padding: 20px 24px; font-size: .88rem; font-weight: 800;
+  display: flex; align-items: center; gap: 10px;
+}
+#kh .compare-emoji { font-size: 1.3rem }
+#kh .compare-before .compare-head { background: #faf5f5; color: #b0b0b0 }
+#kh .compare-after .compare-head { background: rgba(212,168,75,.06); color: var(--gold2) }
+
+#kh .compare-row {
+  padding: 14px 24px; font-size: .82rem; font-weight: 500;
+  border-bottom: 1px solid rgba(0,0,0,.03);
+  display: flex; align-items: center; gap: 8px; min-height: 48px;
+}
+#kh .compare-before { background: #fafafa }
+#kh .compare-after { background: #fff }
+#kh .compare-before .compare-row:last-child,
+#kh .compare-after .compare-row:last-child { border-bottom: none }
+
+#kh .compare-row .cr-icon {
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .6rem; font-weight: 900; flex-shrink: 0;
+}
+#kh .compare-row.bad .cr-icon { background: #f3f4f6; color: #d1d5db }
+#kh .compare-row.good .cr-icon { background: rgba(212,168,75,.1); color: var(--gold2) }
+#kh .compare-row.bad { color: #b0b0b0 }
+#kh .compare-row.good { color: var(--navy); font-weight: 600 }
+
+#kh .compare-divider {
+  width: 1px; background: var(--border);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+#kh .vs-badge {
+  position: absolute;
+  width: 40px; height: 40px; border-radius: 12px;
+  background: var(--navy); color: #fff;
+  font-size: .65rem; font-weight: 900; letter-spacing: .5px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(27,42,74,.25); z-index: 1;
+}
+
+/* ═══════════════════════════════════════════
+   3. CTA وسطي
+   ═══════════════════════════════════════════ */
+#kh .mid-cta {
+  background: linear-gradient(135deg, var(--navy) 0%, #0f1c35 100%);
+  padding: 64px 0; text-align: center; position: relative; overflow: hidden;
+}
+#kh .mid-cta::before {
+  content: ''; position: absolute; top: -40%; right: -10%;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: rgba(212,168,75,.06);
+}
+#kh .mid-cta::after {
+  content: ''; position: absolute; bottom: -30%; left: -5%;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: rgba(212,168,75,.04);
+}
+#kh .mid-cta .wrap { max-width: 700px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 1 }
+#kh .mid-cta h2 { font-size: 1.8rem; font-weight: 900; color: #fff; margin-bottom: 12px }
+#kh .mid-cta .points { display: flex; justify-content: center; gap: 24px; margin-bottom: 28px; flex-wrap: wrap }
+#kh .mid-cta .point { color: rgba(255,255,255,.7); font-size: .88rem; display: flex; align-items: center; gap: 6px }
+#kh .mid-cta .point em { color: var(--gold); font-style: normal; font-size: 1.1rem }
+#kh .mid-cta .btn {
+  background: var(--gold); color: #fff !important; font-family: inherit; font-weight: 700;
+  font-size: .95rem; padding: 14px 32px; border: none; border-radius: 12px;
+  cursor: pointer; text-decoration: none !important; display: inline-block;
+  box-shadow: 0 8px 24px rgba(212,168,75,.35); transition: all .22s;
+}
+#kh .mid-cta .btn:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(212,168,75,.45) }
+
+/* ═══════════════════════════════════════════
+   4. الباقات
+   ═══════════════════════════════════════════ */
+#kh .pricing { padding: 90px 0; background: var(--bg2) }
+#kh .pricing .wrap { max-width: 1200px; margin: 0 auto; padding: 0 48px }
+#kh .pricing .trust-top {
+  text-align: center; font-size: .78rem; color: var(--gold2); font-weight: 600;
+  margin-bottom: 8px;
+}
+#kh .pricing h2 { text-align: center; font-size: 2rem; font-weight: 900; color: var(--navy); margin-bottom: 8px }
+#kh .pricing .sub { text-align: center; color: var(--muted); font-size: .9rem; margin-bottom: 16px }
+
+/* toggle */
+#kh .toggle-wrap { display: flex; justify-content: center; margin-bottom: 40px; gap: 8px; align-items: center }
+#kh .toggle-label { font-size: .85rem; font-weight: 600; color: var(--muted); cursor: pointer }
+#kh .toggle-label.active { color: var(--navy) }
+#kh .toggle {
+  width: 48px; height: 26px; background: var(--border); border-radius: 13px;
+  position: relative; cursor: pointer; transition: background .3s;
+}
+#kh .toggle.on { background: var(--gold) }
+#kh .toggle::after {
+  content: ''; position: absolute; top: 3px; right: 3px;
+  width: 20px; height: 20px; border-radius: 50%; background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15); transition: transform .3s;
+}
+#kh .toggle.on::after { transform: translateX(-22px) }
+#kh .save-badge {
+  background: rgba(16,185,129,.1); color: var(--green);
+  font-size: .7rem; font-weight: 700; padding: 3px 10px; border-radius: 999px;
+}
+
+#kh .migrate-offer { text-align: center; margin-bottom: 32px }
+#kh .migrate-inner {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, rgba(212,168,75,.06) 0%, rgba(212,168,75,.02) 100%);
+  border: 1px dashed rgba(212,168,75,.3);
+  border-radius: 12px; padding: 10px 22px;
+}
+#kh .migrate-icon { font-size: 1.1rem }
+#kh .migrate-text { font-size: .8rem; color: var(--muted); font-weight: 500 }
+#kh .migrate-text strong { color: var(--gold2); font-weight: 800 }
+
+#kh .price-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px }
+#kh .price-card {
+  background: #fff; border: 1.5px solid var(--border); border-radius: 18px;
+  padding: 28px 22px; position: relative; transition: all .3s;
+}
+#kh .price-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(27,42,74,.08) }
+#kh .price-card.popular { border-color: var(--gold); box-shadow: 0 8px 32px rgba(212,168,75,.12) }
+#kh .popular-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--gold); color: #fff; font-size: .68rem; font-weight: 700;
+  padding: 4px 16px; border-radius: 999px; white-space: nowrap;
+}
+#kh .price-card .plan-icon { font-size: 1.4rem; margin-bottom: 10px; display: block }
+#kh .price-card .plan-name { font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 4px }
+#kh .price-card .plan-desc { font-size: .75rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5 }
+#kh .price-card .price { font-size: 2.2rem; font-weight: 900; color: var(--navy); margin-bottom: 2px }
+#kh .price-card .price small { font-size: .75rem; font-weight: 400; color: var(--muted) }
+#kh .price-card .price-annual { font-size: .75rem; color: var(--muted); margin-bottom: 18px; display: none }
+#kh .price-card .price-annual.show { display: block }
+#kh .price-card .plan-btn {
+  width: 100%; padding: 11px; border-radius: 10px; font-family: inherit; font-weight: 700;
+  font-size: .85rem; cursor: pointer; border: 1.5px solid var(--border);
+  background: transparent; color: var(--navy) !important; transition: all .22s;
+  display: block; text-align: center; text-decoration: none !important; margin-bottom: 18px;
+}
+#kh .price-card .plan-btn:hover { border-color: var(--gold); color: var(--gold2) !important }
+#kh .price-card.popular .plan-btn { background: var(--gold); color: #fff !important; border-color: var(--gold) }
+#kh .price-card.popular .plan-btn:hover { background: var(--gold2) }
+#kh .price-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px }
+#kh .price-card li { font-size: .78rem; color: var(--text); display: flex; align-items: center; gap: 7px; line-height: 1.5 }
+#kh .price-card li::before { content: '\2713'; color: var(--gold); font-weight: 900; font-size: .7rem; flex-shrink: 0 }
+
+#kh .guarantee {
+  text-align: center; margin-top: 32px; font-size: .82rem; color: var(--muted);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+
+/* ═══════════════════════════════════════════
+   5. الأسئلة الشائعة
+   ═══════════════════════════════════════════ */
+#kh .faq { padding: 90px 0; background: #fff }
+#kh .faq .wrap { max-width: 720px; margin: 0 auto; padding: 0 48px }
+#kh .faq h2 { text-align: center; font-size: 1.8rem; font-weight: 900; color: var(--navy); margin-bottom: 36px }
+
+#kh .faq-item { border-bottom: 1px solid var(--border); overflow: hidden }
+#kh .kh-faq-q {
+  padding: 18px 0; cursor: pointer; display: flex; justify-content: space-between;
+  align-items: center; font-size: .92rem; font-weight: 700;
+  color: var(--navy); transition: color .2s;
+}
+#kh .kh-faq-q:hover { color: var(--gold2) }
+#kh .faq-arrow {
+  width: 24px; height: 24px; border-radius: 50%; background: var(--bg2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .7rem; color: var(--muted); transition: all .3s; flex-shrink: 0;
+}
+#kh .faq-item.open .faq-arrow { transform: rotate(180deg); background: var(--gold); color: #fff }
+#kh .faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .4s;
+  font-size: .85rem; color: var(--muted); line-height: 1.8;
+}
+#kh .faq-item.open .faq-a { max-height: 200px; padding-bottom: 18px }
+
+/* ═══════════════════════════════════════════
+   6. CTA أخير
+   ═══════════════════════════════════════════ */
+#kh .final-cta {
+  padding: 80px 0; text-align: center;
+  background: linear-gradient(180deg, var(--bg2) 0%, #fff 100%);
+}
+#kh .final-cta .wrap { max-width: 600px; margin: 0 auto; padding: 0 48px }
+#kh .final-cta h2 { font-size: 1.8rem; font-weight: 900; color: var(--navy); margin-bottom: 10px }
+#kh .final-cta p { font-size: .92rem; color: var(--muted); line-height: 1.8; margin-bottom: 28px }
+#kh .final-btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap }
+#kh .final-btn-p {
+  background: var(--gold); color: #fff !important; font-family: inherit; font-weight: 700;
+  font-size: .92rem; padding: 14px 28px; border: none; border-radius: 12px;
+  cursor: pointer; text-decoration: none !important;
+  box-shadow: 0 8px 24px rgba(212,168,75,.35); transition: all .22s; display: inline-block;
+}
+#kh .final-btn-p:hover { background: var(--gold2); transform: translateY(-2px) }
+#kh .final-btn-s {
+  color: var(--navy) !important; font-family: inherit; font-weight: 600; font-size: .88rem;
+  padding: 14px 24px; border: 1.5px solid var(--border); border-radius: 12px;
+  cursor: pointer; text-decoration: none !important; display: inline-block; transition: all .22s;
+}
+#kh .final-btn-s:hover { border-color: var(--gold); color: var(--gold2) !important }
+
+/* ═══════════════════════════════════════════
+   7. الفوتر
+   ═══════════════════════════════════════════ */
+#kh .footer { background: var(--navy); padding: 48px 0 24px; color: rgba(255,255,255,.6) }
+#kh .footer .wrap { max-width: 1200px; margin: 0 auto; padding: 0 48px }
+#kh .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 36px }
+#kh .footer-brand .f-logo { font-size: 1.2rem; font-weight: 900; color: #fff; margin-bottom: 10px }
+#kh .footer-brand .f-logo em { color: var(--gold); font-style: normal }
+#kh .footer-brand p { font-size: .8rem; line-height: 1.7 }
+#kh .footer h4 { color: #fff; font-size: .85rem; font-weight: 700; margin-bottom: 14px }
+#kh .footer ul { list-style: none }
+#kh .footer li { margin-bottom: 8px }
+#kh .footer a { color: rgba(255,255,255,.5) !important; text-decoration: none !important; font-size: .8rem; transition: color .2s }
+#kh .footer a:hover { color: var(--gold) !important }
+#kh .footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.08); padding-top: 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+#kh .footer-bottom p { font-size: .75rem }
+#kh .social { display: flex; gap: 10px }
+#kh .social a {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(255,255,255,.06) !important;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .8rem; color: rgba(255,255,255,.4) !important; transition: all .2s;
+}
+#kh .social a:hover { background: var(--gold) !important; color: #fff !important }
+
+/* ═══ WHATSAPP FLOAT ═══ */
+#kh .wa-float {
+  position: fixed; bottom: 24px; left: 24px; z-index: 999;
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none !important;
+}
+#kh .wa-btn {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,.4);
+  transition: all .3s; font-size: 1.6rem; color: #fff !important;
+}
+#kh .wa-btn:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37,211,102,.5) }
+#kh .wa-pulse {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: rgba(37,211,102,.3);
+  animation: khWaPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes khWaPulse { 0%, 100% { transform: scale(1); opacity: .6 } 50% { transform: scale(1.4); opacity: 0 } }
+#kh .wa-tooltip {
+  background: var(--navy); color: #fff !important; font-size: .75rem; font-weight: 600;
+  padding: 8px 14px; border-radius: 10px; white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+  opacity: 0; transform: translateX(8px); transition: all .3s;
+  pointer-events: none;
+}
+#kh .wa-tooltip::after {
+  content: ''; position: absolute; top: 50%; left: -5px; transform: translateY(-50%);
+  border: 5px solid transparent; border-right-color: var(--navy);
+}
+#kh .wa-float:hover .wa-tooltip { opacity: 1; transform: translateX(0) }
+
+/* ═══════════════════════════════════════════
+   Responsive — شاشات صغيرة
+   ═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  #kh .hero { grid-template-columns: 1fr; padding: 40px 24px }
+  #kh .hero-h1 { font-size: 2rem }
+  #kh .hero-stats { gap: 16px; flex-wrap: wrap }
+  #kh .feat-tabs { flex-wrap: wrap }
+  #kh .ann-1, #kh .ann-2, #kh .ann-3 { display: none }
+  #kh .pain-grid { grid-template-columns: 1fr }
+  #kh .feat-grid { grid-template-columns: 1fr }
+  #kh .price-grid { grid-template-columns: 1fr }
+  #kh .footer-top { grid-template-columns: 1fr }
+  #kh .compare-table { grid-template-columns: 1fr; border-radius: 16px }
+  #kh .compare-divider { width: 100%; height: 1px; flex-direction: row; padding: 0 }
+  #kh .vs-badge { position: relative; width: auto; height: auto; padding: 6px 16px; border-radius: 999px }
+}
+
+@media (max-width: 600px) {
+  #kh .hero { padding: 28px 16px }
+  #kh .hero-h1 { font-size: 1.6rem; letter-spacing: -.5px }
+  #kh .hero-desc { font-size: .85rem }
+  #kh .hero-btns { flex-direction: column }
+  #kh .btn-p, #kh .btn-s { width: 100%; text-align: center }
+  #kh .understand .wrap,
+  #kh .features .wrap,
+  #kh .compare-wrap,
+  #kh .mid-cta .wrap,
+  #kh .pricing .wrap,
+  #kh .faq .wrap,
+  #kh .final-cta .wrap,
+  #kh .footer .wrap { padding: 0 16px }
+  #kh .mid-cta .points { flex-direction: column; gap: 10px }
+  #kh .target-row { flex-direction: column; align-items: center }
+  #kh .toggle-wrap { flex-wrap: wrap; justify-content: center }
+}
+</style>
+
+<section id="kh">
+
+  <!-- ═══ TOP BANNER ═══ -->
+  <div class="top-banner" id="khBanner">
+    <button class="banner-close" id="khBannerClose">&#10005;</button>
+    <div class="banner-inner">
+      <span class="banner-text">اشترك الآن واحصل على <strong>نقل مجاني</strong> لجميع بيانات عملائك وأقمشتك — نتولى كل شي عنك</span>
+      <a href="#khPricing" class="banner-cta">استفد من العرض &#8592;</a>
+    </div>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <div class="hero">
+    <div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:22px" class="rv">
+        <div class="hero-badge" style="margin-bottom:0">الأكثر استخداماً في المملكة</div>
+        <div class="zatca-badge">
+          <span class="zatca-check">&#10003;</span>
+          متوافق مع هيئة الزكاة — المرحلة الثانية
+        </div>
+      </div>
+      <h1 class="hero-h1 rv">إدارة محلك<br>من <span class="grd">القياس</span><br>إلى <span class="grd">التسليم</span></h1>
+      <p class="hero-desc rv">نظام سحابي متكامل لمحلات الخياطة — يتابع الطلبات، يحفظ المقاسات، يُرسل إشعارات SMS، ويُصدر الفواتير تلقائياً.</p>
+      <div class="hero-btns rv">
+        <a href="#" class="btn-p">ابدأ تجربتك المجانية</a>
+        <a href="#" class="btn-s">&#128142; تعرّف على باقاتنا</a>
+      </div>
+      <div class="hero-stats rv">
+        <div><div class="stat-n" data-target="537" data-prefix="+">+0</div><div class="stat-l">محل خياطة</div></div>
+        <div><div class="stat-n" data-target="20" data-prefix="+" data-suffix="k">+0k</div><div class="stat-l">طلب شهرياً</div></div>
+        <div><div class="stat-n" data-target="99" data-suffix="%">0%</div><div class="stat-l">رضا العملاء</div></div>
+      </div>
+    </div>
+
+    <div class="mock-col" id="khMockCol">
+      <div class="mock-shadow"></div>
+      <div class="feat-tabs rv" id="khTabs">
+        <button class="kh-tab on" data-i="0">&#127968; الرئيسية</button>
+        <button class="kh-tab" data-i="1">&#128202; لوحة المعلومات</button>
+        <button class="kh-tab" data-i="2">&#128203; إدارة الطلب</button>
+        <button class="kh-tab" data-i="3">&#128207; المقاسات</button>
+        <button class="kh-tab" data-i="4">&#128176; المالية</button>
+        <button class="kh-tab" data-i="5">&#128200; التقارير</button>
+      </div>
+      <div class="mock-3d" id="khMock3d" style="position:relative">
+        <div class="ann ann-1"><div class="ann-row"><span class="ann-dot" style="background:#7C3AED"></span><span class="ann-title">مسار الطلب التلقائي</span></div><div class="ann-sub">مسودة &#8592; قص &#8592; خياطة &#8592; جاهز</div></div>
+        <div class="ann ann-2"><div class="ann-row"><span class="ann-dot" style="background:#10b981"></span><span class="ann-title">إشعار SMS فوري</span></div><div class="ann-sub">يُبلَّغ العميل تلقائياً عند الجاهزية</div></div>
+        <div class="ann ann-3"><div class="ann-row"><span class="ann-dot" style="background:var(--gold)"></span><span class="ann-title">حفظ المقاسات الكاملة</span></div><div class="ann-sub">+15 مقياس لكل طلب</div></div>
+        <div class="browser">
+          <div class="screen" id="khScreen">
+            <img src="https://i.ibb.co/0pqBwrLN/image.png" draggable="false" class="on">
+            <img src="https://i.ibb.co/27wnjqwJ/image.png" draggable="false">
+            <img src="https://i.ibb.co/HDxmY16n/image.png" draggable="false">
+            <img src="https://i.ibb.co/BVpdLQFV/image.png" draggable="false">
+            <img src="https://i.ibb.co/9343NyvN/image.png" draggable="false">
+            <img src="https://i.ibb.co/DH21NG44/image.png" draggable="false">
+          </div>
+          <div class="wf-strip">
+            <div class="wf-header">كيف يعمل</div>
+            <div class="wf-track" id="khWf">
+              <div class="kh-wf-step done"><div class="wf-icon-wrap"><div class="wf-icon">&#128221;</div></div><div class="wf-t">إنشاء الطلب</div></div>
+              <span class="wf-arrow">&#8592;</span>
+              <div class="kh-wf-step done"><div class="wf-icon-wrap"><div class="wf-icon">&#9986;&#65039;</div></div><div class="wf-t">القص</div></div>
+              <span class="wf-arrow">&#8592;</span>
+              <div class="kh-wf-step done"><div class="wf-icon-wrap"><div class="wf-icon">&#129525;</div></div><div class="wf-t">الخياطة</div></div>
+              <span class="wf-arrow">&#8592;</span>
+              <div class="kh-wf-step done"><div class="wf-icon-wrap"><div class="wf-icon">&#9989;</div></div><div class="wf-t">جاهز</div></div>
+              <span class="wf-arrow">&#8592;</span>
+              <div class="kh-wf-step done"><div class="wf-icon-wrap"><div class="wf-icon">&#128230;</div></div><div class="wf-t">التسليم</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 1. نحن نفهم شغلك ═══ -->
+  <div class="understand">
+    <div class="wrap">
+      <span class="emoji-top rv">&#128076;</span>
+      <h2 class="rv">نحن نفهم <span>شغلك</span></h2>
+      <p class="sub rv">مواسم ضغط، عملاء يستعجلون، وثياب لازم تطلع بالمقاس الصح. بنيناها لك عشان ترتاح.</p>
+
+      <div class="pain-grid">
+        <div class="pain-card rv">
+          <span class="pain-ico">&#128208;</span>
+          <h3>حفظ دقيق للمقاسات</h3>
+          <p>+15 قياس لكل ثوب — الطول، الكتف، الكم، الصدر، وكل التفاصيل. ما يضيع شي.</p>
+        </div>
+        <div class="pain-card rv">
+          <span class="pain-ico">&#9200;</span>
+          <h3>تسليم في الوقت</h3>
+          <p>تنبيهات ذكية قبل موعد التسليم، وتتبع لحظي لحالة كل طلب.</p>
+        </div>
+        <div class="pain-card rv">
+          <span class="pain-ico">&#127769;</span>
+          <h3>راحة بالك في المواسم</h3>
+          <p>العيد ورمضان والزواجات — النظام يتحمل الضغط وأنت تركز على الشغل.</p>
+        </div>
+      </div>
+
+      <div class="target-row rv">
+        <span class="target-tag">&#9986;&#65039; محلات تفصيل الثياب الرجالية</span>
+        <span class="target-tag">&#129525; محلات التعديلات</span>
+        <span class="target-tag">&#128088; مشاغل الخياطة</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 2. المميزات ═══ -->
+  <div class="features">
+    <div class="wrap">
+      <div class="tag rv"><span>المميزات</span></div>
+      <h2 class="rv">مُصمم لخياطي الثوب السعودي</h2>
+      <p class="sub rv">كل ما تحتاجه لإدارة محلك — بدون تعقيد</p>
+
+      <div class="feat-grid">
+        <div class="feat-card rv">
+          <div class="feat-icon fi-blue">&#128207;</div>
+          <div>
+            <h3>قياسات الثوب الكاملة</h3>
+            <p>احفظ كل قياس بدقة — الكتف، الأكمام، الطول، الصدر، الياقة وأكثر. حمّل من طلب سابق بنقرة.</p>
+          </div>
+        </div>
+        <div class="feat-card rv">
+          <div class="feat-icon fi-green">&#128203;</div>
+          <div>
+            <h3>إدارة الطلبات الذكية</h3>
+            <p>تابع كل طلب من لحظة الاستلام للتسليم. مسودة &#8592; قص &#8592; خياطة &#8592; جاهز &#8592; تسليم.</p>
+          </div>
+        </div>
+        <div class="feat-card rv">
+          <div class="feat-icon fi-purple">&#128197;</div>
+          <div>
+            <h3>تنظيم التسليمات</h3>
+            <p>جدولة ذكية وتنبيهات للطلبات المتأخرة. ما يفوتك موعد في الموسم.</p>
+          </div>
+        </div>
+        <div class="feat-card rv">
+          <div class="feat-icon fi-gold">&#128172;</div>
+          <div>
+            <h3>إشعارات SMS تلقائية</h3>
+            <p>العميل يعرف إن ثوبه جاهز — بدون ما تتصل أو ترسل يدوي.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ قبل / بعد ═══ -->
+  <div class="compare">
+    <div class="compare-wrap">
+      <h2 class="rv">ليش تنتقل لخياط؟</h2>
+      <p class="compare-sub rv">الفرق بين الطريقة القديمة والطريقة الذكية</p>
+
+      <div class="compare-table rv">
+        <div class="compare-col compare-before">
+          <div class="compare-head">
+            <span class="compare-emoji">&#128203;</span>
+            <span>بالورق والدفاتر</span>
+          </div>
+          <div class="compare-row bad"><span class="cr-icon">&#10005;</span> مقاسات تضيع أو تتلف</div>
+          <div class="compare-row bad"><span class="cr-icon">&#10005;</span> تتصل على كل عميل يدوي</div>
+          <div class="compare-row bad"><span class="cr-icon">&#10005;</span> ما تعرف أرباحك الحقيقية</div>
+          <div class="compare-row bad"><span class="cr-icon">&#10005;</span> طلبات تتأخر بدون تنبيه</div>
+          <div class="compare-row bad"><span class="cr-icon">&#10005;</span> فواتير يدوية وأخطاء</div>
+          <div class="compare-row bad"><span class="cr-icon">&#10005;</span> لخبطة في المواسم</div>
+        </div>
+
+        <div class="compare-divider">
+          <div class="vs-badge">VS</div>
+        </div>
+
+        <div class="compare-col compare-after">
+          <div class="compare-head">
+            <span class="compare-emoji">&#10024;</span>
+            <span>مع خياط</span>
+          </div>
+          <div class="compare-row good"><span class="cr-icon">&#10003;</span> +15 مقياس محفوظ رقمياً للأبد</div>
+          <div class="compare-row good"><span class="cr-icon">&#10003;</span> SMS تلقائي عند الجاهزية</div>
+          <div class="compare-row good"><span class="cr-icon">&#10003;</span> تقارير مالية لحظية ودقيقة</div>
+          <div class="compare-row good"><span class="cr-icon">&#10003;</span> تنبيهات ذكية قبل التأخير</div>
+          <div class="compare-row good"><span class="cr-icon">&#10003;</span> فوترة إلكترونية متوافقة</div>
+          <div class="compare-row good"><span class="cr-icon">&#10003;</span> نظام يتحمل ضغط المواسم</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 3. CTA وسطي ═══ -->
+  <div class="mid-cta">
+    <div class="wrap rv">
+      <h2>ابدأ بتنظيم محلك اليوم</h2>
+      <div class="points">
+        <span class="point"><em>&#127919;</em> قلّل الأخطاء</span>
+        <span class="point"><em>&#9200;</em> سلّم في الوقت</span>
+        <span class="point"><em>&#128208;</em> احفظ المقاسات باحتراف</span>
+      </div>
+      <a href="#" class="btn">ابدأ الآن مجاناً — 14 يوم تجربة</a>
+    </div>
+  </div>
+
+  <!-- ═══ 4. الباقات ═══ -->
+  <div class="pricing" id="khPricing">
+    <div class="wrap">
+      <p class="trust-top rv">&#10022; موثوق من أكثر من 537 محل خياطة في السعودية &#10022;</p>
+      <h2 class="rv">اختر الباقة المناسبة لمحلك</h2>
+      <p class="sub rv">ابدأ مجاناً — بدون بطاقة ائتمانية</p>
+
+      <div class="toggle-wrap rv">
+        <span class="toggle-label active" id="tMonthly">شهري</span>
+        <div class="toggle" id="toggleBtn"></div>
+        <span class="toggle-label" id="tAnnual">سنوي</span>
+        <span class="save-badge">&#127881; وفّر 20% على السنة الأولى</span>
+      </div>
+
+      <div class="migrate-offer rv">
+        <div class="migrate-inner">
+          <span class="migrate-icon">&#128666;</span>
+          <span class="migrate-text">مع كل اشتراك — <strong>نقل مجاني</strong> لبيانات عملائك وأقمشتك بالكامل</span>
+        </div>
+      </div>
+
+      <div class="price-grid">
+        <!-- أساسي -->
+        <div class="price-card rv">
+          <span class="plan-icon">&#9889;</span>
+          <div class="plan-name">أساسي</div>
+          <div class="plan-desc">للمحلات الصغيرة</div>
+          <div class="price"><span class="p-m">49</span><span class="p-a" style="display:none">470</span> <small>ريال/<span class="p-period">شهر</span></small></div>
+          <a href="#" class="plan-btn">تجربة مجانية 14 يوم</a>
+          <ul>
+            <li>طلبات غير محدودة</li>
+            <li>3 مستخدمين</li>
+            <li>40 رسالة SMS/شهر</li>
+            <li>تقارير أساسية</li>
+            <li>دعم واتساب</li>
+          </ul>
+        </div>
+
+        <!-- احترافي -->
+        <div class="price-card popular rv">
+          <span class="popular-badge">الأكثر طلباً &#11088;</span>
+          <span class="plan-icon">&#11088;</span>
+          <div class="plan-name">احترافي</div>
+          <div class="plan-desc">لمحلات الخياطة المتوسطة والكبيرة</div>
+          <div class="price"><span class="p-m">149</span><span class="p-a" style="display:none">1,490</span> <small>ريال/<span class="p-period">شهر</span></small></div>
+          <a href="#" class="plan-btn">تجربة مجانية 14 يوم</a>
+          <ul>
+            <li>مستخدمين غير محدود</li>
+            <li>SMS غير محدود</li>
+            <li>نظام محاسبي كامل</li>
+            <li>تطبيق جوال</li>
+            <li>تقارير متقدمة</li>
+            <li>تحديثات شهرية</li>
+            <li>دعم أولوية</li>
+          </ul>
+        </div>
+
+        <!-- مؤسسات -->
+        <div class="price-card rv">
+          <span class="plan-icon">&#127970;</span>
+          <div class="plan-name">مؤسسات</div>
+          <div class="plan-desc">لسلاسل المحلات والفروع المتعددة</div>
+          <div class="price">حسب الطلب</div>
+          <a href="#" class="plan-btn">تواصل معنا</a>
+          <ul>
+            <li>كل مميزات الاحترافي</li>
+            <li>فروع متعددة</li>
+            <li>API مخصص</li>
+            <li>مدير حساب مخصص</li>
+            <li>SLA 99.9%</li>
+            <li>تكاملات مخصصة</li>
+            <li>تحديثات أسبوعية</li>
+            <li>دعم متميز 24/7</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ 5. الأسئلة الشائعة ═══ -->
+  <div class="faq">
+    <div class="wrap">
+      <h2 class="rv">أسئلة شائعة</h2>
+      <div class="faq-item rv">
+        <div class="kh-faq-q">هل أقدر أغيّر باقتي في أي وقت؟<span class="faq-arrow">&#9660;</span></div>
+        <div class="faq-a">نعم، تقدر تترقى أو تنزّل باقتك في أي وقت من لوحة التحكم. التغيير يُطبق فوراً والفرق يُحسب تلقائياً.</div>
+      </div>
+      <div class="faq-item rv">
+        <div class="kh-faq-q">هل بياناتي آمنة؟<span class="faq-arrow">&#9660;</span></div>
+        <div class="faq-a">بياناتك مشفرة بتشفير 256-bit SSL ومحفوظة على سيرفرات سحابية آمنة مع نسخ احتياطي يومي تلقائي.</div>
+      </div>
+      <div class="faq-item rv">
+        <div class="kh-faq-q">ما هي طرق الدفع المتاحة؟<span class="faq-arrow">&#9660;</span></div>
+        <div class="faq-a">نقبل مدى، فيزا، ماستركارد، وApple Pay. كل المعاملات آمنة ومشفرة.</div>
+      </div>
+      <div class="faq-item rv">
+        <div class="kh-faq-q">ايش يصير بعد انتهاء التجربة المجانية؟<span class="faq-arrow">&#9660;</span></div>
+        <div class="faq-a">بياناتك تبقى محفوظة 30 يوم بعد انتهاء التجربة. تقدر تشترك في أي باقة وتكمل من وين وقفت.</div>
+      </div>
+      <div class="faq-item rv">
+        <div class="kh-faq-q">هل فيه عقد أو التزام طويل؟<span class="faq-arrow">&#9660;</span></div>
+        <div class="faq-a">لا، كل الباقات بدون عقد أو التزام. تقدر تلغي في أي وقت.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 6. CTA أخير ═══ -->
+  <div class="final-cta">
+    <div class="wrap">
+      <h2 class="rv">هل أنت جاهز لتطوير محلك؟</h2>
+      <p class="rv">انضم لأكثر من 537 محل خياطة يستخدمون خياط لإدارة أعمالهم بذكاء</p>
+      <div class="final-btns rv">
+        <a href="#" class="final-btn-p">ابدأ التجربة المجانية — 14 يوم</a>
+        <a href="#" class="final-btn-s">تحدث مع فريق المبيعات</a>
+      </div>
+    </div>
+  </div>
+
+</section>

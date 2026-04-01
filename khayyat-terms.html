@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الشروط والأحكام — خياط</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+<!--
+══════════════════════════════════════════════════════
+  خياط — صفحة الشروط والأحكام
+  ══════════════════════════════════════════════════════
+  للنشر في أودو:
+  انسخ محتوى الـ <style> + <section id="kh-terms">
+  والصقه في HTML Block في محرر الصفحة
+  ══════════════════════════════════════════════════════
+-->
+
+<style>
+/* ══ خياط — الشروط والأحكام ══ */
+
+#kh-terms {
+  --gold:   #D4A84B;
+  --gold2:  #B8892A;
+  --navy:   #1B2A4A;
+  --text:   #1B2A4A;
+  --muted:  #6b7280;
+  --bg:     #fff;
+  --bg2:    #f9f7f2;
+  --border: #e8e0d0;
+  direction: rtl;
+  font-family: 'Tajawal', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+#kh-terms *, #kh-terms *::before, #kh-terms *::after {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+
+/* ══ HERO ══ */
+#kh-terms .t-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #162240 60%, #1a2d52 100%);
+  padding: 72px 24px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#kh-terms .t-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 50%, rgba(212,168,75,.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 80% 50%, rgba(212,168,75,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+#kh-terms .t-hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(212,168,75,.12); border: 1px solid rgba(212,168,75,.35);
+  color: var(--gold); font-size: .75rem; font-weight: 700;
+  padding: 5px 14px; border-radius: 999px; margin-bottom: 20px;
+  position: relative; z-index: 1;
+}
+#kh-terms .t-hero-badge::before { content: '\2605'; font-size: .6rem }
+#kh-terms .t-hero h1 {
+  font-size: 2.2rem; font-weight: 900; color: #fff;
+  letter-spacing: -1px; margin-bottom: 14px;
+  position: relative; z-index: 1;
+}
+#kh-terms .t-hero h1 span {
+  background: linear-gradient(135deg, var(--gold) 0%, #c8922a 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+#kh-terms .t-hero-meta {
+  color: rgba(255,255,255,.5); font-size: .82rem; font-weight: 500;
+  position: relative; z-index: 1;
+}
+#kh-terms .t-hero-meta strong { color: rgba(255,255,255,.75) }
+
+/* ══ BODY ══ */
+#kh-terms .t-body {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+/* ══ INTRO BOX ══ */
+#kh-terms .t-intro {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-right: 3px solid var(--gold);
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 52px;
+  font-size: .93rem;
+  color: var(--muted);
+  line-height: 1.85;
+}
+#kh-terms .t-intro strong { color: var(--navy); font-weight: 700 }
+
+/* ══ SECTION ══ */
+#kh-terms .t-sec {
+  margin-bottom: 44px;
+}
+#kh-terms .t-sec-head {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+#kh-terms .t-sec-num {
+  min-width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
+  color: #fff; font-size: .78rem; font-weight: 800;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(212,168,75,.35);
+}
+#kh-terms .t-sec-title {
+  font-size: 1.05rem; font-weight: 800; color: var(--navy);
+}
+
+/* ══ TEXT ══ */
+#kh-terms .t-text {
+  font-size: .93rem;
+  color: #374151;
+  line-height: 1.9;
+}
+#kh-terms .t-text p { margin-bottom: 10px }
+#kh-terms .t-text p:last-child { margin-bottom: 0 }
+
+/* ══ LIST ══ */
+#kh-terms .t-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 8px;
+  margin-top: 10px;
+}
+#kh-terms .t-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: .93rem; color: #374151; line-height: 1.75;
+}
+#kh-terms .t-list li::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+/* ══ DEF LIST (تعريفات) ══ */
+#kh-terms .t-defs {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-top: 10px;
+}
+#kh-terms .t-def {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  display: flex; align-items: baseline; gap: 10px;
+  font-size: .91rem; line-height: 1.7;
+}
+#kh-terms .t-def-label {
+  color: var(--gold2); font-weight: 800; white-space: nowrap; flex-shrink: 0;
+}
+#kh-terms .t-def-val { color: #374151 }
+
+/* ══ INTEGRATIONS PILLS ══ */
+#kh-terms .t-pills {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 14px;
+}
+#kh-terms .t-pill {
+  background: rgba(27,42,74,.06);
+  border: 1px solid rgba(27,42,74,.12);
+  color: var(--navy); font-size: .8rem; font-weight: 700;
+  padding: 5px 13px; border-radius: 999px;
+}
+
+/* ══ HIGHLIGHT BOX ══ */
+#kh-terms .t-note {
+  background: rgba(212,168,75,.06);
+  border: 1px solid rgba(212,168,75,.25);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: .88rem; color: var(--navy); font-weight: 500;
+  line-height: 1.8;
+  margin-top: 12px;
+}
+#kh-terms .t-note strong { color: var(--gold2) }
+
+/* ══ CONTACT BOX ══ */
+#kh-terms .t-contact {
+  background: linear-gradient(135deg, var(--navy) 0%, #162240 100%);
+  border-radius: 16px;
+  padding: 36px 32px;
+  text-align: center;
+  margin-top: 52px;
+  position: relative;
+  overflow: hidden;
+}
+#kh-terms .t-contact::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(212,168,75,.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+#kh-terms .t-contact h3 {
+  font-size: 1.15rem; font-weight: 800; color: #fff;
+  margin-bottom: 8px; position: relative; z-index: 1;
+}
+#kh-terms .t-contact p {
+  color: rgba(255,255,255,.55); font-size: .88rem;
+  margin-bottom: 20px; position: relative; z-index: 1;
+}
+#kh-terms .t-contact-links {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+  position: relative; z-index: 1;
+}
+#kh-terms .t-contact-link {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.85) !important; font-size: .85rem; font-weight: 600;
+  padding: 9px 18px; border-radius: 9px;
+  text-decoration: none !important;
+  transition: all .2s;
+}
+#kh-terms .t-contact-link:hover {
+  background: rgba(212,168,75,.15); border-color: rgba(212,168,75,.4);
+  color: var(--gold) !important; transform: translateY(-1px);
+}
+#kh-terms .t-contact-link svg {
+  width: 15px; height: 15px; flex-shrink: 0;
+}
+
+/* ══ DIVIDER ══ */
+#kh-terms .t-divider {
+  height: 1px; background: var(--border);
+  margin: 0 0 44px;
+}
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 600px) {
+  #kh-terms .t-hero h1 { font-size: 1.7rem }
+  #kh-terms .t-body { padding: 40px 18px 60px }
+  #kh-terms .t-contact { padding: 28px 20px }
+}
+</style>
+
+<!-- ══════════════════════════════════════════════════
+     HTML — انسخ من هنا حتى نهاية section
+     ══════════════════════════════════════════════════ -->
+<section id="kh-terms">
+
+  <!-- Hero -->
+  <div class="t-hero">
+    <div class="t-hero-badge">وثيقة قانونية</div>
+    <h1>الشروط <span>والأحكام</span></h1>
+    <p class="t-hero-meta">آخر تحديث: <strong>مارس 2025</strong> &nbsp;|&nbsp; خياط — منصة إدارة الموارد البشرية</p>
+  </div>
+
+  <!-- Body -->
+  <div class="t-body">
+
+    <!-- Intro -->
+    <div class="t-intro">
+      مرحبًا بك في منصة <strong>خياط</strong>، وهي منصة سحابية لإدارة الموارد البشرية والرواتب والامتثال مصممة لخدمة منشآت القطاعين العام والخاص في المملكة العربية السعودية.<br><br>
+      باستخدامك للموقع أو المنصة أو أي من خدماتنا، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا لم توافق على أي جزء منها، يُرجى عدم استخدام الخدمة.
+    </div>
+
+    <!-- 1. التعريفات -->
+    <div class="t-sec">
+      <div class="t-sec-head">
+        <div class="t-sec-num">١</div>
+        <div class="t-sec-title">التعريفات</div>
+      </div>
+      <div class="t-defs">
+        <div class="t-def">
+          <span class="t-def-label">المنصة:</span>
+          <span class="t-def-val">نظام خياط السحابي وجميع مكوناته.</span>
+        </div>
+        <div class="t-def">
+          <span class="t-def-label">المستخدم:</span>
+          <span class="t-def-val">أي شخص مخوّل من قبل الجهة المشتركة لاستخدام النظام.</span>
+        </div>
+        <div class="t-def">
+          <span class="t-def-label">الجهة:</span>
+          <span class="t-def-val">المنشأة أو الشركة المشتركة في الخدمة.</span>
+        </div>
+        <div class="t-def">
+          <span class="t-def-label">الخدمات:</span>
+          <span class="t-def-val">جميع الخدمات المقدمة عبر المنصة بما في ذلك إدارة الموظفين، الرواتب، الحضور، التكاملات الحكومية، والميزات المدعومة بالذكاء الاصطناعي.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-divider"></div>
+
+    <!-- 2. نطاق الخدمة -->
+    <div class="t-sec">
+      <div class="t-sec-head">
+        <div class="t-sec-num">٢</div>
+        <div class="t-sec-title">نطاق الخدمة</div>
+      </div>
+      <div class="t-text">
+        <p>توفر خياط نظامًا متكاملاً لإدارة:</p>
+      </div>
+      <ul class="t-list">
+        <li>بيانات الموظفين</li>
+        <li>الرواتب وكشوف المرتبات</li>
+        <li>الحضور والانصراف</li>
+        <li>التكامل مع الجهات الحكومية مثل التأمينات الاجتماعية (GOSI) ومنصة قوى وغيرها</li>
+        <li>تقارير وتحليلات وميزات ذكاء اصطناعي مساعدة</li>
+      </ul>
+      <div class="t-note">
+        قد نقوم بتحديث أو تطوير أو تعديل الخدمات بشكل دوري لتحسين الأداء أو الامتثال للأنظمة.
+      </div>
+    </div>
+
+    <div class="t-divider"></div>
+
+    <!-- 3. إنشاء الحساب -->
+    <div class="t-sec">
+      <div class="t-sec-head">
+        <div class="t-sec-num">٣</div>
+        <div class="t-sec-title">إنشاء الحساب والمسؤوليات</div>
+      </div>
+      <ul class="t-list">
+        <li>يجب أن تكون البيانات المقدمة صحيحة ومحدثة.</li>
+        <li>تتحمل الجهة مسؤولية حماية بيانات الدخول الخاصة بها.</li>
+        <li>تتحمل الجهة مسؤولية صحة البيانات المدخلة في النظام.</li>
+        <li>يُمنع استخدام المنصة لأي غرض غير قانوني أو مخالف للأنظمة المعمول بها في المملكة العربية السعودية.</li>
+      </ul>
+    </div>
+
+    <div class="t-divider"></div>
+
+    <!-- 4. الاشتراكات والدفع -->
+    <div class="t-sec">
+      <div class="t-sec-head">
+        <div class="t-sec-num">٤</div>
+        <div class="t-sec-title">الاشتراكات والدفع</div>
+      </div>
+      <ul class="t-list">
+        <li>يتم تقديم الخدمة وفق خطط اشتراك سنوية أو شهرية حسب الاتفاق.</li>
+        <li>تُصدر الفواتير وفق الباقة المختارة.</li>
+        <li>في حال التأخر عن السداد، يحق للشركة تعليق الخدمة بعد إشعار مسبق.</li>
+        <li>جميع الأسعار لا تشمل ضريبة القيمة المضافة ما لم يُذكر خلاف ذلك.</li>
+      </ul>
+    </div>
+
+    <div class="t-divider"></div>
+
+    <!-- 5. حماية البيانات -->
+    <div class="t-sec">
+      <div class="t-sec-head">
+        <div class="t-sec-num">٥</div>
+        <div class="t-sec-title">حماية البيانات والخصوصية</div>
+      </div>
+      <ul class="t-list">
+        <li>تلتزم خياط بحماية بيانات العملاء وفقًا لنظام حماية البيانات الشخصية في المملكة العربية السعودية (PDPL).</li>
+        <li>تظل جميع بيانات الموظفين ملكًا للجهة المشتركة.</li>
+        <li>لا نقوم ببيع البيانات أو مشاركتها مع أطراف خارجية دون موافقة قانونية.</li>
+        <li>يتم تطبيق إجراءات أمنية تقنية وتنظيمية لحماية البيانات.</li>
+      </ul>
+      <div class="t-note">
+        للمزيد، يُرجى الاطلاع على <strong>سياسة الخصوصية</strong> الخاصة بنا.
+      </div>
+    </div>
+
+    <div class="t-divider"></div>
+
+    <!-- 6. التكاملات الحكومية -->
+    <div class="t-sec">
+      <div class="t-sec-head">
+        <div class="t-sec-num">٦</div>
+        <div class="t-sec-title">التكاملات مع الجهات الحكومية</div>
+      </div>
+      <div class="t-text">
+        <p>توفر المنصة تكاملات تقنية مع جهات حكومية مثل:</p>
+      </div>
+      <div class="t-pills">
+        <span class="t-pill">التأمينات الاجتماعية (GOSI)</span>
+        <span class="t-pill">منصة قوى</span>
+        <span class="t-pill">مدد</span>
+        <span class="t-pill">مقيم</span>
+      </div>
+      <div class="t-note" style="margin-top:16px">
+        خياط <strong>غير مسؤولة</strong> عن أي تغييرات مفاجئة في واجهات هذه الجهات أو أنظمتها قد تؤثر على الخدمة.
+      </div>
+    </div>
+
+    <div class="t-divider"></div>
+
+    <!-- 7. الملكية الفكرية -->
+    <div class="t-sec">
+      <div class="t-sec-head">
+        <div class="t-sec-num">٧</div>
+        <div class="t-sec-title">الملكية الفكرية</div>
+      </div>
+      <div class="t-text">
+        <p>جميع حقوق الملكية الفكرية المتعلقة بالمنصة، بما في ذلك:</p>
+      </div>
+      <ul class="t-list">
+        <li>البرمجيات والتصاميم</li>
+        <li>العلامات التجارية</li>
+        <li>المحتوى</li>
+      </ul>
+      <div class="t-text" style="margin-top:12px">
+        <p>مملوكة لشركة ERA Group أو مرخصة لها، ولا يجوز نسخها أو إعادة توزيعها دون إذن خطي.</p>
+      </div>
+    </div>
+
+    <div class="t-divider"></div>
+
+    <!-- 8. حدود المسؤولية -->
+    <div class="t-sec">
+      <div class="t-sec-head">
+        <div class="t-sec-num">٨</div>
+        <div class="t-sec-title">حدود المسؤولية</div>
+      </div>
+      <ul class="t-list">
+        <li>تُقدم الخدمة "كما هي".</li>
+        <li>لا تتحمل الشركة مسؤولية أي خسائر غير مباشرة أو تبعية ناتجة عن سوء استخدام المنصة.</li>
+        <li>الحد الأقصى للمسؤولية لا يتجاوز قيمة الاشتراك المدفوع خلال آخر 12 شهرًا.</li>
+      </ul>
+    </div>
+
+    <div class="t-divider"></div>
+
+    <!-- 9. إنهاء الخدمة -->
+    <div class="t-sec">
+      <div class="t-sec-head">
+        <div class="t-sec-num">٩</div>
+        <div class="t-sec-title">إنهاء الخدمة</div>
+      </div>
+      <div class="t-text">
+        <p>يحق لأي طرف إنهاء الاشتراك وفق الشروط المتفق عليها في العقد التجاري.</p>
+      </div>
+      <div class="t-text" style="margin-top:10px"><p>عند إنهاء الخدمة:</p></div>
+      <ul class="t-list">
+        <li>يمكن للعميل طلب نسخة من بياناته خلال فترة محددة.</li>
+        <li>يتم حذف البيانات بعد انتهاء المهلة النظامية ما لم يتطلب النظام الاحتفاظ بها.</li>
+      </ul>
+    </div>
+
+    <div class="t-divider"></div>
+
+    <!-- 10. التعديلات -->
+    <div class="t-sec">
+      <div class="t-sec-head">
+        <div class="t-sec-num">١٠</div>
+        <div class="t-sec-title">التعديلات على الشروط</div>
+      </div>
+      <div class="t-text">
+        <p>يجوز لنا تحديث هذه الشروط من وقت لآخر. سيتم نشر أي تحديثات على هذه الصفحة، ويُعتبر استمرار الاستخدام موافقة ضمنية على التعديلات.</p>
+      </div>
+    </div>
+
+    <div class="t-divider"></div>
+
+    <!-- 11. الاختصاص القضائي -->
+    <div class="t-sec">
+      <div class="t-sec-head">
+        <div class="t-sec-num">١١</div>
+        <div class="t-sec-title">الأنظمة المطبقة والاختصاص القضائي</div>
+      </div>
+      <div class="t-text">
+        <p>تخضع هذه الشروط لأنظمة المملكة العربية السعودية، ويكون الاختصاص القضائي للمحاكم المختصة داخل المملكة.</p>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="t-contact">
+      <h3>هل لديك استفسار؟</h3>
+      <p>فريقنا جاهز للإجابة على أي سؤال يتعلق بهذه الشروط</p>
+      <div class="t-contact-links">
+        <a href="mailto:info@yusrhr.com" class="t-contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-10 7L2 7"/>
+          </svg>
+          info@yusrhr.com
+        </a>
+        <a href="https://khayyat.app" class="t-contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>
+          </svg>
+          khayyat.app
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</html>

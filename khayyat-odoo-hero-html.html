@@ -1,0 +1,195 @@
+<!--
+╔══════════════════════════════════════════════════════════╗
+║  الصق هذا الكود في بلوك HTML في أودو Website Builder    ║
+║  (بدون الجافاسكربت — حطه في Custom Footer)              ║
+╚══════════════════════════════════════════════════════════╝
+-->
+
+<section id="kh-hero">
+<style>
+#kh-hero *,#kh-hero *::before,#kh-hero *::after{margin:0;padding:0;box-sizing:border-box}
+
+#kh-hero{
+  font-family:'Tajawal',sans-serif;
+  direction:rtl;
+  --gold:#D4A84B;--gold2:#B8892A;--navy:#1B2A4A;
+  --text:#1B2A4A;--muted:#6b7280;--border:#e8e0d0;
+}
+
+#kh-hero .kh-wrap{
+  max-width:1440px;margin:0 auto;
+  padding:60px 56px;
+  display:grid;
+  grid-template-columns:380px 1fr;
+  gap:36px;
+  align-items:center;
+}
+
+#kh-hero .rv{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+#kh-hero .rv.vis{opacity:1;transform:translateY(0)}
+#kh-hero .rv-1{transition-delay:.1s}
+#kh-hero .rv-2{transition-delay:.2s}
+#kh-hero .rv-3{transition-delay:.3s}
+#kh-hero .rv-4{transition-delay:.4s}
+
+#kh-hero .kh-logo{width:64px;height:64px;margin-bottom:18px;filter:drop-shadow(0 2px 8px rgba(212,168,75,.2))}
+
+#kh-hero .kh-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(212,168,75,.1);border:1px solid rgba(212,168,75,.3);
+  color:var(--gold2);font-size:.75rem;font-weight:700;
+  padding:5px 13px;border-radius:999px;margin-bottom:22px;
+  animation:khPulse 3s ease-in-out infinite;
+}
+#kh-hero .kh-badge::before{content:'★';font-size:.6rem}
+@keyframes khPulse{0%,100%{box-shadow:0 0 0 0 rgba(212,168,75,.3)}50%{box-shadow:0 0 0 8px rgba(212,168,75,0)}}
+
+#kh-hero .kh-h1{font-size:2.8rem;font-weight:900;line-height:1.18;letter-spacing:-1.5px;margin-bottom:18px;color:var(--navy)}
+#kh-hero .kh-h1 .kh-grd{
+  background:linear-gradient(135deg,var(--gold) 0%,#c8922a 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  background-size:200% auto;animation:khShimmer 4s ease-in-out infinite;
+}
+@keyframes khShimmer{0%,100%{background-position:0% center}50%{background-position:200% center}}
+
+#kh-hero .kh-desc{font-size:.95rem;color:var(--muted);line-height:1.9;margin-bottom:28px}
+
+#kh-hero .kh-btns{display:flex;gap:10px;flex-wrap:wrap}
+#kh-hero .kh-btn-p{
+  background:var(--gold);color:#fff !important;
+  font-family:inherit;font-weight:700;font-size:.92rem;
+  padding:12px 26px;border:none;border-radius:11px;cursor:pointer;
+  text-decoration:none !important;display:inline-block;
+  box-shadow:0 6px 20px rgba(212,168,75,.4);transition:all .22s;
+}
+#kh-hero .kh-btn-p:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 10px 28px rgba(212,168,75,.45)}
+#kh-hero .kh-btn-s{
+  color:var(--navy) !important;font-family:inherit;font-weight:600;font-size:.88rem;
+  padding:12px 20px;border:1.5px solid var(--border);border-radius:11px;
+  cursor:pointer;text-decoration:none !important;display:inline-block;background:transparent;transition:all .22s;
+}
+#kh-hero .kh-btn-s:hover{border-color:var(--gold);color:var(--gold) !important}
+
+#kh-hero .kh-stats{display:flex;gap:28px;margin-top:32px;padding-top:28px;border-top:1px solid var(--border)}
+#kh-hero .kh-stat-n{font-size:1.55rem;font-weight:900;color:var(--gold)}
+#kh-hero .kh-stat-l{font-size:.76rem;color:var(--muted);margin-top:2px}
+
+#kh-hero .kh-trust{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:24px;padding:8px 16px;
+  background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:10px;
+}
+#kh-hero .kh-trust-t{font-size:.75rem;font-weight:700;color:#059669;line-height:1.4}
+#kh-hero .kh-trust-s{font-size:.65rem;color:var(--muted);font-weight:400}
+
+#kh-hero .kh-mock{position:relative;perspective:1200px}
+#kh-hero .kh-mock-shadow{position:absolute;top:8%;left:4%;right:4%;bottom:-4%;background:rgba(212,168,75,.08);filter:blur(44px);border-radius:50%;pointer-events:none}
+#kh-hero .kh-3d{transition:transform .15s ease-out;transform-style:preserve-3d;will-change:transform;overflow:visible;position:relative}
+#kh-hero .kh-glow{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,75,.12) 0%,transparent 70%);pointer-events:none;z-index:20;transform:translate(-50%,-50%);opacity:0;transition:opacity .3s}
+#kh-hero .kh-mock:hover .kh-glow{opacity:1}
+
+#kh-hero .kh-tabs{display:flex;gap:4px;margin-bottom:12px;background:#f5f0e8;border:1px solid var(--border);border-radius:12px;padding:4px;width:fit-content}
+#kh-hero .kh-tab{padding:6px 13px;border-radius:8px;font-size:.78rem;font-family:inherit;font-weight:600;cursor:pointer;color:var(--muted);border:none;background:transparent;transition:all .22s;white-space:nowrap}
+#kh-hero .kh-tab.on{background:#fff;color:var(--navy);box-shadow:0 1px 4px rgba(0,0,0,.1),0 0 0 1px var(--border)}
+
+#kh-hero .kh-frame{position:relative;z-index:1;background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(27,42,74,.12),0 4px 16px rgba(212,168,75,.08);overflow:hidden;transition:box-shadow .3s}
+#kh-hero .kh-mock:hover .kh-frame{box-shadow:0 30px 80px rgba(27,42,74,.16),0 8px 24px rgba(212,168,75,.12)}
+
+#kh-hero .kh-screen{width:100%;aspect-ratio:16/9;background:#e8e4f0;position:relative;overflow:hidden;cursor:grab}
+#kh-hero .kh-screen:active{cursor:grabbing}
+#kh-hero .kh-screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;opacity:0;transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .4s;transform:scale(1.02)}
+#kh-hero .kh-screen img.on{opacity:1;transform:scale(1)}
+#kh-hero .kh-screen.zoomed{cursor:move}
+#kh-hero .kh-screen.zoomed img.on{transform:scale(var(--zoom,2));transform-origin:var(--zx,50%) var(--zy,50%);transition:opacity .5s,transform .15s ease-out}
+
+#kh-hero .kh-wf{background:linear-gradient(180deg,#f8f5ef 0%,#f2ede4 100%);border-top:1px solid var(--border);padding:10px 16px}
+#kh-hero .kh-wf-h{text-align:center;font-size:.62rem;font-weight:700;color:var(--gold2);letter-spacing:.3px;margin-bottom:8px;text-transform:uppercase}
+#kh-hero .kh-wf-track{display:flex;align-items:center;position:relative}
+#kh-hero .kh-wf-track::before{content:'';position:absolute;top:16px;right:36px;left:36px;height:0;border-top:1.5px dashed rgba(212,168,75,.2)}
+#kh-hero .kh-wf-step{flex:1;text-align:center;position:relative;cursor:pointer}
+#kh-hero .kh-wf-step:hover .kh-wf-ico{transform:scale(1.15);border-color:var(--gold)}
+#kh-hero .kh-wf-iw{position:relative;width:32px;height:32px;margin:0 auto 5px}
+#kh-hero .kh-wf-ico{width:32px;height:32px;border-radius:9px;background:#fff;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.85rem;position:relative;z-index:2;box-shadow:0 2px 6px rgba(0,0,0,.04);transition:all .3s cubic-bezier(.4,0,.2,1)}
+#kh-hero .kh-wf-step.done .kh-wf-ico{background:rgba(212,168,75,.06);border-color:rgba(212,168,75,.35)}
+#kh-hero .kh-wf-step.anim .kh-wf-ico{animation:khWfPop .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes khWfPop{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
+#kh-hero .kh-wf-step.done .kh-wf-iw::after{content:'✓';position:absolute;top:-3px;left:-3px;width:13px;height:13px;border-radius:50%;background:var(--gold);font-size:.5rem;font-weight:900;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(212,168,75,.5);z-index:3;transform:scale(0);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+#kh-hero .kh-wf-step.done.chk .kh-wf-iw::after{transform:scale(1)}
+#kh-hero .kh-wf-step.act .kh-wf-ico{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,168,75,.12),0 2px 6px rgba(0,0,0,.04);transform:scale(1.1)}
+#kh-hero .kh-wf-step.act .kh-wf-t{color:var(--gold2)}
+#kh-hero .kh-wf-t{font-size:.65rem;font-weight:700;color:var(--navy);transition:color .3s}
+#kh-hero .kh-wf-step:hover .kh-wf-t{color:var(--gold2)}
+
+#kh-hero .kh-ann{position:absolute;background:#fff;border:1px solid var(--border);border-radius:13px;padding:10px 14px;white-space:nowrap;z-index:10;box-shadow:0 8px 32px rgba(27,42,74,.12),0 2px 8px rgba(0,0,0,.06);animation:khAnnIn .55s cubic-bezier(.34,1.56,.64,1) forwards;opacity:0;transform-style:flat;backface-visibility:hidden;transition:transform .22s,box-shadow .22s,border-color .22s}
+#kh-hero .kh-ann:hover{transform:translateY(-3px) scale(1.03) !important;box-shadow:0 12px 40px rgba(27,42,74,.18),0 4px 12px rgba(0,0,0,.08);border-color:var(--gold)}
+#kh-hero .kh-ann-row{display:flex;align-items:center;gap:7px;margin-bottom:3px}
+#kh-hero .kh-ann-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+#kh-hero .kh-ann-title{font-size:.8rem;font-weight:700;color:var(--navy)}
+#kh-hero .kh-ann-sub{font-size:.7rem;color:var(--muted)}
+#kh-hero .kh-ann-1{top:20px;left:-210px;animation-delay:.4s}
+#kh-hero .kh-ann-2{top:90px;left:-210px;animation-delay:.6s}
+#kh-hero .kh-ann-3{top:160px;left:-210px;animation-delay:.8s}
+#kh-hero .kh-ann-1::after,#kh-hero .kh-ann-2::after,#kh-hero .kh-ann-3::after{content:'';position:absolute;top:50%;width:14px;height:1px;background:linear-gradient(to left,var(--border),transparent);right:-14px}
+@keyframes khAnnIn{0%{opacity:0;transform:translateY(8px) scale(.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
+
+@media(max-width:900px){
+  #kh-hero .kh-wrap{grid-template-columns:1fr;padding:40px 24px;gap:32px}
+  #kh-hero .kh-h1{font-size:2rem}
+  #kh-hero .kh-ann-1,#kh-hero .kh-ann-2,#kh-hero .kh-ann-3{display:none}
+}
+</style>
+
+<div class="kh-wrap">
+  <div>
+    <img class="kh-logo rv" src="https://i.postimg.cc/q7wNbVX8/My-Website.png" alt="خياط">
+    <div class="kh-badge rv rv-1">الأكثر استخداماً في المملكة</div>
+    <h1 class="kh-h1 rv rv-2">إدارة محلك<br>من <span class="kh-grd">القياس</span><br>إلى <span class="kh-grd">التسليم</span></h1>
+    <p class="kh-desc rv rv-3">نظام سحابي متكامل لمحلات الخياطة — يتابع الطلبات، يحفظ المقاسات، يُرسل إشعارات SMS، ويُصدر الفواتير تلقائياً.</p>
+    <div class="kh-btns rv rv-3">
+      <a href="#" class="kh-btn-p">ابدأ تجربتك المجانية</a>
+      <a href="#" class="kh-btn-s">💎 تعرّف على باقاتنا</a>
+    </div>
+    <div class="kh-stats rv rv-4">
+      <div><div class="kh-stat-n" data-target="500" data-prefix="+">+0</div><div class="kh-stat-l">محل خياطة</div></div>
+      <div><div class="kh-stat-n" data-target="20" data-prefix="+" data-suffix="k">+0k</div><div class="kh-stat-l">طلب شهرياً</div></div>
+      <div><div class="kh-stat-n" data-target="99" data-suffix="%">0%</div><div class="kh-stat-l">رضا العملاء</div></div>
+    </div>
+    <div class="kh-trust rv rv-4">
+      <span style="font-size:1rem">✅</span>
+      <div><div class="kh-trust-t">متوافق مع هيئة الزكاة والدخل</div><div class="kh-trust-s">الفوترة الإلكترونية — المرحلة الثانية</div></div>
+    </div>
+  </div>
+
+  <div class="kh-mock" id="khMock">
+    <div class="kh-mock-shadow"></div>
+    <div class="kh-glow" id="khGlow"></div>
+    <div class="kh-tabs rv" id="khTabs">
+      <button class="kh-tab on" data-i="0">🏠 الرئيسية</button>
+      <button class="kh-tab" data-i="1">📊 لوحة المعلومات</button>
+      <button class="kh-tab" data-i="2">📋 إدارة الطلب</button>
+      <button class="kh-tab" data-i="3">📏 المقاسات</button>
+      <button class="kh-tab" data-i="4">💰 المالية</button>
+    </div>
+    <div class="kh-3d" id="kh3d">
+      <div class="kh-ann kh-ann-1"><div class="kh-ann-row"><span class="kh-ann-dot" style="background:#7C3AED"></span><span class="kh-ann-title">مسار الطلب التلقائي</span></div><div class="kh-ann-sub">مسودة ← قص ← خياطة ← جاهز</div></div>
+      <div class="kh-ann kh-ann-2"><div class="kh-ann-row"><span class="kh-ann-dot" style="background:#10b981"></span><span class="kh-ann-title">إشعار SMS فوري</span></div><div class="kh-ann-sub">يُبلَّغ العميل تلقائياً عند الجاهزية</div></div>
+      <div class="kh-ann kh-ann-3"><div class="kh-ann-row"><span class="kh-ann-dot" style="background:#D4A84B"></span><span class="kh-ann-title">حفظ المقاسات الكاملة</span></div><div class="kh-ann-sub">+15 مقياس لكل طلب</div></div>
+      <div class="kh-frame">
+        <div class="kh-screen" id="khScreen">
+          <div id="khPh" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#f5f0fa;font-size:.85rem;color:#6b7280">جاري التحميل...</div>
+        </div>
+        <div class="kh-wf">
+          <div class="kh-wf-h">كيف يعمل</div>
+          <div class="kh-wf-track" id="khWf">
+            <div class="kh-wf-step done"><div class="kh-wf-iw"><div class="kh-wf-ico">📝</div></div><div class="kh-wf-t">إنشاء الطلب</div></div>
+            <div class="kh-wf-step done"><div class="kh-wf-iw"><div class="kh-wf-ico">✂️</div></div><div class="kh-wf-t">القص</div></div>
+            <div class="kh-wf-step done"><div class="kh-wf-iw"><div class="kh-wf-ico">🧵</div></div><div class="kh-wf-t">الخياطة</div></div>
+            <div class="kh-wf-step done"><div class="kh-wf-iw"><div class="kh-wf-ico">✅</div></div><div class="kh-wf-t">جاهز</div></div>
+            <div class="kh-wf-step done"><div class="kh-wf-iw"><div class="kh-wf-ico">📦</div></div><div class="kh-wf-t">التسليم</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

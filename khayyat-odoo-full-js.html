@@ -1,0 +1,169 @@
+<!--
+  هذا الكود يُضاف في:
+  الموقع الإلكتروني → الإعدادات → تذييل مخصص (Custom Footer)
+-->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  if (!document.getElementById('kh')) return;
+
+  /* ═══ Hero — Screen & Tabs ═══ */
+  const screen = document.getElementById('khScreen');
+  const tabs = document.querySelectorAll('#khTabs .kh-tab');
+  let currentTab = 0;
+  let autoTimer;
+  let userClicked = false;
+
+  tabs.forEach(function (tab, index) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(t => t.classList.remove('on'));
+      screen.querySelectorAll('img').forEach(img => img.classList.remove('on'));
+      tab.classList.add('on');
+      const allImages = screen.querySelectorAll('img');
+      if (allImages[index]) allImages[index].classList.add('on');
+      currentTab = index;
+      userClicked = true;
+      clearInterval(autoTimer);
+      startAutoRotate();
+    });
+  });
+
+  function autoNext() {
+    const allImages = screen.querySelectorAll('img');
+    currentTab = (currentTab + 1) % allImages.length;
+    allImages.forEach(img => img.classList.remove('on'));
+    tabs.forEach(t => t.classList.remove('on'));
+    if (allImages[currentTab]) allImages[currentTab].classList.add('on');
+    if (tabs[currentTab]) tabs[currentTab].classList.add('on');
+    userClicked = false;
+  }
+
+  function startAutoRotate() {
+    autoTimer = setInterval(autoNext, userClicked ? 9000 : 5000);
+  }
+  startAutoRotate();
+
+  /* ═══ Zoom — scroll wheel + double-click ═══ */
+  let zoomLevel = 1;
+
+  function applyZoom(e) {
+    const rect = screen.getBoundingClientRect();
+    screen.style.setProperty('--zoom', zoomLevel);
+    screen.style.setProperty('--zx', ((e.clientX - rect.left) / rect.width) * 100 + '%');
+    screen.style.setProperty('--zy', ((e.clientY - rect.top) / rect.height) * 100 + '%');
+  }
+
+  screen.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    zoomLevel = e.deltaY < 0
+      ? Math.min(zoomLevel + 0.3, 4)
+      : Math.max(zoomLevel - 0.3, 1);
+    if (zoomLevel > 1) {
+      screen.classList.add('zoomed');
+      applyZoom(e);
+    } else {
+      screen.classList.remove('zoomed');
+      zoomLevel = 1;
+    }
+  }, { passive: false });
+
+  screen.addEventListener('dblclick', function (e) {
+    e.preventDefault();
+    if (screen.classList.contains('zoomed')) {
+      zoomLevel = 1;
+      screen.classList.remove('zoomed');
+    } else {
+      zoomLevel = 2.5;
+      screen.classList.add('zoomed');
+      applyZoom(e);
+    }
+  });
+
+  screen.addEventListener('mousemove', function (e) {
+    if (!screen.classList.contains('zoomed')) return;
+    applyZoom(e);
+  });
+
+  /* ═══ Counter Animation ═══ */
+  document.querySelectorAll('#kh .stat-n[data-target]').forEach(function (el) {
+    new IntersectionObserver(function (entries, observer) {
+      if (!entries[0].isIntersecting) return;
+      const target = parseInt(el.dataset.target);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const startTime = performance.now();
+      (function animate(now) {
+        const progress = Math.min((now - startTime) / 1500, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = prefix + Math.round(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(animate);
+      })(startTime);
+      observer.unobserve(el);
+    }, { threshold: 0.5 }).observe(el);
+  });
+
+  /* ═══ Workflow Auto-Step ═══ */
+  const workflowTrack = document.getElementById('khWf');
+  if (workflowTrack) {
+    const workflowSteps = workflowTrack.querySelectorAll('.kh-wf-step');
+    let workflowCurrent = 0;
+
+    new IntersectionObserver(function (entries, observer) {
+      if (!entries[0].isIntersecting) return;
+      workflowSteps.forEach((step, i) => {
+        setTimeout(() => step.classList.add('animated'), i * 200);
+      });
+      setTimeout(function () {
+        workflowSteps[0].classList.add('act');
+        setInterval(function () {
+          workflowSteps.forEach((step, i) => {
+            step.classList.remove('act');
+            step.classList.toggle('chk', i <= workflowCurrent);
+          });
+          workflowCurrent = (workflowCurrent + 1) % workflowSteps.length;
+          workflowSteps[workflowCurrent].classList.add('act');
+        }, 1500);
+      }, workflowSteps.length * 200 + 400);
+      observer.unobserve(entries[0].target);
+    }, { threshold: 0.3 }).observe(workflowTrack);
+  }
+
+  /* ═══ Scroll Reveal ═══ */
+  document.querySelectorAll('#kh .rv').forEach(function (el) {
+    new IntersectionObserver(function (entries, observer) {
+      if (!entries[0].isIntersecting) return;
+      el.classList.add('vis');
+      observer.unobserve(el);
+    }, { threshold: 0.15 }).observe(el);
+  });
+
+  /* ═══ FAQ Accordion ═══ */
+  document.querySelectorAll('#kh .kh-faq-q').forEach(function (question) {
+    question.addEventListener('click', function () {
+      const item = question.parentElement;
+      document.querySelectorAll('#kh .faq-item').forEach(faqItem => {
+        if (faqItem !== item) faqItem.classList.remove('open');
+      });
+      item.classList.toggle('open');
+    });
+  });
+
+  /* ═══ Pricing Toggle ═══ */
+  const toggleBtn = document.querySelector('#kh #toggleBtn');
+  if (toggleBtn) {
+    const labelMonthly = document.getElementById('tMonthly');
+    const labelAnnual = document.getElementById('tAnnual');
+    let isAnnual = false;
+
+    toggleBtn.addEventListener('click', function () {
+      isAnnual = !isAnnual;
+      toggleBtn.classList.toggle('on', isAnnual);
+      if (labelMonthly) labelMonthly.classList.toggle('active', !isAnnual);
+      if (labelAnnual) labelAnnual.classList.toggle('active', isAnnual);
+      document.querySelectorAll('#kh .p-m').forEach(el => { el.style.display = isAnnual ? 'none' : ''; });
+      document.querySelectorAll('#kh .p-a').forEach(el => { el.style.display = isAnnual ? '' : 'none'; });
+      document.querySelectorAll('#kh .p-period').forEach(el => { el.textContent = isAnnual ? 'سنة' : 'شهر'; });
+    });
+  }
+
+});
+</script>

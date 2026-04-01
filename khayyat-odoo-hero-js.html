@@ -1,0 +1,145 @@
+<!--
+╔══════════════════════════════════════════════════════════════╗
+║  الصق هذا الكود في:                                        ║
+║  Website → Configuration → Settings → Custom Footer         ║
+╚══════════════════════════════════════════════════════════════╝
+-->
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  if(!document.getElementById('kh-hero')) return;
+
+  /* ══ LOAD IMAGES ══ */
+  var cfg = [
+    'https://i.postimg.cc/VsD3Y74q/03.png',
+    'https://i.postimg.cc/prmbN8w7/lwht-alm%CA%BFlwmat.png',
+    'https://i.postimg.cc/7hscm6b9/02.png',
+    'https://i.postimg.cc/sXJbGKr0/01.png',
+    'https://i.postimg.cc/prbyyW2M/00.png'
+  ];
+  var scr = document.getElementById('khScreen');
+  var ph = document.getElementById('khPh');
+
+  cfg.forEach(function(src, i){
+    var img = document.createElement('img');
+    img.src = src;
+    img.draggable = false;
+    if(i === 0) img.classList.add('on');
+    scr.appendChild(img);
+  });
+  if(ph) ph.remove();
+
+  /* ══ TAB CLICKS ══ */
+  var cur = 0, timer, isUser = false;
+
+  document.querySelectorAll('#kh-hero .kh-tab').forEach(function(tab, i){
+    tab.addEventListener('click', function(){
+      document.querySelectorAll('#kh-hero .kh-tab').forEach(function(t){ t.classList.remove('on') });
+      document.querySelectorAll('#khScreen img').forEach(function(img){ img.classList.remove('on') });
+      tab.classList.add('on');
+      var imgs = document.querySelectorAll('#khScreen img');
+      if(imgs[i]) imgs[i].classList.add('on');
+      cur = i;
+      isUser = true;
+      clearInterval(timer);
+      startTimer();
+    });
+  });
+
+  /* ══ AUTO ROTATE ══ */
+  function autoNext(){
+    var imgs = document.querySelectorAll('#khScreen img');
+    var tabs = document.querySelectorAll('#kh-hero .kh-tab');
+    cur = (cur + 1) % imgs.length;
+    imgs.forEach(function(img){ img.classList.remove('on') });
+    tabs.forEach(function(t){ t.classList.remove('on') });
+    if(imgs[cur]) imgs[cur].classList.add('on');
+    if(tabs[cur]) tabs[cur].classList.add('on');
+    isUser = false;
+  }
+
+  function startTimer(){
+    timer = setInterval(autoNext, isUser ? 9000 : 5000);
+  }
+  startTimer();
+
+  /* ══ SCROLL REVEAL ══ */
+  document.querySelectorAll('#kh-hero .rv').forEach(function(el){
+    new IntersectionObserver(function(entries, obs){
+      if(entries[0].isIntersecting){ el.classList.add('vis'); obs.unobserve(el) }
+    }, {threshold: 0.15}).observe(el);
+  });
+
+  /* ══ COUNTER ══ */
+  document.querySelectorAll('#kh-hero .kh-stat-n[data-target]').forEach(function(el){
+    new IntersectionObserver(function(entries, obs){
+      if(entries[0].isIntersecting){
+        var tg = parseInt(el.dataset.target);
+        var pf = el.dataset.prefix || '';
+        var sf = el.dataset.suffix || '';
+        var st = performance.now();
+        (function u(n){
+          var t = Math.min((n - st) / 1500, 1);
+          el.textContent = pf + Math.round((1 - Math.pow(1-t, 3)) * tg) + sf;
+          if(t < 1) requestAnimationFrame(u);
+        })(st);
+        obs.unobserve(el);
+      }
+    }, {threshold: 0.5}).observe(el);
+  });
+
+  /* ══ WORKFLOW AUTO-STEP ══ */
+  var ws = document.querySelectorAll('#khWf .kh-wf-step');
+  var wc = 0;
+
+  new IntersectionObserver(function(entries, obs){
+    if(entries[0].isIntersecting){
+      ws.forEach(function(s, i){ setTimeout(function(){ s.classList.add('anim') }, i * 200) });
+      setTimeout(function(){
+        ws[0].classList.add('act');
+        setInterval(function(){
+          ws.forEach(function(s, i){ s.classList.remove('act'); if(i < wc) s.classList.add('chk'); else s.classList.remove('chk') });
+          wc = (wc + 1) % ws.length;
+          ws[wc].classList.add('act');
+        }, 1500);
+      }, ws.length * 200 + 400);
+      obs.unobserve(entries[0].target);
+    }
+  }, {threshold: 0.3}).observe(document.getElementById('khWf'));
+
+  /* ══ 3D TILT ══ */
+  var mc = document.getElementById('khMock');
+  var m3 = document.getElementById('kh3d');
+  var gl = document.getElementById('khGlow');
+  mc.addEventListener('mousemove', function(e){
+    var r = mc.getBoundingClientRect();
+    gl.style.left = (e.clientX - r.left) + 'px';
+    gl.style.top = (e.clientY - r.top) + 'px';
+    m3.style.transform = 'rotateY(' + ((e.clientX-r.left)/r.width-0.5)*6 + 'deg) rotateX(' + -((e.clientY-r.top)/r.height-0.5)*4 + 'deg)';
+  });
+  mc.addEventListener('mouseleave', function(){ m3.style.transform = 'rotateY(0) rotateX(0)' });
+
+  /* ══ ZOOM ══ */
+  var zl = 1;
+  scr.addEventListener('wheel', function(e){
+    e.preventDefault();
+    var r = scr.getBoundingClientRect();
+    if(e.deltaY < 0) zl = Math.min(zl+0.3, 4); else zl = Math.max(zl-0.3, 1);
+    if(zl > 1){ scr.classList.add('zoomed'); scr.style.setProperty('--zoom',zl); scr.style.setProperty('--zx',((e.clientX-r.left)/r.width)*100+'%'); scr.style.setProperty('--zy',((e.clientY-r.top)/r.height)*100+'%') }
+    else{ scr.classList.remove('zoomed'); zl=1 }
+  }, {passive:false});
+
+  scr.addEventListener('dblclick', function(e){
+    e.preventDefault();
+    if(scr.classList.contains('zoomed')){ zl=1; scr.classList.remove('zoomed') }
+    else{ zl=2.5; scr.classList.add('zoomed'); var r=scr.getBoundingClientRect(); scr.style.setProperty('--zoom',zl); scr.style.setProperty('--zx',((e.clientX-r.left)/r.width)*100+'%'); scr.style.setProperty('--zy',((e.clientY-r.top)/r.height)*100+'%') }
+  });
+
+  scr.addEventListener('mousemove', function(e){
+    if(!scr.classList.contains('zoomed')) return;
+    var r = scr.getBoundingClientRect();
+    scr.style.setProperty('--zx',((e.clientX-r.left)/r.width)*100+'%');
+    scr.style.setProperty('--zy',((e.clientY-r.top)/r.height)*100+'%');
+  });
+});
+</script>
