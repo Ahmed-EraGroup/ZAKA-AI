@@ -130,89 +130,18 @@
 
   <!-- Last 5 Measurements -->
   <div class="section">
-    <div class="section-title" style="display:flex; justify-content:space-between; align-items:center;">
-      <span>آخر 5 مقاسات للعميل</span>
-      <span style="font-size:10px; color:#aaa; font-weight:normal;">اضغط على أي طلب لتحميل مقاساته</span>
-    </div>
-    <div style="overflow-x:auto;">
-      <table style="width:100%; border-collapse:collapse; font-size:11px; min-width:700px;">
-        <thead>
-          <tr style="background:#f7f3fb; color:#6c4a8a;">
-            <th style="padding:5px 8px; text-align:right; font-weight:600; border-bottom:1px solid #e8d5f7;">رقم الطلب</th>
-            <th style="padding:5px 8px; text-align:center; font-weight:600; border-bottom:1px solid #e8d5f7;">التاريخ</th>
-            <th style="padding:5px 8px; text-align:center; font-weight:600; border-bottom:1px solid #e8d5f7;">ط.امامي</th>
-            <th style="padding:5px 8px; text-align:center; font-weight:600; border-bottom:1px solid #e8d5f7;">الكتف</th>
-            <th style="padding:5px 8px; text-align:center; font-weight:600; border-bottom:1px solid #e8d5f7;">ط.الكم</th>
-            <th style="padding:5px 8px; text-align:center; font-weight:600; border-bottom:1px solid #e8d5f7;">صدر</th>
-            <th style="padding:5px 8px; text-align:center; font-weight:600; border-bottom:1px solid #e8d5f7;">وسط</th>
-            <th style="padding:5px 8px; text-align:center; font-weight:600; border-bottom:1px solid #e8d5f7;">رقبه</th>
-            <th style="padding:5px 8px; text-align:center; font-weight:600; border-bottom:1px solid #e8d5f7;">الدايري</th>
-            <th style="padding:5px 8px; text-align:center; font-weight:600; border-bottom:1px solid #e8d5f7;">تحميل</th>
-          </tr>
-        </thead>
-        <tbody id="prev-meas-body">
-          <tr class="prev-row" onclick="loadMeas(this)" style="cursor:pointer;" data-t_amami="59" data-katf="17.5" data-t_kam="25.25" data-sadr="24.5" data-wasat="23.75" data-raqba="43" data-dayri="31-3">
-            <td style="padding:5px 8px; color:#6c4a8a;">#1000000706</td>
-            <td style="padding:5px 8px; text-align:center; color:#888;">2025-12-23</td>
-            <td style="padding:5px 8px; text-align:center;">59</td>
-            <td style="padding:5px 8px; text-align:center;">17.5</td>
-            <td style="padding:5px 8px; text-align:center;">25.25</td>
-            <td style="padding:5px 8px; text-align:center;">24.5</td>
-            <td style="padding:5px 8px; text-align:center;">23.75</td>
-            <td style="padding:5px 8px; text-align:center;">43</td>
-            <td style="padding:5px 8px; text-align:center;">31-3</td>
-            <td style="padding:5px 8px; text-align:center;"><span style="background:#6c4a8a; color:white; padding:2px 8px; border-radius:10px; font-size:10px;">تحميل</span></td>
-          </tr>
-          <tr class="prev-row" onclick="loadMeas(this)" style="cursor:pointer; background:#fafafa;" data-t_amami="58" data-katf="17" data-t_kam="25" data-sadr="24" data-wasat="23.5" data-raqba="42" data-dayri="30-3">
-            <td style="padding:5px 8px; color:#6c4a8a;">#1000000690</td>
-            <td style="padding:5px 8px; text-align:center; color:#888;">2025-10-10</td>
-            <td style="padding:5px 8px; text-align:center;">58</td>
-            <td style="padding:5px 8px; text-align:center;">17</td>
-            <td style="padding:5px 8px; text-align:center;">25</td>
-            <td style="padding:5px 8px; text-align:center;">24</td>
-            <td style="padding:5px 8px; text-align:center;">23.5</td>
-            <td style="padding:5px 8px; text-align:center;">42</td>
-            <td style="padding:5px 8px; text-align:center;">30-3</td>
-            <td style="padding:5px 8px; text-align:center;"><span style="background:#6c4a8a; color:white; padding:2px 8px; border-radius:10px; font-size:10px;">تحميل</span></td>
-          </tr>
-          <tr class="prev-row" onclick="loadMeas(this)" style="cursor:pointer;" data-t_amami="57.5" data-katf="17" data-t_kam="24.75" data-sadr="24" data-wasat="23" data-raqba="42" data-dayri="30-3">
-            <td style="padding:5px 8px; color:#6c4a8a;">#1000000655</td>
-            <td style="padding:5px 8px; text-align:center; color:#888;">2025-07-15</td>
-            <td style="padding:5px 8px; text-align:center;">57.5</td>
-            <td style="padding:5px 8px; text-align:center;">17</td>
-            <td style="padding:5px 8px; text-align:center;">24.75</td>
-            <td style="padding:5px 8px; text-align:center;">24</td>
-            <td style="padding:5px 8px; text-align:center;">23</td>
-            <td style="padding:5px 8px; text-align:center;">42</td>
-            <td style="padding:5px 8px; text-align:center;">30-3</td>
-            <td style="padding:5px 8px; text-align:center;"><span style="background:#6c4a8a; color:white; padding:2px 8px; border-radius:10px; font-size:10px;">تحميل</span></td>
-          </tr>
-          <tr class="prev-row" onclick="loadMeas(this)" style="cursor:pointer; background:#fafafa;" data-t_amami="57" data-katf="16.5" data-t_kam="24.5" data-sadr="23.5" data-wasat="22.5" data-raqba="41" data-dayri="29-3">
-            <td style="padding:5px 8px; color:#6c4a8a;">#1000000612</td>
-            <td style="padding:5px 8px; text-align:center; color:#888;">2025-04-02</td>
-            <td style="padding:5px 8px; text-align:center;">57</td>
-            <td style="padding:5px 8px; text-align:center;">16.5</td>
-            <td style="padding:5px 8px; text-align:center;">24.5</td>
-            <td style="padding:5px 8px; text-align:center;">23.5</td>
-            <td style="padding:5px 8px; text-align:center;">22.5</td>
-            <td style="padding:5px 8px; text-align:center;">41</td>
-            <td style="padding:5px 8px; text-align:center;">29-3</td>
-            <td style="padding:5px 8px; text-align:center;"><span style="background:#6c4a8a; color:white; padding:2px 8px; border-radius:10px; font-size:10px;">تحميل</span></td>
-          </tr>
-          <tr class="prev-row" onclick="loadMeas(this)" style="cursor:pointer;" data-t_amami="57" data-katf="16.5" data-t_kam="24" data-sadr="23" data-wasat="22" data-raqba="41" data-dayri="29-3">
-            <td style="padding:5px 8px; color:#6c4a8a;">#1000000580</td>
-            <td style="padding:5px 8px; text-align:center; color:#888;">2025-01-20</td>
-            <td style="padding:5px 8px; text-align:center;">57</td>
-            <td style="padding:5px 8px; text-align:center;">16.5</td>
-            <td style="padding:5px 8px; text-align:center;">24</td>
-            <td style="padding:5px 8px; text-align:center;">23</td>
-            <td style="padding:5px 8px; text-align:center;">22</td>
-            <td style="padding:5px 8px; text-align:center;">41</td>
-            <td style="padding:5px 8px; text-align:center;">29-3</td>
-            <td style="padding:5px 8px; text-align:center;"><span style="background:#6c4a8a; color:white; padding:2px 8px; border-radius:10px; font-size:10px;">تحميل</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="row">
+      <div class="field f2">
+        <label>آخر 5 مقاسات للعميل</label>
+        <select id="prev-meas-select" onchange="loadMeasFromSelect(this)">
+          <option value="">— اختر طلب سابق لتحميل مقاساته —</option>
+          <option value='{"t_amami":59,"katf":17.5,"t_kam":25.25,"sadr":24.5,"wasat":23.75,"raqba":43,"dayri":"31-3"}'>#1000000706 — 2025-12-23</option>
+          <option value='{"t_amami":58,"katf":17,"t_kam":25,"sadr":24,"wasat":23.5,"raqba":42,"dayri":"30-3"}'>#1000000690 — 2025-10-10</option>
+          <option value='{"t_amami":57.5,"katf":17,"t_kam":24.75,"sadr":24,"wasat":23,"raqba":42,"dayri":"30-3"}'>#1000000655 — 2025-07-15</option>
+          <option value='{"t_amami":57,"katf":16.5,"t_kam":24.5,"sadr":23.5,"wasat":22.5,"raqba":41,"dayri":"29-3"}'>#1000000612 — 2025-04-02</option>
+          <option value='{"t_amami":57,"katf":16.5,"t_kam":24,"sadr":23,"wasat":22,"raqba":41,"dayri":"29-3"}'>#1000000580 — 2025-01-20</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -472,12 +401,9 @@ function sliceDesignImage() {
 
 window.addEventListener('load', sliceDesignImage);
 
-function loadMeas(row) {
-  // Highlight selected row
-  document.querySelectorAll('.prev-row').forEach(r => r.style.outline = '');
-  row.style.outline = '2px solid #6c4a8a';
-
-  // Map data attributes to input fields (by label text)
+function loadMeasFromSelect(sel) {
+  if (!sel.value) return;
+  const data = JSON.parse(sel.value);
   const map = {
     't_amami': 'طول امامي',
     'katf':    'الكتف',
@@ -487,13 +413,11 @@ function loadMeas(row) {
     'raqba':   'رقبه',
     'dayri':   'الدايري'
   };
-
-  const inputs = document.querySelectorAll('.meas-field');
-  inputs.forEach(field => {
+  document.querySelectorAll('.meas-field').forEach(field => {
     const label = field.querySelector('label').textContent.trim();
     for (const [key, name] of Object.entries(map)) {
-      if (label === name && row.dataset[key]) {
-        field.querySelector('input').value = row.dataset[key];
+      if (label === name && data[key] !== undefined) {
+        field.querySelector('input').value = data[key];
       }
     }
   });
