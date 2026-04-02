@@ -21,8 +21,8 @@
   .f2 { flex: 2; min-width: 180px; }
 
   .meas-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
-  .meas-field { display: flex; flex-direction: column; gap: 2px; text-align: center; }
-  .meas-field label { font-size: 10px; color: #555; white-space: nowrap; }
+  .meas-field { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .meas-field label { font-size: 10px; color: #555; white-space: nowrap; text-align: center; }
   .meas-field input { border: 1px solid #ddd; border-radius: 4px; padding: 2px; font-size: 12px; text-align: center; background: #fafafa; font-family: inherit; width: 50px; height: 24px; }
   .meas-field input:focus { outline: none; border-color: #6c4a8a; background: white; }
 </style>
@@ -51,25 +51,25 @@
   <div class="section">
     <div class="section-title">المقاسات</div>
     <div class="meas-grid">
-      <div class="meas-field"><label>طول امامي</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>طول خلفي</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>الكتف</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>نزول الكتف</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>طول الكم</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>وسع الكم</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>وسط الكم</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>فتحة اليد</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>الكبك</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>وسع الكبك</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>صدر</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>صدر امام</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>وسط</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>هب</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>رقبه</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>الدايري</label><input type="text" placeholder=""></div>
-      <div class="meas-field"><label>جيب الصدر</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>الجيب</label><input type="number" placeholder="" step="0.25" max="100"></div>
-      <div class="meas-field"><label>الجبزور</label><input type="text" placeholder=""></div>
+      <div class="meas-field"><label>طول امامي</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>طول خلفي</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>الكتف</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>نزول الكتف</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>طول الكم</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>وسع الكم</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>وسط الكم</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>فتحة اليد</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>الكبك</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>وسع الكبك</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>صدر</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>صدر امام</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>وسط</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>هب</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>رقبه</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>الدايري</label><input type="text" placeholder="0"></div>
+      <div class="meas-field"><label>جيب الصدر</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>الجيب</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>الجبزور</label><input type="text" placeholder="0"></div>
     </div>
   </div>
 
