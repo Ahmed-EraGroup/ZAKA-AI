@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المقاسات</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f5f5f5; font-size: 13px; color: #333; }
+
+  .page { max-width: 960px; margin: 24px auto; background: white; border: 1px solid #ddd; border-radius: 6px; overflow: hidden; }
+
+  .section { padding: 10px 16px; border-bottom: 1px solid #eee; }
+  .section-title { font-size: 11px; font-weight: 700; color: #6c4a8a; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .field { display: flex; flex-direction: column; gap: 2px; }
+  .field label { font-size: 11px; color: #888; }
+  .field input, .field select { border: 1px solid #ddd; border-radius: 4px; padding: 5px 8px; font-size: 13px; width: 100%; font-family: inherit; background: #fafafa; }
+  .field input:focus, .field select:focus { outline: none; border-color: #6c4a8a; background: white; }
+  .f2 { flex: 2; min-width: 180px; }
+
+  .meas-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .meas-field { display: flex; flex-direction: column; gap: 2px; text-align: center; }
+  .meas-field label { font-size: 10px; color: #555; white-space: nowrap; }
+  .meas-field input { border: 1px solid #ddd; border-radius: 4px; padding: 2px; font-size: 12px; text-align: center; background: #fafafa; font-family: inherit; width: 100%; height: 24px; }
+  .meas-field input:focus { outline: none; border-color: #6c4a8a; background: white; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Last 5 Measurements -->
+  <div class="section">
+    <div class="row">
+      <div class="field f2">
+        <label>آخر 5 مقاسات للعميل</label>
+        <select id="prev-meas-select" onchange="loadMeasFromSelect(this)">
+          <option value="">— اختر طلب سابق لتحميل مقاساته —</option>
+          <option value='{"t_amami":59,"katf":17.5,"t_kam":25.25,"sadr":24.5,"wasat":23.75,"raqba":43,"dayri":"31-3"}'>#1000000706 — 2025-12-23</option>
+          <option value='{"t_amami":58,"katf":17,"t_kam":25,"sadr":24,"wasat":23.5,"raqba":42,"dayri":"30-3"}'>#1000000690 — 2025-10-10</option>
+          <option value='{"t_amami":57.5,"katf":17,"t_kam":24.75,"sadr":24,"wasat":23,"raqba":42,"dayri":"30-3"}'>#1000000655 — 2025-07-15</option>
+          <option value='{"t_amami":57,"katf":16.5,"t_kam":24.5,"sadr":23.5,"wasat":22.5,"raqba":41,"dayri":"29-3"}'>#1000000612 — 2025-04-02</option>
+          <option value='{"t_amami":57,"katf":16.5,"t_kam":24,"sadr":23,"wasat":22,"raqba":41,"dayri":"29-3"}'>#1000000580 — 2025-01-20</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Measurements -->
+  <div class="section">
+    <div class="section-title">المقاسات</div>
+    <div class="meas-grid">
+      <div class="meas-field"><label>طول امامي</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>طول خلفي</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>الكتف</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>نزول الكتف</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>طول الكم</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>وسع الكم</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>وسط الكم</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>فتحة اليد</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>الكبك</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>وسع الكبك</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>صدر</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>صدر امام</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>وسط</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>هب</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>رقبه</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>الدايري</label><input type="text" placeholder="0"></div>
+      <div class="meas-field"><label>جيب الصدر</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>الجيب</label><input type="number" placeholder="0" step="0.25" max="100"></div>
+      <div class="meas-field"><label>الجبزور</label><input type="text" placeholder="0"></div>
+    </div>
+  </div>
+
+</div>
+<script>
+function loadMeasFromSelect(sel) {
+  if (!sel.value) return;
+  const data = JSON.parse(sel.value);
+  const map = {
+    't_amami': 'طول امامي',
+    'katf':    'الكتف',
+    't_kam':   'طول الكم',
+    'sadr':    'صدر',
+    'wasat':   'وسط',
+    'raqba':   'رقبه',
+    'dayri':   'الدايري'
+  };
+  document.querySelectorAll('.meas-field').forEach(field => {
+    const label = field.querySelector('label').textContent.trim();
+    for (const [key, name] of Object.entries(map)) {
+      if (label === name && data[key] !== undefined) {
+        field.querySelector('input').value = data[key];
+      }
+    }
+  });
+}
+</script>
+</body>
+</html>
